@@ -79,6 +79,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBillRepository.cs" />
+    <Compile Include="Concrete\BillRepository.cs" />
+    <Compile Include="Entities\Bill.cs" />
+    <Compile Include="Entities\BillName.cs" />
+    <Compile Include="Entities\City.cs" />
+    <Compile Include="Concrete\HouseholdExpensesContext.cs" />
+    <Compile Include="Entities\PostCode.cs" />
+    <Compile Include="Entities\Recipient.cs" />
+    <Compile Include="Entities\Street.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
