@@ -13,7 +13,7 @@ Aplikacja umożliwia:
 - tworzenie raportów za wybrany okres
 
 # 3) Inne
-Aplikacja w trakcie tworzenia.... Jej głownym celem jest nauka ASP.NET MVC 5, Entity Framework oraz rozwijanie umiejętności programistycznych.  
+Aplikacja w trakcie tworzenia.... Jej głownym celem jest nauka ASP.NET MVC 5, Entity Framework 6 oraz testów jednostkowych z wykorzystaniem biblioteki wbudowanej w Visual Studio.  
 
 
 
