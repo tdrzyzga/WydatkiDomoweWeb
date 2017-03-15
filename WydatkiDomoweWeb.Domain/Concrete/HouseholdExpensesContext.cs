@@ -8,7 +8,7 @@ namespace WydatkiDomoweWeb.Domain.Entities
     public partial class HouseholdExpensesContext : DbContext
     {
         public HouseholdExpensesContext()
-            : base("name=HouseholdExpense")
+            : base("name=HouseholdExpenses")
         {
         }
 
