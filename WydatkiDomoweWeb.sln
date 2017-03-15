@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WydatkiDomoweWeb.WebUI", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WydatkiDomoweWeb.Tests", "WydatkiDomoweWeb.Tests\WydatkiDomoweWeb.Tests.csproj", "{CE46B99D-1DED-40EE-9415-3150CA165693}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WydatkiDomoweWeb.Domain", "WydatkiDomoweWeb.Domain\WydatkiDomoweWeb.Domain.csproj", "{15D168BB-D40E-4755-9965-0A0C63C8B982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CE46B99D-1DED-40EE-9415-3150CA165693}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE46B99D-1DED-40EE-9415-3150CA165693}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE46B99D-1DED-40EE-9415-3150CA165693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D168BB-D40E-4755-9965-0A0C63C8B982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D168BB-D40E-4755-9965-0A0C63C8B982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D168BB-D40E-4755-9965-0A0C63C8B982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D168BB-D40E-4755-9965-0A0C63C8B982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
