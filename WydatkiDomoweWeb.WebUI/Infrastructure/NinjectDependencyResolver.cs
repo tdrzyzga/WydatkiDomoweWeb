@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WydatkiDomoweWeb.Domain.Abstract;
+using WydatkiDomoweWeb.Domain.Concrete;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure
 {
@@ -29,7 +31,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure
 
         private void AddBindings()
         {
-
+            kernel.Bind<IBillRepository>().To<BillRepository>();
         }
     }
 }
