@@ -1,4 +1,4 @@
-﻿using SportsStore.WebUI.Models;
+﻿using WydatkiDomoweWeb.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SportsStore.WebUI.HtmlHelpers
+namespace WydatkiDomoweWeb.WebUI.HtmlHelpers
 {
     public static class PagingHelpers
     {
