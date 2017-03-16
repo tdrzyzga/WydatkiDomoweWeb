@@ -30,7 +30,11 @@
                 </tr>
             }
         </table>
+        <div class="btn-group pull-right">
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+        </div>
     </div>
+
     <div class="panel-footer">
         @Html.ActionLink("Dodaj nowy produkt", "Usuń", null, new { @class = "btn btn-default" })
     </div>

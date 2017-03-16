@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportsStore.WebUI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,11 +20,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             this.repository = billRepository;
         }
 
-        public ViewResult List()
+        public ViewResult List(int page = 1)
         {
-            BillListViewModel model = new BillListViewModel
-            {
-                Bills = (from b in repository.Bills
+            var query = (from b in repository.Bills
                          join bn in repository.BillNames
                             on b.BillNameID equals bn.BillNameID
                          join r in repository.Recipients
@@ -34,7 +33,18 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              BillName = bn.Name,
                              Recipient = r.Name,
                              Amount = b.Amount
-                         })
+                         });
+
+            BillListViewModel model = new BillListViewModel
+            {
+                Bills = query.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
+
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = repository.Bills.Count()
+                },
             };   
                              
             return View(model);
