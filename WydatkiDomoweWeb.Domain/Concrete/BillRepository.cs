@@ -16,5 +16,15 @@ namespace WydatkiDomoweWeb.Domain.Concrete
         {
             get { return context.Bills; }
         }
+
+        public IEnumerable<BillName> BillNames
+        {
+            get { return context.BillNames; }
+        }
+
+        public IEnumerable<Recipient> Recipients
+        {
+            get { return context.Recipients; }
+        }
     }
 }

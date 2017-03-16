@@ -1,5 +1,5 @@
 ﻿@using WydatkiDomoweWeb.Domain.Entities
-@model IEnumerable<Bill>
+@model WydatkiDomoweWeb.WebUI.Models.BillListViewModel
 
 
 @{
@@ -15,12 +15,12 @@
                 <th class="NumericCol">Cena</th>
                 <th>Akcja</th>
             </tr>
-            @foreach (var bill in Model)
+            @foreach (var b in Model.Bills)
             {
                 <tr>
-                    <td>@bill.BillNameID</td>
-                    <td>@bill.RecipientID</td>
-                    <td>@bill.Amount</td>
+                    <td>@b.BillName</td>
+                    <td>@b.Recipient</td>
+                    <td>@b.Amount</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
                         {

@@ -10,5 +10,7 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     public interface IBillRepository
     {
         IEnumerable<Bill> Bills { get; }
+        IEnumerable<BillName> BillNames { get; }
+        IEnumerable<Recipient> Recipients { get; }
     }
 }

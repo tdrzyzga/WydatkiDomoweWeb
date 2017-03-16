@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
+using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
@@ -20,7 +21,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
         public ViewResult List()
         {
-            return View(repository.Bills);
+            BillListViewModel model = new BillListViewModel
+            {
+                Bills = (from b in repository.Bills
+                         join bn in repository.BillNames
+                            on b.BillNameID equals bn.BillNameID
+                         join r in repository.Recipients
+                            on b.RecipientID equals r.RecipientID
+                         select new BillView
+                         {
+                             Id = b.BillsID,
+                             BillName = bn.Name,
+                             Recipient = r.Name,
+                             Amount = b.Amount
+                         })
+            };   
+                             
+            return View(model);
         }
     }
 }
