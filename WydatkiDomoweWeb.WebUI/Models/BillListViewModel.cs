@@ -12,6 +12,8 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public string BillName { get; set; }
         public string Recipient { get; set; }
         public decimal Amount { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public DateTime RequiredDate { get; set; }
     }
     public class BillListViewModel
     {
