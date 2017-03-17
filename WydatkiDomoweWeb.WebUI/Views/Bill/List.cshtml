@@ -13,6 +13,8 @@
                 <th>Rachunek</th>
                 <th>Odbiorca</th>
                 <th class="NumericCol">Cena</th>
+                <th>Data wpłaty</th>
+                <th>Termin zapłaty</th>
                 <th>Akcja</th>
             </tr>
             @foreach (var b in Model.Bills)
@@ -21,6 +23,8 @@
                     <td>@b.BillName</td>
                     <td>@b.Recipient</td>
                     <td>@b.Amount</td>
+                    <td>@b.PaymentDate</td>
+                    <td>@b.RequiredDate</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
                         {

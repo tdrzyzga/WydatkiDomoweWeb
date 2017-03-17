@@ -31,7 +31,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              Id = b.BillsID,
                              BillName = bn.Name,
                              Recipient = r.Name,
-                             Amount = b.Amount
+                             Amount = b.Amount,
+                             PaymentDate = b.PaymentDate,
+                             RequiredDate = b.RequiredDate
                          });
 
             BillListViewModel model = new BillListViewModel
