@@ -5,35 +5,31 @@ using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.WebUI.Models;
+using WydatkiDomoweWeb.WebUI.Models.Abstract;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class CheckboxController : Controller
     {
         private IBillRepository repository;
-        private CheckboxListViewModel model;
+        private ICheckboxListViewModel model;
 
-        public CheckboxController(IBillRepository billRepository)
+        public CheckboxController(IBillRepository billRepository, ICheckboxListViewModel checkbox)
         {
             this.repository = billRepository;
+            this.model = checkbox;
+
+            model.CheckboxItems = (from bn in repository.BillNames
+                                   select new CheckboxModel
+                                   {
+                                       Name = bn.Name,
+                                       IsChecked = true
+                                   }).ToList();
         }
 
         public PartialViewResult CheckboxList()
-        {
-            if (model == null)
-            {
-                model = new CheckboxListViewModel
-                {
-                    CheckboxItem = (from bn in repository.BillNames
-                                    select new CheckboxModel
-                                    {
-                                        Name = bn.Name,
-                                        IsChecked = true
-                                    }).ToList()
-                };
-            }
-
-            return PartialView(model);
+        {         
+            return PartialView(model);            
         }
 
     }

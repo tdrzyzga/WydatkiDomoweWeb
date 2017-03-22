@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\Abstract\ICheckboxListViewModel.cs" />
     <Compile Include="Models\BillListViewModel.cs" />
     <Compile Include="Models\CheckboxListViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
