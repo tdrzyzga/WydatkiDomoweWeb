@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.Domain.Concrete;
 using WydatkiDomoweWeb.WebUI.Models;
+using WydatkiDomoweWeb.WebUI.Models.Abstract;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure
 {
@@ -33,6 +34,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBillRepository>().To<BillRepository>();
+            kernel.Bind<ICheckboxListViewModel>().To<CheckboxListViewModel>().InSingletonScope();
         }
     }
 }

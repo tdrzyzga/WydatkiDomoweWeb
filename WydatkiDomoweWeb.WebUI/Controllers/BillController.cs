@@ -5,19 +5,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
+using WydatkiDomoweWeb.WebUI.Models.Abstract;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class BillController : Controller
     {
         private IBillRepository repository;
-        private CheckboxListViewModel checkbox;
+        private ICheckboxListViewModel checkbox;
 
         public int PageSize = 10;
 
-        public BillController(IBillRepository billRepository)
+        public BillController(IBillRepository billRepository, ICheckboxListViewModel checkboxListViewModel)
         {
             this.repository = billRepository;
+            this.checkbox = checkboxListViewModel;
         }
 
         [HttpGet]
@@ -29,9 +31,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public ViewResult List(CheckboxListViewModel model, int page = 1)
+        public ViewResult List(CheckboxListViewModel checkboxListViewModel, int page = 1)
         {
-            checkbox = model;
+            checkbox = checkboxListViewModel;
+
             var query = GetBillModelList();
 
             return View(CreateBillListViewModel(query, page));
@@ -47,7 +50,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = repository.Bills.Count()
+                    TotalItems = query.Count()
                 }
             };
             return model;
@@ -69,8 +72,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              PaymentDate = b.PaymentDate,
                              RequiredDate = b.RequiredDate
                          });
-            
-            if (checkbox != null)
+
+            if (checkbox.CheckboxItems != null)
                 query = CheckboxCheck(query);
 
             return query;
@@ -80,9 +83,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             List<BillModel> current = new List<BillModel>();
 
-            for (int i = 0; i < checkbox.CheckboxItem.Count(); i++)
+            for (int i = 0; i < checkbox.CheckboxItems.Count(); i++)
             {
-                var obj = query.Where(bn => bn.BillName == checkbox.CheckboxItem[i].Name && checkbox.CheckboxItem[i].IsChecked);
+                var obj = query.Where(bn => bn.BillName == checkbox.CheckboxItems[i].Name && checkbox.CheckboxItems[i].IsChecked);
                 current.AddRange(obj);
             }
 

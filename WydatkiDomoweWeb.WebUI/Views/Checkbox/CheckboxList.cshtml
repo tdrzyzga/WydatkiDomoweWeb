@@ -1,15 +1,15 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CheckboxListViewModel
 
-@using (Html.BeginForm("List", "Bill", FormMethod.Post, new {model = Model, page = 1 }))
+@using (Html.BeginForm("List", "Bill", FormMethod.Post, new { checkboxListviewModel = Model, page = 1 }))
 {
     <div>
 
-        @for (int i = 0; i < Model.CheckboxItem.Count(); i++ )
+        @for (int i = 0; i < Model.CheckboxItems.Count(); i++ )
         {
             <label class = "checkbox-inline">
-                @Html.CheckBoxFor(m => Model.CheckboxItem[i].IsChecked)
-                @Html.HiddenFor(m => Model.CheckboxItem[i].Name)
-                @Model.CheckboxItem[i].Name
+                @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked)
+                @Html.HiddenFor(m => Model.CheckboxItems[i].Name)
+                @Model.CheckboxItems[i].Name
             </label>
         }
 
