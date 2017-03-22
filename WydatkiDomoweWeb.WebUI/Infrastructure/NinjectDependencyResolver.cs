@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.Domain.Concrete;
+using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure
 {

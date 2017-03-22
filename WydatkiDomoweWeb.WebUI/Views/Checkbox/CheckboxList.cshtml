@@ -1,0 +1,18 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.CheckboxListViewModel
+
+@using (Html.BeginForm("List", "Bill", FormMethod.Post, new {model = Model, page = 1 }))
+{
+    <div>
+
+        @for (int i = 0; i < Model.CheckboxItem.Count(); i++ )
+        {
+            <label class = "checkbox-inline">
+                @Html.CheckBoxFor(m => Model.CheckboxItem[i].IsChecked)
+                @Html.HiddenFor(m => Model.CheckboxItem[i].Name)
+                @Model.CheckboxItem[i].Name
+            </label>
+        }
+
+        <input class = "btn btn-default" type="submit" value="Filtruj" /> 
+    </div>
+}

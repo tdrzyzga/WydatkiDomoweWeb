@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI
 {
@@ -13,7 +14,7 @@ namespace WydatkiDomoweWeb.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-               routes.MapRoute(
+            routes.MapRoute(
                name: null,
                url: "Strona{page}",
                defaults: new { Controller = "Bill", action = "List" }
