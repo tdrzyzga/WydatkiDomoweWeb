@@ -25,10 +25,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public ViewResult List(int page = 1)
         {
-            if ((List<CheckboxModel>)TempData["List"] != null)
-                checkboxList = (List<CheckboxModel>)TempData["List"];
+            if ((List<CheckboxModel>)Session["List"] != null)
+                checkboxList = (List<CheckboxModel>)Session["List"];
             
-            TempData["ListToCheckbox"] = checkboxList;
+            Session["ListToCheckbox"] = checkboxList;
             var query = GetBillModelList();
 
             return View(CreateBillListViewModel(query, page));
