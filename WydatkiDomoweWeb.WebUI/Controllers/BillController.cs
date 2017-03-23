@@ -12,29 +12,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
     public class BillController : Controller
     {
         private IBillRepository repository;
-        private ICheckboxListViewModel checkbox;
+        private List<CheckboxModel> checkboxList;
 
         public int PageSize = 10;
 
-        public BillController(IBillRepository billRepository, ICheckboxListViewModel checkboxListViewModel)
+        public BillController(IBillRepository billRepository)
         {
             this.repository = billRepository;
-            this.checkbox = checkboxListViewModel;
+            checkboxList = new List<CheckboxModel>();
         }
 
         [HttpGet]
         public ViewResult List(int page = 1)
         {
-            var query = GetBillModelList();                          
-                            
-            return View(CreateBillListViewModel(query, page));
-        }
-
-        [HttpPost]
-        public ViewResult List(CheckboxListViewModel checkboxListViewModel, int page = 1)
-        {
-            checkbox = checkboxListViewModel;
-
+            if ((List<CheckboxModel>)TempData["List"] != null)
+                checkboxList = (List<CheckboxModel>)TempData["List"];
+            
+            TempData["ListToCheckbox"] = checkboxList;
             var query = GetBillModelList();
 
             return View(CreateBillListViewModel(query, page));
@@ -73,7 +67,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              RequiredDate = b.RequiredDate
                          });
 
-            if (checkbox.CheckboxItems != null)
+            if (checkboxList.Count() != 0)
                 query = CheckboxCheck(query);
 
             return query;
@@ -83,9 +77,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             List<BillModel> current = new List<BillModel>();
 
-            for (int i = 0; i < checkbox.CheckboxItems.Count(); i++)
+            for (int i = 0; i < checkboxList.Count(); i++)
             {
-                var obj = query.Where(bn => bn.BillName == checkbox.CheckboxItems[i].Name && checkbox.CheckboxItems[i].IsChecked);
+                var obj = query.Where(bn => bn.BillName == checkboxList[i].Name && checkboxList[i].IsChecked);
                 current.AddRange(obj);
             }
 

@@ -16,7 +16,7 @@ namespace WydatkiDomoweWeb.WebUI
 
             routes.MapRoute(
                name: null,
-               url: "Strona{page}",
+               url: "Strona",
                defaults: new { Controller = "Bill", action = "List", model = (CheckboxListViewModel)null, page = 1}
            );
 
@@ -30,7 +30,7 @@ namespace WydatkiDomoweWeb.WebUI
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Bill", action = "List", id = UrlParameter.Optional }
-            );
+           );
         }
     }
 }
