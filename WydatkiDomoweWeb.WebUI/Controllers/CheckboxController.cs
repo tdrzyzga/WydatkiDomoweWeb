@@ -30,9 +30,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult CheckboxList()
         {
-            if (((List<CheckboxModel>)TempData["ListToCheckbox"]).Count() != 0)
+            if (((List<CheckboxModel>)Session["ListToCheckbox"]).Count() != 0)
             {
-                List<CheckboxModel> checkboxList = (List<CheckboxModel>)TempData["ListToCheckbox"];
+                List<CheckboxModel> checkboxList = (List<CheckboxModel>)Session["ListToCheckbox"];
                 model.CheckboxItems = checkboxList;
             }
 
@@ -43,7 +43,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult CheckboxList(CheckboxListViewModel checkbox)
         {
             model = checkbox;
-            TempData["List"] = checkbox.CheckboxItems;
+            Session["List"] = checkbox.CheckboxItems;
             return RedirectToAction("List", "Bill");
         }
 
