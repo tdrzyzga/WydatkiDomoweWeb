@@ -27,9 +27,24 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                    }).ToList();
         }
 
+        [HttpGet]
         public PartialViewResult CheckboxList()
-        {         
+        {
+            if (((List<CheckboxModel>)TempData["ListToCheckbox"]).Count() != 0)
+            {
+                List<CheckboxModel> checkboxList = (List<CheckboxModel>)TempData["ListToCheckbox"];
+                model.CheckboxItems = checkboxList;
+            }
+
             return PartialView(model);            
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult CheckboxList(CheckboxListViewModel checkbox)
+        {
+            model = checkbox;
+            TempData["List"] = checkbox.CheckboxItems;
+            return RedirectToAction("List", "Bill");
         }
 
     }

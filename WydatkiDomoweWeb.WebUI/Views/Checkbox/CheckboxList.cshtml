@@ -1,6 +1,6 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CheckboxListViewModel
 
-@using (Html.BeginForm("List", "Bill", FormMethod.Post, new { checkboxListviewModel = Model, page = 1 }))
+@using (Html.BeginForm("CheckboxList", "Checkbox", FormMethod.Post, new { checkboxListviewModel = Model}))
 {
     <div>
 
