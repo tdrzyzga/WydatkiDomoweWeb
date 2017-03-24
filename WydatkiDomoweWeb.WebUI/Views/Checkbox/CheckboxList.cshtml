@@ -7,10 +7,11 @@
 
         @for (int i = 0; i < Model.CheckboxItems.Count(); i++ )
         {
-            <label class="btn btn-success">
-                @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked)
+            <label class="btn btn-default">                        
+                @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked, new { autocomplete = "off"})
+                <span class="glyphicon glyphicon-ok"></span>      
                 @Html.HiddenFor(m => Model.CheckboxItems[i].Name)
-                @Model.CheckboxItems[i].Name
+                @Html.DisplayFor(m => Model.CheckboxItems[i].Name)            
             </label>
         }
         </div>

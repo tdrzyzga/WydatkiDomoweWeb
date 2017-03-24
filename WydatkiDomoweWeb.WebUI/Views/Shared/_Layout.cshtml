@@ -7,11 +7,19 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
+        <style type="text/css">
+            .btn span.glyphicon {    			
+	            opacity: 1;				
+            }
+            .btn.active span.glyphicon {				
+	            opacity: 0;				
+            }
+        </style>
 </head>
 <body>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Wydatki Domowe</h3>
+            <h2>Wydatki Domowe</h2>
         </div>
          <ul class="nav nav-pills nav-justified">
                 <li class="active">
