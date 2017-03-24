@@ -23,15 +23,15 @@
             @foreach (var b in Model.Bills)
             {
                 <tr>
-                    <td>@b.BillName</td>
-                    <td>@b.Recipient</td>
-                    <td>@b.Amount</td>
-                    <td>@b.PaymentDate</td>
-                    <td>@b.RequiredDate</td>
+                    <td>@Html.DisplayFor(m => b.BillName)</td>
+                    <td>@Html.DisplayFor(m => b.Recipient)</td>
+                    <td>@Html.DisplayFor(m => b.Amount)</td>
+                    <td>@Html.DisplayFor(m => b.PaymentDate)</td>
+                    <td>@Html.DisplayFor(m => b.RequiredDate)</td>
                     <td>
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            <input type="submit" value="Usuń" />
+                            <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
                         }
                     </td>
                 </tr>
