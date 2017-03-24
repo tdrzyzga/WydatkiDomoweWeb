@@ -29,29 +29,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 checkboxList = (List<CheckboxModel>)Session["List"];
             
             Session["ListToCheckbox"] = checkboxList;
-            var query = GetBillModelList();
 
-            return View(CreateBillListViewModel(query, page));
-        }
-
-        private BillListViewModel CreateBillListViewModel(IEnumerable<BillModel> query, int page)
-        {
-            BillListViewModel model = new BillListViewModel
-            {
-                Bills = query.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
-
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = query.Count()
-                }
-            };
-            return model;
-        }
-
-        private IEnumerable<BillModel> GetBillModelList()
-        {
             var query = (from b in repository.Bills
                          join bn in repository.BillNames
                             on b.BillNameID equals bn.BillNameID
@@ -67,23 +45,34 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              RequiredDate = b.RequiredDate
                          });
 
+            List<BillModel> currentList = new List<BillModel>();
+
             if (checkboxList.Count() != 0)
-                query = CheckboxCheck(query);
-
-            return query;
-        }
-
-        private IEnumerable<BillModel> CheckboxCheck(IEnumerable<BillModel> query)
-        {
-            List<BillModel> current = new List<BillModel>();
-
-            for (int i = 0; i < checkboxList.Count(); i++)
             {
-                var obj = query.Where(bn => bn.BillName == checkboxList[i].Name && checkboxList[i].IsChecked);
-                current.AddRange(obj);
+                for (int i = 0; i < checkboxList.Count(); i++)
+                {
+                    var list = query.Where(bn => bn.BillName == checkboxList[i].Name && checkboxList[i].IsChecked);
+                    currentList.AddRange(list);
+                }
+            }
+            else
+            {
+                currentList.AddRange(query);
             }
 
-            return current;
-        }
+            BillListViewModel model = new BillListViewModel
+            {
+                Bills = currentList.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
+
+                PagingInfo = new PagingInfo
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageSize,
+                    TotalItems = currentList.Count()
+                }
+            };
+
+            return View(model);
+        }       
     }
 }

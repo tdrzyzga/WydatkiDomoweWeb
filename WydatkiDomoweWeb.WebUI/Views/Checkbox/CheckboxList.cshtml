@@ -2,17 +2,19 @@
 
 @using (Html.BeginForm("CheckboxList", "Checkbox", FormMethod.Post, new { checkboxListviewModel = Model}))
 {
-    <div>
+    <div class="form-group">
+        <div class="btn-group"  data-toggle="buttons">
 
         @for (int i = 0; i < Model.CheckboxItems.Count(); i++ )
         {
-            <label class = "checkbox-inline">
+            <label class="btn btn-success">
                 @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked)
                 @Html.HiddenFor(m => Model.CheckboxItems[i].Name)
                 @Model.CheckboxItems[i].Name
             </label>
         }
-
+        </div>
+        <input type="hidden" id="buttonvalue"/>
         <input class = "btn btn-default" type="submit" value="Filtruj" /> 
     </div>
 }
