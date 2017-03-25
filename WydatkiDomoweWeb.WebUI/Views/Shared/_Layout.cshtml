@@ -6,26 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2>Wydatki Domowe</h2>
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Wydatki Domowe</h2>
+            </div>
+            <ul class="nav nav-pills nav-justified">
+                    <li class="active">
+                        @Html.ActionLink("Główna", "List", "Bill")
+                    </li>
+                    <li><a href="#">Rachunki</a></li>
+                    <li><a href="#">Odbiorcy</a></li>
+                    <li><a href="#">Raporty</a></li>
+            </ul>
         </div>
-         <ul class="nav nav-pills nav-justified">
-                <li class="active">
-                    @Html.ActionLink("Główna", "List", "Bill")
-                </li>
-                <li><a href="#">Rachunki</a></li>
-                <li><a href="#">Odbiorcy</a></li>
-                <li><a href="#">Raporty</a></li>
-         </ul>
-      </div>
-    <div>
-        @RenderBody()
+        <div>
+            @RenderBody()
+        </div>
     </div>
 </body>
 </html>
