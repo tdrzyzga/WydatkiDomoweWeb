@@ -12,16 +12,17 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class CheckboxController : Controller
     {
+
         [HttpGet]
         public PartialViewResult CheckboxList(CheckboxItems checkbox)
         {
-            return PartialView(new CheckboxViewModel { Checkbox = checkbox });            
+            return PartialView(checkbox.Items);            
         }
 
         [HttpPost]
-        public RedirectToRouteResult CheckboxList(CheckboxViewModel model,CheckboxItems checkbox)
+        public RedirectToRouteResult CheckboxList(CheckboxItems checkbox, List<CheckboxModel> model)
         {
-            checkbox.Items = model.Checkbox.Items;
+            checkbox.Items = model;
             return RedirectToAction("List", "Bill");
         }
 
