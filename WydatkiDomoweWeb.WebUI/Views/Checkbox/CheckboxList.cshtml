@@ -6,9 +6,9 @@
         @for (int i = 0; i < Model.CheckboxItems.Count(); i++)
         {
             <label class="checkbox-inline">
-            @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked)
-            @Html.HiddenFor(m => Model.CheckboxItems[i].Name)
-            @Html.DisplayFor(m => Model.CheckboxItems[i].Name)
+                @Html.CheckBoxFor(m => Model.CheckboxItems[i].IsChecked)
+                @Html.HiddenFor(m => Model.CheckboxItems[i].Name)
+                @Html.DisplayFor(m => Model.CheckboxItems[i].Name)
             </label>
         }
 
