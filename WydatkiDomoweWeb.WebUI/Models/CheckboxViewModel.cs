@@ -16,6 +16,8 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public List<CheckboxModel> Items { get; set; }
 
+        public CheckboxItems() { }
+
         public CheckboxItems(IBillRepository repository)
         {
             Items = (from bn in repository.BillNames
