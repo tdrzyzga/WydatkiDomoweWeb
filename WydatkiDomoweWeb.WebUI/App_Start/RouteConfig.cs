@@ -17,7 +17,7 @@ namespace WydatkiDomoweWeb.WebUI
             routes.MapRoute(
                name: null,
                url: "Strona",
-               defaults: new { Controller = "Bill", action = "List", model = (CheckboxListViewModel)null, page = 1}
+               defaults: new { Controller = "Bill", action = "List", model = (CheckboxViewModel)null, page = 1}
            );
 
             routes.MapRoute(

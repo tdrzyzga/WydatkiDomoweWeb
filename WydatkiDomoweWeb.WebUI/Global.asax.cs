@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using WydatkiDomoweWeb.WebUI.Infrastructure.Binders;
+using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI
 {
@@ -13,6 +15,7 @@ namespace WydatkiDomoweWeb.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(CheckboxItems), new CheckboxBinder());
         }
     }
 }

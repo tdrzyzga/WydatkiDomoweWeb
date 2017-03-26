@@ -5,31 +5,25 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
-using WydatkiDomoweWeb.WebUI.Models.Abstract;
+
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class BillController : Controller
     {
         private IBillRepository repository;
-        private List<CheckboxModel> checkboxList;
 
         public int PageSize = 10;
 
         public BillController(IBillRepository billRepository)
         {
             this.repository = billRepository;
-            checkboxList = new List<CheckboxModel>();
+ 
         }
 
         [HttpGet]
-        public ViewResult List(int page = 1)
+        public ViewResult List(CheckboxItems checkbox, int page = 1)
         {
-            if ((List<CheckboxModel>)Session["List"] != null)
-                checkboxList = (List<CheckboxModel>)Session["List"];
-            
-            Session["ListToCheckbox"] = checkboxList;
-
             var query = (from b in repository.Bills
                          join bn in repository.BillNames
                             on b.BillNameID equals bn.BillNameID
@@ -47,11 +41,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
             List<BillModel> currentList = new List<BillModel>();
 
-            if (checkboxList.Count() != 0)
+            if (checkbox.Items.Count() != 0)
             {
-                for (int i = 0; i < checkboxList.Count(); i++)
+                for (int i = 0; i < checkbox.Items.Count(); i++)
                 {
-                    var list = query.Where(bn => bn.BillName == checkboxList[i].Name && checkboxList[i].IsChecked);
+                    var list = query.Where(bn => bn.BillName == checkbox.Items[i].Name && checkbox.Items[i].IsChecked);
                     currentList.AddRange(list);
                 }
             }
@@ -60,7 +54,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 currentList.AddRange(query);
             }
 
-            BillListViewModel model = new BillListViewModel
+            BillViewModel model = new BillViewModel
             {
                 Bills = currentList.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
 
