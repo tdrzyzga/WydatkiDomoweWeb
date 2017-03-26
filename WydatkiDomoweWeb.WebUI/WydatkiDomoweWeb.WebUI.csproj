@@ -155,10 +155,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Infrastructure\Binders\CheckboxBinder.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\Abstract\ICheckboxListViewModel.cs" />
-    <Compile Include="Models\BillListViewModel.cs" />
-    <Compile Include="Models\CheckboxListViewModel.cs" />
+    <Compile Include="Models\BillViewModel.cs" />
+    <Compile Include="Models\CheckboxViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

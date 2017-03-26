@@ -49,7 +49,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             BillController controller = new BillController(mock.Object);
             controller.PageSize = 2;
 
-            BillListViewModel result = (BillListViewModel)controller.List(2).Model;
+            BillViewModel result = (BillViewModel)controller.List(2).Model;
             PagingInfo pageInfo = result.PagingInfo;
 
             Assert.AreEqual(pageInfo.CurrentPage, 2);
