@@ -12,13 +12,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class CheckboxController : Controller
     {
-        private IBillRepository repository;
-
-        public CheckboxController(IBillRepository billRepository)
-        {
-            this.repository = billRepository;
-        }
-
         [HttpGet]
         public PartialViewResult CheckboxList(CheckboxItems checkbox)
         {
@@ -26,7 +19,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CheckboxList(CheckboxItems checkbox, CheckboxViewModel model)
+        public RedirectToRouteResult CheckboxList(CheckboxViewModel model,CheckboxItems checkbox)
         {
             checkbox.Items = model.Checkbox.Items;
             return RedirectToAction("List", "Bill");
