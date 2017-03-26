@@ -26,8 +26,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult CheckboxList(CheckboxViewModel checkbox)
+        public RedirectToRouteResult CheckboxList(CheckboxItems checkbox, CheckboxViewModel model)
         {
+            checkbox.Items = model.Checkbox.Items;
             return RedirectToAction("List", "Bill");
         }
 
