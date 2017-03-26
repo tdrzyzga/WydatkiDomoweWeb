@@ -1,6 +1,6 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CheckboxViewModel
 
-@using (Html.BeginForm("CheckboxList", "Checkbox", FormMethod.Post, new { checkboxListviewModel = Model }))
+@using (Html.BeginForm("CheckboxList", "Checkbox", FormMethod.Post, new { model = Model }))
 {
     <div>
         @for (int i = 0; i < Model.Checkbox.Items.Count(); i++)
