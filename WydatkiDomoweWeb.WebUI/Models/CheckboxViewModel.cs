@@ -12,25 +12,13 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public bool IsChecked { get; set; }
     }
 
-    public class CheckboxItems
+    public class CheckboxViewModel
     {
         public List<CheckboxModel> Items { get; set; }
 
-        public CheckboxItems() { }
-
-        public CheckboxItems(IBillRepository repository)
+        public CheckboxViewModel()
         {
-            Items = (from bn in repository.BillNames
-                     select new CheckboxModel
-                     {
-                         Name = bn.Name,
-                         IsChecked = true
-                     }).ToList();
+            Items = new List<CheckboxModel>();
         }
-    }
-
-    public class CheckboxViewModel
-    {
-        public CheckboxItems Checkbox { get; set;}
     }
 }

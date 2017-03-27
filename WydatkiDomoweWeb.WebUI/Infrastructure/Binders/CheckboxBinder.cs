@@ -14,15 +14,15 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            CheckboxItems checkboxItems = null;
+            CheckboxViewModel checkboxItems = null;
             if (controllerContext.HttpContext.Session != null)
             {
-                checkboxItems = (CheckboxItems)controllerContext.HttpContext.Session[sessionKey];
+                checkboxItems = (CheckboxViewModel)controllerContext.HttpContext.Session[sessionKey];
             }
 
             if (checkboxItems == null)
             {
-                checkboxItems = new CheckboxItems(new BillRepository());
+                checkboxItems = new CheckboxViewModel();
                 if (controllerContext.HttpContext.Session != null)
                 {
                     controllerContext.HttpContext.Session[sessionKey] = checkboxItems;

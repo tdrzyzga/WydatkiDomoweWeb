@@ -17,12 +17,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
         public BillController(IBillRepository billRepository)
         {
-            this.repository = billRepository;
- 
+            this.repository = billRepository; 
         }
 
         [HttpGet]
-        public ViewResult List(CheckboxItems checkbox, int page = 1)
+        public ViewResult List(CheckboxViewModel checkbox, int page = 1)
         {
             var query = (from b in repository.Bills
                          join bn in repository.BillNames
