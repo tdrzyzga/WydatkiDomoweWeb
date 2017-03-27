@@ -1,7 +1,8 @@
 ﻿@using WydatkiDomoweWeb.WebUI.Models
 @model List<CheckboxModel>
 
-@using (Html.BeginForm("CheckboxList", "Checkbox", FormMethod.Post))
+
+@using (Html.BeginForm("Items", "CheckboxBills", FormMethod.Post))
 {
     <div>
         @for (int i = 0; i < Model.Count(); i++)
