@@ -18,8 +18,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         [TestMethod()]
         public void ListTest()
         {
-            Mock<IBillRepository> mock = new Mock<IBillRepository>();
-            mock.Setup(m => m.Bills).Returns(new Bill[]
+            Mock<IBillRepository> mockBill = new Mock<IBillRepository>();
+            mockBill.Setup(m => m.Bills).Returns(new Bill[]
             {
                 new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Now, RequiredDate = DateTime.Now },
                 new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Now, RequiredDate = DateTime.Now },
@@ -28,7 +28,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new Bill {BillNameID = 4, RecipientID = 4 , Amount = 4.0M, PaymentDate = DateTime.Now, RequiredDate = DateTime.Now },
             });
 
-            mock.Setup(m => m.BillNames).Returns(new BillName[]
+            mockBill.Setup(m => m.BillNames).Returns(new BillName[]
             {
                 new BillName {BillNameID = 0, Name = "Bill0", FirstPaymentDate = DateTime.Now, PaymentsFrequency = 0 },
                 new BillName {BillNameID = 1, Name = "Bill1", FirstPaymentDate = DateTime.Now, PaymentsFrequency = 1 },
@@ -37,7 +37,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new BillName {BillNameID = 4, Name = "Bill4", FirstPaymentDate = DateTime.Now, PaymentsFrequency = 4 },
             });
 
-            mock.Setup(m => m.Recipients).Returns(new Recipient[]
+            mockBill.Setup(m => m.Recipients).Returns(new Recipient[]
             {
                 new Recipient { RecipientID = 0, Name = "Recipient0", Account = "Account0", BuildingNR = "Nr0", CityID = 0, StreetID = 0, PostCodeID= 0 },
                 new Recipient { RecipientID = 1, Name = "Recipient1", Account = "Account1", BuildingNR = "Nr1", CityID = 1, StreetID = 1, PostCodeID= 1 },
@@ -46,22 +46,35 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new Recipient { RecipientID = 4, Name = "Recipient4", Account = "Account4", BuildingNR = "Nr4", CityID = 4, StreetID = 4, PostCodeID= 4 },
             });
 
-            BillController controller = new BillController(mock.Object);
+            
+            List<CheckboxModel> listCheckbox = new List<CheckboxModel>
+            {
+                new CheckboxModel {Name = "Bill0", IsChecked = true},
+                new CheckboxModel {Name = "Bill1", IsChecked = false},
+                new CheckboxModel {Name = "Bill2", IsChecked = true},
+                new CheckboxModel {Name = "Bill3", IsChecked = false},
+                new CheckboxModel {Name = "Bill4", IsChecked = true}
+            };
+
+            CheckboxViewModel checkbox = new CheckboxViewModel();
+            checkbox.Items = listCheckbox;
+
+            BillController controller = new BillController(mockBill.Object);
             controller.PageSize = 2;
 
-            BillViewModel result = (BillViewModel)controller.List(2).Model;
+            BillViewModel result = (BillViewModel)controller.List(checkbox, 1).Model;
             PagingInfo pageInfo = result.PagingInfo;
 
-            Assert.AreEqual(pageInfo.CurrentPage, 2);
+            Assert.AreEqual(pageInfo.CurrentPage, 1);
             Assert.AreEqual(pageInfo.ItemsPerPage, 2);
-            Assert.AreEqual(pageInfo.TotalPages, 3);
-            Assert.AreEqual(pageInfo.TotalItems, 5);
+            Assert.AreEqual(pageInfo.TotalPages, 2);
+            Assert.AreEqual(pageInfo.TotalItems, 3);
 
-            BillView[] billView = result.Bills.ToArray();
+            BillModel[] billView = result.Bills.ToArray();
 
             Assert.IsTrue(billView.Length == 2);
-            Assert.AreEqual(billView[0].BillName, "Bill2");
-            Assert.AreEqual(billView[1].BillName, "Bill3");
+            Assert.AreEqual(billView[0].BillName, "Bill0");
+            Assert.AreEqual(billView[1].BillName, "Bill2");
         }
     }
 }
