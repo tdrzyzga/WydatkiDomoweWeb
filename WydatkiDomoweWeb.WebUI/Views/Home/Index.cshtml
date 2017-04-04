@@ -8,7 +8,7 @@
 
 <div class="panel panel-default">
     <div class="panel panel-body">
-        @Html.Action("Items", "CheckboxBills")
+        @Html.Action("Checkbox")
     </div>
     <div class="panel-body">
         <table class="table table-striped table-condensed table-bordered">
@@ -38,7 +38,7 @@
             }
         </table>
         <div class="btn-group pull-right">
-            @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x }))
+            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
         </div>
     </div>
 

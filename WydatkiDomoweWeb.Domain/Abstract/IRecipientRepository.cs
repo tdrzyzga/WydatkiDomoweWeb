@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using WydatkiDomoweWeb.Domain.Entities;
 
 namespace WydatkiDomoweWeb.Domain.Abstract
 {
-    public interface IBillRepository
+    public interface IRecipientRepository
     {
-        IEnumerable<Bill> Bills { get; }
+        IEnumerable<Recipient> Recipients { get; }
     }
 }

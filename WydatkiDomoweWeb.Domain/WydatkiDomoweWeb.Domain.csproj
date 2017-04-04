@@ -79,8 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBillNameRepository.cs" />
     <Compile Include="Abstract\IBillRepository.cs" />
+    <Compile Include="Abstract\IRecipientRepository.cs" />
+    <Compile Include="Concrete\BillNameRepository.cs" />
     <Compile Include="Concrete\BillRepository.cs" />
+    <Compile Include="Concrete\RecipientRepository.cs" />
     <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\BillName.cs" />
     <Compile Include="Entities\City.cs" />

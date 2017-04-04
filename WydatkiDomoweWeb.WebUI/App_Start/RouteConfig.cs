@@ -16,20 +16,14 @@ namespace WydatkiDomoweWeb.WebUI
 
             routes.MapRoute(
                name: null,
-               url: "Strona",
-               defaults: new { Controller = "Bill", action = "List", model = (List<CheckboxModel>)null, page = 1}
-           );
-
-            routes.MapRoute(
-               name: null,
                url: "Strona{page}",
-               defaults: new { Controller = "Bill", action = "List", page = 1 }
+               defaults: new { Controller = "Home", action = "Index", model = (List<CheckboxModel>)null, page = 1 }
            );
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Bill", action = "List", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
            );
         }
     }
