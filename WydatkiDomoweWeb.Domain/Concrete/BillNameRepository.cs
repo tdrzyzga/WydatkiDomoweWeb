@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.Domain.Entities;
 
 namespace WydatkiDomoweWeb.Domain.Concrete
 {
-    public class BillRepository : IBillRepository
+    public class BillNameRepository : IBillNameRepository
     {
         private HouseholdExpensesContext context = new HouseholdExpensesContext();
 
-        public IEnumerable<Bill> Bills
+        public IEnumerable<BillName> BillNames
         {
-            get { return context.Bills; }
+            get { return context.BillNames; }
         }
     }
 }

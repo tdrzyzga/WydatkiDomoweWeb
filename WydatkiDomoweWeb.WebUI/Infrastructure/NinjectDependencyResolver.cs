@@ -33,6 +33,8 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBillRepository>().To<BillRepository>();
+            kernel.Bind<IBillNameRepository>().To<BillNameRepository>();
+            kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
         }
     }
 }
