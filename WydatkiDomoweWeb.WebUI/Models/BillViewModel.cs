@@ -13,12 +13,14 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public string BillName { get; set; }
         public string Recipient { get; set; }
 
-        [UIHint("Decimal")]
+        [DisplayFormat(DataFormatString = "{0:c2}")]
         public decimal Amount { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.Date)]
         public DateTime PaymentDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.Date)]
         public DateTime RequiredDate { get; set; }
     }

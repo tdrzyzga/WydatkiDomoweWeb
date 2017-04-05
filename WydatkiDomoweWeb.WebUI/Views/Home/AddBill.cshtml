@@ -1,0 +1,29 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.CreationBillViewModel
+
+
+@using (Html.BeginForm("AddBill", "Home", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="form-group form-group-sm">
+        @Html.DropDownListFor(m => m.SelectedBillId, new SelectList(Model.Bills, "Value", "Text"), "Wybierz rachunek", new { @class = "form-control" })
+    </div>
+     <div class="form-group form-group-sm">
+        @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
+    </div>
+    <div class="form-group form-group-sm">
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+    </div>
+    <div class="form-group form-group-sm">
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group form-group-sm">    
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group form-group-sm">
+        @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group form-group-sm">
+        <input type="hidden" id="buttonvalue" />
+        <input class="btn btn-primary" type="submit" value="Dodaj nowy rachunek" />
+    </div>
+        
+}
