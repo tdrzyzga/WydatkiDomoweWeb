@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    @Styles.Render("~/Content/css")
-    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/webscripts")
+    @Styles.Render("~/Content/css")   
     
+    <title>@ViewBag.Title</title>
 </head>
 <body>
     <div class="container">
@@ -26,6 +27,6 @@
         <div>
             @RenderBody()
         </div>
-    </div>
+    </div>    
 </body>
 </html>
