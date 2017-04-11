@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.WebUI.Filters;
 
-
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class HomeController : Controller
@@ -80,32 +79,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult Checkbox(CheckboxViewModel checkbox, List<CheckboxModel> model)
         {
             checkbox.Items = model;
-            return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public PartialViewResult AddBill()
-        {
-            CreationBillViewModel model = new CreationBillViewModel
-            {   
-                Bills = billNameRepository.BillNames.Select(bn => new SelectListItem
-                {
-                    Text = bn.Name,
-                    Value = bn.BillNameID.ToString()
-                }),
-                Recipients = recipientRepository.Recipients.Select(r => new SelectListItem
-                {
-                    Text = r.Name,
-                    Value = r.RecipientID.ToString()
-                }),
-            };
-            return PartialView(model);
-        }
-
-        [HttpPost]
-        public RedirectToRouteResult AddBill(CreationBillViewModel model)
-        {
-
             return RedirectToAction("Index");
         }
     }

@@ -43,15 +43,14 @@
     </div>
 
     <div class="panel-footer">
-        @Html.Action("AddBill")
+        @Html.Action("AddBill", "Bill")
     </div> 
     <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker').datetimepicker({
-                    format: 'DD.MM.YYYY',
-                    locale: 'pl'
-                });
-            });
-    </script>  
+          $(function () {
+              $('#datetimepicker').datetimepicker({
+                  locale: 'pl'
+              });
+          });
+    </script>
 </div>
 

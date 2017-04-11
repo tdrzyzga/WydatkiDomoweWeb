@@ -7,6 +7,13 @@ using System.Web.Mvc;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
+    public class SelectBillItem
+    {
+        public string Name { get; set; }
+        public string Id { get; set; }
+        public DateTime Date { get; set; }
+    }
+
     public class CreationBillViewModel
     {
         public int SelectedBillId { get; set; }
@@ -15,7 +22,12 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public DateTime PaymentDate { get; set; }
         public DateTime RequiredDate { get; set; }
 
-        public IEnumerable<SelectListItem> Bills { get; set; }
-        public IEnumerable<SelectListItem> Recipients { get; set; }
+        public List<SelectBillItem> Bills { get; set; }
+        public List<SelectListItem> Recipients { get; set; }
+
+        public CreationBillViewModel()
+        {
+            Bills = new List<SelectBillItem>();
+        }
     }
 }
