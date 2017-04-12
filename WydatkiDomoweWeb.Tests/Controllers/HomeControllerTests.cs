@@ -47,7 +47,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new Recipient { RecipientID = 3, Name = "Recipient3", Account = "Account3", BuildingNR = "Nr3", CityID = 3, StreetID = 3, PostCodeID= 3 },
                 new Recipient { RecipientID = 4, Name = "Recipient4", Account = "Account4", BuildingNR = "Nr4", CityID = 4, StreetID = 4, PostCodeID= 4 },
             });
-
             
             List<CheckboxModel> listCheckbox = new List<CheckboxModel>
             {
