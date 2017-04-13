@@ -19,7 +19,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public int SelectedBillId { get; set; }
         public int SelectedRecipientId { get; set; }
         public decimal Amount { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public string PaymentDate { get; set; }
         public DateTime RequiredDate { get; set; }
 
         public List<SelectBillItem> Bills { get; set; }
