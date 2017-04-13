@@ -54,7 +54,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 Amount = model.Amount,
                 PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
                                        System.Globalization.CultureInfo.InvariantCulture),
-                RequiredDate = model.Bills.Single(b => b.Id == model.SelectedBillId.ToString()).Date
+                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture),
             };
 
             billRepository.SaveBill(bill);
