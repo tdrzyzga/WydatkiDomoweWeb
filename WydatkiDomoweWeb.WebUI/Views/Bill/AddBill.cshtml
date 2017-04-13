@@ -4,12 +4,12 @@
 @using (Html.BeginForm("AddBill", "Bill", FormMethod.Post, new { @class = "form-inline" }))
 {
     <div class="form-group form-group-sm">
-        @Html.DropDownListFor(m => m.SelectedBillId, new SelectList(Model.Bills, "Id", "Name", "Date"), "Wybierz rachunek", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.SelectedBillId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id="selectBill"})
         @for (int i = 0; i < Model.Bills.Count(); i++)
         {
             @Html.HiddenFor(m => m.Bills[i].Name)
             @Html.HiddenFor(m => m.Bills[i].Id)
-            @Html.HiddenFor(m => m.Bills[i].Date)
+            @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
         }
     </div>
      <div class="form-group form-group-sm">
@@ -24,15 +24,15 @@
         @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control" })
     </div>
     <div style="position:relative" class="form-group form-group-sm">
-        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker" })       
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker"})       
 
     </div>
     <div class="form-group form-group-sm">
-        @Html.TextBoxFor(m => m.RequiredDate, "Termin zapłaty", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.RequiredDate, "Termin zapłaty", new { @class = "form-control", id="requiredDate" })
     </div>
     <div class="form-group form-group-sm">
         <input type="hidden" id="buttonvalue" />
-        <input class="btn btn-primary" type="submit" value="Dodaj nowy rachunek" />
+        <input id="idbutton" class="btn btn-primary" type="submit" value="Dodaj nowy rachunek" />
     </div>
         
 }
