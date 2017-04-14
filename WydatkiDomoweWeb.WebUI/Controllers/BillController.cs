@@ -47,18 +47,21 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpPost]
         public RedirectToRouteResult AddBill(CreationBillViewModel model)
         {
-            Bill bill = new Bill
+            if (ModelState.IsValid)
             {
-                BillNameID = model.SelectedBillId,
-                RecipientID = model.SelectedRecipientId,
-                Amount = model.Amount,
-                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-            };
+                Bill bill = new Bill
+                {
+                    BillNameID = model.SelectedBillId,
+                    RecipientID = model.SelectedRecipientId,
+                    Amount = model.Amount,
+                    PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
+                                           System.Globalization.CultureInfo.InvariantCulture),
+                    RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                           System.Globalization.CultureInfo.InvariantCulture),
+                };
 
-            billRepository.SaveBill(bill);
+                billRepository.SaveBill(bill);
+            }
 
             return RedirectToAction("Index", "Home");
         }

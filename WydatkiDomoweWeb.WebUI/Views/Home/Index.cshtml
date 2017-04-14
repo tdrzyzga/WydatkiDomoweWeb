@@ -47,14 +47,26 @@
     </div> 
     <script type="text/javascript">
         $(function () {
-            $('#datetimepicker').datetimepicker({ locale: 'pl' });
             $('#selectBill').change(function () {
                 var value = $('#selectBill').val();
-                var date = $('#' + value).val();
-                date = date.split(' ');
-                date = date[0].split('-');
-                var correctDate = date[2] + "." + date[1] + "." + date[0];
-                $('#requiredDate').val(correctDate);
+
+                if (value !== "") {
+                    var date = $('#' + value).val();
+                    date = date.split(' ');
+                    date = date[0].split('-');
+                    var correctDate = date[2] + "." + date[1] + "." + date[0];
+
+                    $('#datetimepicker').datetimepicker({
+                        locale: 'pl',               
+                    });
+                    $('#datetimepicker').val('Data wpłaty');
+
+                    $('#requiredDate').val(correctDate);
+                }
+                else {
+                    $('#datetimepicker').val('Data wpłaty');
+                    $('#requiredDate').val('Termin zapłaty');
+                }
             });
         })
     </script>
