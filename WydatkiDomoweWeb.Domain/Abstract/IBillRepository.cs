@@ -10,5 +10,6 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     {
         IEnumerable<Bill> Bills { get; }
         void SaveBill(Bill bill);
+        void DeleteBill(int billId);
     }
 }

@@ -29,8 +29,9 @@
                     <td>@Html.DisplayFor(m => b.PaymentDate)</td>
                     <td>@Html.DisplayFor(m => b.RequiredDate)</td>
                     <td>
-                        @using (Html.BeginForm("Delete", "Admin"))
+                        @using (Html.BeginForm("DeleteBill", "Home"))
                         {
+                            @Html.Hidden("Id", b.Id)
                             <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
                         }
                     </td>

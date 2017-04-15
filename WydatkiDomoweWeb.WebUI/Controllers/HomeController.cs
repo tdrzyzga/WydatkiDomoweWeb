@@ -81,5 +81,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             checkbox.Items = model;
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public RedirectToRouteResult DeleteBill(int id)
+        {
+            billRepository.DeleteBill(id);
+            return RedirectToAction("Index");
+        }
     }
 }
