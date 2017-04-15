@@ -37,5 +37,18 @@ namespace WydatkiDomoweWeb.Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public void DeleteBill(int billId)
+        {
+            Bill dbEntry = context.Bills.Find(billId);
+
+            if (dbEntry != null)
+            {
+                context.Bills.Remove(dbEntry);
+            }
+
+            context.SaveChanges();
+        }
+        
     }
 }
