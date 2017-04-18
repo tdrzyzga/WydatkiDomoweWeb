@@ -20,18 +20,18 @@
                 <th>Termin zapłaty</th>
                 <th>Akcja</th>
             </tr>
-            @foreach (var b in Model.Bills)
+            @foreach (var bills in Model.Bills)
             {
                 <tr>
-                    <td>@Html.DisplayFor(m => b.BillName)</td>
-                    <td>@Html.DisplayFor(m => b.Recipient)</td>
-                    <td>@Html.DisplayFor(m => b.Amount)</td>
-                    <td>@Html.DisplayFor(m => b.PaymentDate)</td>
-                    <td>@Html.DisplayFor(m => b.RequiredDate)</td>
+                    <td>@Html.DisplayFor(m => bills.BillName)</td>
+                    <td>@Html.DisplayFor(m => bills.Recipient)</td>
+                    <td>@Html.DisplayFor(m => bills.Amount)</td>
+                    <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
+                    <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
                     <td>
-                        @using (Html.BeginForm("DeleteBill", "Home"))
+                        @using (Html.BeginForm("DeleteBill", "CrudBill"))
                         {
-                            @Html.Hidden("Id", b.Id)
+                            @Html.Hidden("Id", bills.Id)
                             <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
                         }
                     </td>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="panel-footer">
-        @Html.Action("AddBill", "Bill")
+        @Html.Action("AddBill", "CrudBill")
     </div> 
     <script type="text/javascript">
         $(function () {
@@ -58,7 +58,7 @@
                     var correctDate = date[2] + "." + date[1] + "." + date[0];
 
                     $('#datetimepicker').datetimepicker({
-                        locale: 'pl',               
+                        locale: 'pl'               
                     });
                     $('#datetimepicker').val('Data wpłaty');
 

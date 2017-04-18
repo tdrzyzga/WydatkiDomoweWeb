@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
-    public class SelectBillItem
+    public class SelectBill
     {
         public string Name { get; set; }
         public string Id { get; set; }
@@ -27,12 +27,12 @@ namespace WydatkiDomoweWeb.WebUI.Models
 
         public string RequiredDate { get; set; }
 
-        public List<SelectBillItem> Bills { get; set; }
+        public List<SelectBill> Bills { get; set; }
         public List<SelectListItem> Recipients { get; set; }
 
         public CreationBillViewModel()
         {
-            Bills = new List<SelectBillItem>();
+            Bills = new List<SelectBill>();
         }
     }
 }

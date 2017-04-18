@@ -27,7 +27,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public ViewResult Index(CheckboxViewModel checkbox, int page = 1)
         {
-            var currentList = (from b in billRepository.Bills
+            var bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
                             on b.BillNameID equals bn.BillNameID
                          join r in recipientRepository.Recipients
@@ -42,18 +42,18 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              RequiredDate = b.RequiredDate
                          });
 
-            BillFilter billFilter = new BillFilter();
-            currentList = billFilter.FilterBills(checkbox, currentList);
+            CheckboxFilter filterCheckbox = new CheckboxFilter(checkbox);
+            bills = filterCheckbox.Filter(bills);
 
             BillViewModel model = new BillViewModel
             {
-                Bills = currentList.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
+                Bills = bills.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
 
                 PagingInfo = new PagingInfo
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems = currentList.Count()
+                    TotalItems = bills.Count()
                 }
             };
 
@@ -66,11 +66,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (checkbox.Items.Count() == 0)
             {
                 checkbox.Items = (from bn in billNameRepository.BillNames
-                 select new CheckboxModel
-                 {
-                     Name = bn.Name,
-                     IsChecked = true
-                 }).ToList();
+                                    select new CheckboxModel
+                                    {
+                                        Name = bn.Name,
+                                        IsChecked = true
+                                    }).ToList();
             }
             return PartialView(checkbox.Items);  
         }
@@ -82,11 +82,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public RedirectToRouteResult DeleteBill(int id)
-        {
-            billRepository.DeleteBill(id);
-            return RedirectToAction("Index");
-        }
+
     }
 }

@@ -9,13 +9,13 @@ using WydatkiDomoweWeb.Domain.Entities;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
-    public class BillController : Controller
+    public class CrudBillController : Controller
     {
         private IBillRepository billRepository;
         private IBillNameRepository billNameRepository;
         private IRecipientRepository recipientRepository;
 
-        public BillController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient)
+        public CrudBillController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient)
         {
             this.billRepository = bill;
             this.billNameRepository = billName;
@@ -27,7 +27,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             CreationBillViewModel model = new CreationBillViewModel
             {
-                Bills = billNameRepository.BillNames.Select(bn => new SelectBillItem
+                Bills = billNameRepository.BillNames.Select(bn => new SelectBill
                 {
                     Name = bn.Name,
                     Id = bn.BillNameID.ToString(),
@@ -66,6 +66,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public RedirectToRouteResult DeleteBill(int id)
+        {
+            billRepository.DeleteBill(id);
+            return RedirectToAction("Index", "Home");
+        }
 
         public DateTime SetDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)
         {
