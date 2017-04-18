@@ -253,9 +253,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BillController.cs" />
+    <Compile Include="Controllers\CrudBillController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Filters\BillFilter.cs" />
+    <Compile Include="Filters\CheckboxFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,7 +277,7 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Checkbox.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bill\AddBill.cshtml" />
+    <Content Include="Views\CrudBill\AddBill.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
