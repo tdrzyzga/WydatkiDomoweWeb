@@ -1,7 +1,7 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CreationBillViewModel
 
 
-@using (Html.BeginForm("AddBill", "Bill", FormMethod.Post, new { @class = "form-inline" }))
+@using (Html.BeginForm("AddBill", "CrudBill", FormMethod.Post, new { @class = "form-inline" }))
 {
     <div class="form-group form-group-sm">
         @Html.DropDownListFor(m => m.SelectedBillId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })
