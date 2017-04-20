@@ -278,6 +278,7 @@
     <Content Include="Views\Home\Checkbox.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CrudBill\AddBill.cshtml" />
+    <Content Include="Views\Home\GetBill.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
