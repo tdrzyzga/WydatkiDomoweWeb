@@ -70,7 +70,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult DeleteBill(int id)
         {
             billRepository.DeleteBill(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("GetBill", "Home");
         }
 
         public DateTime SetDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)

@@ -2,7 +2,7 @@
 @model List<CheckboxModel>
 
 
-@using (Html.BeginForm("Checkbox", "Home", FormMethod.Post,  new { @class = "form" }))
+@using (Ajax.BeginForm("Checkbox", "Home", new AjaxOptions { UpdateTargetId = "homeBillTable"}, new { @class = "form" }))
 {
     for (int i = 0; i < Model.Count(); i++)
     {
