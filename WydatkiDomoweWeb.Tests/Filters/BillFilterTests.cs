@@ -38,8 +38,8 @@ namespace WydatkiDomoweWeb.WebUI.Filters.Tests
             CheckboxViewModel checkbox = new CheckboxViewModel();
             checkbox.Items = listCheckbox;
 
-            BillFilter filter = new BillFilter();
-            IEnumerable<BillModel> result = filter.FilterBills(checkbox, listBill);
+            CheckboxFilter checkboxFilter = new CheckboxFilter(checkbox);
+            IEnumerable<BillModel> result = checkboxFilter.Filter(listBill);
 
             Assert.AreEqual(result.Count(), 3);
             Assert.AreEqual(result.ElementAt(2), listBill.ElementAt(4));

@@ -16,7 +16,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
     public class HomeControllerTests
     {
         [TestMethod()]
-        public void IndexAndCheckboxTest()
+        public void GetBillAndCheckboxTest()
         {
             Mock<IBillRepository> mockBills = new Mock<IBillRepository>();
             mockBills.Setup(m => m.Bills).Returns(new Bill[]
@@ -63,7 +63,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.PageSize = 2;
 
-            BillViewModel result = (BillViewModel)controller.Index(checkbox, 1).Model;
+            BillViewModel result = (BillViewModel)controller.GetBill(checkbox, 1).Model;
             PagingInfo pageInfo = result.PagingInfo;
 
             Assert.AreEqual(pageInfo.CurrentPage, 1);
