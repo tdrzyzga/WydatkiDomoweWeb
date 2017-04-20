@@ -1,5 +1,5 @@
 ﻿@using WydatkiDomoweWeb.Domain.Entities
-@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
+
 
 
 @{
@@ -7,40 +7,11 @@
 }
 
 <div class="panel panel-default">
-    <div class="panel panel-body">
+    <div class="panel-body">
         @Html.Action("Checkbox")
     </div>
-    <div class="panel-body">
-        <table class="table table-striped table-condensed table-bordered">
-            <tr>
-                <th>Rachunek</th>
-                <th>Odbiorca</th>
-                <th>Cena</th>
-                <th>Data wpłaty</th>
-                <th>Termin zapłaty</th>
-                <th>Akcja</th>
-            </tr>
-            @foreach (var bills in Model.Bills)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(m => bills.BillName)</td>
-                    <td>@Html.DisplayFor(m => bills.Recipient)</td>
-                    <td>@Html.DisplayFor(m => bills.Amount)</td>
-                    <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
-                    <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
-                    <td>
-                        @using (Html.BeginForm("DeleteBill", "CrudBill"))
-                        {
-                            @Html.Hidden("Id", bills.Id)
-                            <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
-                        }
-                    </td>
-                </tr>
-            }
-        </table>
-        <div class="btn-group pull-right">
-            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page = x }))
-        </div>
+    <div class="panel-body" id="homeBillTable">
+        @Html.Action("GetBill")
     </div>
 
     <div class="panel-footer">
@@ -71,5 +42,6 @@
             });
         })
     </script>
+
 </div>
 

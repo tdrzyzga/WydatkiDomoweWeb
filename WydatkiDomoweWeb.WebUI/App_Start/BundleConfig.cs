@@ -14,9 +14,10 @@ namespace WydatkiDomoweWeb.WebUI
             bundles.Add(new ScriptBundle("~/bundles/webscripts")
                 .Include(
                  "~/Scripts/jquery-{version}.js",
-                "~/Scripts/moment-with-locales.min.js",
+                 "~/Scripts/moment-with-locales.js",
                 "~/Scripts/bootstrap.min.js",
-                "~/Scripts/bootstrap-datetimepicker.min.js"
+                "~/Scripts/bootstrap-datetimepicker.min.js",
+                "~/Scripts/jquery.unobtrusive-ajax.min.js"
                ));
         }
     } 

@@ -25,7 +25,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public ViewResult Index(CheckboxViewModel checkbox, int page = 1)
+        public ViewResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult GetBill(CheckboxViewModel checkbox, int page = 1)
         {
             var bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
@@ -57,7 +63,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 }
             };
 
-            return View(model);
+            return PartialView(model);
         }
 
         [HttpGet]
@@ -79,7 +85,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult Checkbox(CheckboxViewModel checkbox, List<CheckboxModel> model)
         {
             checkbox.Items = model;
-            return RedirectToAction("Index");
+            return RedirectToAction("GetBill");
         }
 
 
