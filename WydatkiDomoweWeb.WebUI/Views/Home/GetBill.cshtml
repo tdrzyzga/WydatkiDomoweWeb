@@ -1,35 +1,34 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
 
  <table class="table table-striped table-condensed table-bordered">
-    <thead>
+    <tr>
+        <th>Rachunek</th>
+        <th>Odbiorca</th>
+        <th>Cena</th>
+        <th>Data wpłaty</th>
+        <th>Termin zapłaty</th>
+        <th>Akcja</th>
+    </tr>
+
+
+    @foreach (var bills in Model.Bills)
+    {
         <tr>
-            <th>Rachunek</th>
-            <th>Odbiorca</th>
-            <th>Cena</th>
-            <th>Data wpłaty</th>
-            <th>Termin zapłaty</th>
-            <th>Akcja</th>
-            </tr>
-    </thead>
-    <tbody>
-        @foreach (var bills in Model.Bills)
-        {
-            <tr>
-                <td>@Html.DisplayFor(m => bills.BillName)</td>
-                <td>@Html.DisplayFor(m => bills.Recipient)</td>
-                <td>@Html.DisplayFor(m => bills.Amount)</td>
-                <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
-                <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
-                <td>
-                    @using (Html.BeginForm("DeleteBill", "CrudBill"))
-                    {
-                        @Html.Hidden("Id", bills.Id)
-                        <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
+            <td>@Html.DisplayFor(m => bills.BillName)</td>
+            <td>@Html.DisplayFor(m => bills.Recipient)</td>
+            <td>@Html.DisplayFor(m => bills.Amount)</td>
+            <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
+            <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
+            <td>
+                @using (Ajax.BeginForm("DeleteBill", "CrudBill", new AjaxOptions { UpdateTargetId = "homeBillTable" }))
+                {
+                    @Html.Hidden("Id", bills.Id)
+                    <input class = "btn btn-default btn-xs" type="submit" value="Usuń" />
+                }   
+            </td>
+        </tr>
+    }
+
 </table>
 
 <div class="btn-group pull-right">
