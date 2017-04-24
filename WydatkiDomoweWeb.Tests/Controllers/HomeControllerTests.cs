@@ -81,10 +81,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             List<CheckboxModel> resultCheckbox = (List<CheckboxModel>)controller.Checkbox(checkbox).Model;
             CheckboxModel[] checkboxView = resultCheckbox.ToArray();
 
-            Assert.AreEqual(checkboxView[0].Name, "Bill0");
-            Assert.AreEqual(checkboxView[1].Name, "Bill1");
-            Assert.AreEqual(checkboxView[0].IsChecked, true);
-            Assert.AreEqual(checkboxView[1].IsChecked, true);
+            Assert.AreEqual("Bill0", checkboxView[0].Name);
+            Assert.AreEqual("Bill1", checkboxView[1].Name);
+            Assert.AreEqual(true, checkboxView[0].IsChecked);
+            Assert.AreEqual(true, checkboxView[1].IsChecked);
         }
     }
 }
