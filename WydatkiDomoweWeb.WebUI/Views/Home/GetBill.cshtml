@@ -23,13 +23,13 @@
                 @using (Ajax.BeginForm("DeleteBill", "CrudBill", new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("Id", bills.Id)
-                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
+                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
                 @using (Ajax.BeginForm("DeleteBill", "CrudBill", new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("Id", bills.Id)
-                    <input class="btn btn-default btn-xs" type="submit" value="Usuń" />
+                    <input class="btn btn-default btn-xs" type="submit" value="Usuń"/>
                 }
             </td>
         </tr>
