@@ -264,7 +264,7 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\BillViewModel.cs" />
     <Compile Include="Models\CheckboxViewModel.cs" />
-    <Compile Include="Models\CreationBillViewModel.cs" />
+    <Compile Include="Models\CrudBillViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
