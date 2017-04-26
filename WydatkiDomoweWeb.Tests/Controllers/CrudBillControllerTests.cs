@@ -50,7 +50,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             CrudBillController controller = new CrudBillController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
-            CreationBillViewModel result = (CreationBillViewModel)controller.AddBill().Model;
+            CrudBillViewModel result = (CrudBillViewModel)controller.AddBill().Model;
             Assert.AreEqual("Bill2", result.Bills[2].Name);
             Assert.AreEqual(DateTime.Parse("2017-01-20"), result.Bills[2].Date);
             Assert.AreEqual("Bill3", result.Bills[3].Name);

@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult AddBill()
         {
-            CreationBillViewModel model = new CreationBillViewModel
+            CrudBillViewModel model = new CrudBillViewModel
             {
                 Bills = billNameRepository.BillNames.Select(bn => new SelectBill
                 {
@@ -45,7 +45,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBill(CreationBillViewModel model)
+        public RedirectToRouteResult AddBill(CrudBillViewModel model)
         {
             if (ModelState.IsValid)
             {
