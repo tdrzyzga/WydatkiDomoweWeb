@@ -1,7 +1,7 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillViewModel
 
 
-@using (Html.BeginForm("AddBill", "CrudBill", FormMethod.Post, new { @class = "form-inline" }))
+@using (Html.BeginForm("AddBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
 {
     <div class="form-group form-group-sm">
         @Html.DropDownListFor(m => m.SelectedBillId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })
@@ -34,7 +34,6 @@
     </div>
     <div class="form-group form-group-sm">
         <input type="hidden" id="buttonvalue" />
-        <input id="idbutton" class="btn btn-primary" type="submit" value="Dodaj nowy rachunek" />
-    </div>
-        
+        <input id="idbutton" class="btn btn-primary" type="submit" value="Zapisz" />
+    </div>        
 }
