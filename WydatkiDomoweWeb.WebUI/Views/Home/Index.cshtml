@@ -7,9 +7,11 @@
 }
 
 <div class="panel panel-default">
+
     <div class="panel-body">
         @Html.Action("Checkbox")
     </div>
+
     <div class="panel-body" id="homeBillTable">
         @Html.Action("GetBill")
     </div>
@@ -18,9 +20,11 @@
         <div>    
             <button class="btn btn-primary" type="button" id="buttonAddBill">Dodaj nowy rachunek</button>
         </div>
+
         <div style="display: none;" id="addBill">  
             @Html.Action("AddBill", "CrudBill")
         </div>
     </div> 
+
 </div>
 
