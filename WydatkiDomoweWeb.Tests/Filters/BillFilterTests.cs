@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WydatkiDomoweWeb.WebUI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Threading.Tasks;
 using Moq;
 using WydatkiDomoweWeb.WebUI.Models;
 using System.Collections;
+using WydatkiDomoweWeb.WebUI.Infrastructure.Filters;
 
 namespace WydatkiDomoweWeb.WebUI.Filters.Tests
 {

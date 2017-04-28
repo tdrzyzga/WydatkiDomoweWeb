@@ -256,12 +256,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CrudBillController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Filters\CheckboxFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\Binders\CheckboxBinder.cs" />
+    <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\BillViewModel.cs" />
     <Compile Include="Models\CheckboxViewModel.cs" />
