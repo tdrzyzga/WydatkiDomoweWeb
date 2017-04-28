@@ -41,6 +41,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                     Value = r.RecipientID.ToString()
                 }).ToList()
             };
+
             return PartialView(model);
         }
 
@@ -81,6 +82,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 date = billRepository.Bills.Last(b => b.BillNameID == billNameId).RequiredDate.AddDays(paymentFerquency);
             else
                 date = firstPaymentDate.AddDays(paymentFerquency);
+
             return date;
         }
     }

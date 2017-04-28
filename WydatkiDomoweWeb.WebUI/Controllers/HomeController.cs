@@ -78,6 +78,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                         IsChecked = true
                                     }).ToList();
             }
+
             return PartialView(checkbox.Items);  
         }
 
