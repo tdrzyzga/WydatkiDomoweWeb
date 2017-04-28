@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
-using WydatkiDomoweWeb.WebUI.Filters;
+using WydatkiDomoweWeb.WebUI.Infrastructure.Filters;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
@@ -53,7 +53,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
             BillViewModel model = new BillViewModel
             {
-                Bills = bills.OrderBy(b => b.Amount).Skip((page - 1) * PageSize).Take(PageSize),
+                Bills = bills.OrderByDescending(b => b.PaymentDate).Skip((page - 1) * PageSize).Take(PageSize),
 
                 PagingInfo = new PagingInfo
                 {
