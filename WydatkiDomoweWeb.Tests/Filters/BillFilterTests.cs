@@ -37,9 +37,7 @@ namespace WydatkiDomoweWeb.WebUI.Filters.Tests
 
             CheckboxViewModel checkbox = new CheckboxViewModel();
             checkbox.Items = listCheckbox;
-
-            CheckboxFilter checkboxFilter = new CheckboxFilter(checkbox);
-            IEnumerable<BillModel> result = checkboxFilter.Filter(listBill);
+            IEnumerable<BillModel> result = listBill.Filter(checkbox);
 
             Assert.AreEqual(result.Count(), 3);
             Assert.AreEqual(result.ElementAt(2), listBill.ElementAt(4));
