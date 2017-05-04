@@ -6,24 +6,17 @@ using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
 {
-    public class CheckboxFilter
+    public static class CheckboxFilter
     {
-        public CheckboxViewModel Checkbox { get; set; }
-
-        public CheckboxFilter(CheckboxViewModel model)
-        {
-            Checkbox = model;
-        }
-
-        public IEnumerable<BillModel> Filter(IEnumerable<BillModel> bills)
+        public static IEnumerable<BillModel> Filter(this IEnumerable<BillModel> bills, CheckboxViewModel checkbox)
         {
             List<BillModel> currentBills = new List<BillModel>();
 
-            if (Checkbox.Items.Count() != 0)
+            if (checkbox.Items.Count() != 0)
             {
-                for (int i = 0; i < Checkbox.Items.Count(); i++)
+                for (int i = 0; i < checkbox.Items.Count(); i++)
                 {
-                    var query = bills.Where(bn => bn.BillName.Equals(Checkbox.Items[i].Name) && Checkbox.Items[i].IsChecked);
+                    var query = bills.Where(bn => bn.BillName.Equals(checkbox.Items[i].Name) && checkbox.Items[i].IsChecked);
                     currentBills.AddRange(query);
                 }
             }

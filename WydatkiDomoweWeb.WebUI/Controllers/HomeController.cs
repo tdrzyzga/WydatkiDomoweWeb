@@ -46,10 +46,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              Amount = b.Amount,
                              PaymentDate = b.PaymentDate,
                              RequiredDate = b.RequiredDate
-                         });
-
-            CheckboxFilter filterCheckbox = new CheckboxFilter(checkbox);
-            bills = filterCheckbox.Filter(bills);
+                         }).Filter(checkbox);
 
             BillViewModel model = new BillViewModel
             {
@@ -88,7 +85,5 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             checkbox.Items = model;
             return RedirectToAction("GetBill");
         }
-
-
     }
 }
