@@ -85,5 +85,53 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
             return date;
         }
+
+        [HttpGet]
+        public PartialViewResult EditBill(int id)
+        {
+            EditBillViewModel model = new EditBillViewModel
+            {
+                BillId = id,
+
+                BillName = (from b in billRepository.Bills
+                           join bn in billNameRepository.BillNames
+                              on b.BillNameID equals bn.BillNameID
+                           where b.BillsID == id
+                           select bn.Name).First().ToString(),
+
+                Amount = billRepository.Bills.Single(b => b.BillsID == id).Amount,
+                PaymentDate = billRepository.Bills.Single(b => b.BillsID == id).PaymentDate.ToString("dd.MM.yyyy"),
+                RequiredDate = billRepository.Bills.Single(b => b.BillsID == id).RequiredDate.ToString("dd.MM.yyyy"),
+                Recipients = recipientRepository.Recipients.Select(r => new SelectListItem
+                {
+                    Text = r.Name,
+                    Value = r.RecipientID.ToString()
+                }).ToList()
+            };
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult EditBill(EditBillViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Bill bill = new Bill
+                {
+                    BillNameID = model.BillId,
+                    RecipientID = model.SelectedRecipientId,
+                    Amount = model.Amount,
+                    PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
+                                           System.Globalization.CultureInfo.InvariantCulture),
+                    RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                           System.Globalization.CultureInfo.InvariantCulture),
+                };
+
+                billRepository.SaveBill(bill);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

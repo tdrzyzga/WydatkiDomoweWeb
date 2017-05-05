@@ -1,0 +1,37 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.EditBillViewModel
+
+<table>
+@using (Html.BeginForm("EditBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
+{
+    <td class="form-group form-group-sm">
+        @Html.HiddenFor(m => m.BillId)
+        @Html.DisplayFor(m => m.BillName)
+    </td>
+
+     <td class="form-group form-group-sm">
+        @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
+        @for (int i = 0; i < Model.Recipients.Count(); i++)
+        {
+            @Html.HiddenFor(m => m.Recipients[i].Text)
+            @Html.HiddenFor(m => m.Recipients[i].Value)
+        }
+    </td>
+
+    <td class="form-group form-group-sm">
+        @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+    </td>
+
+    <td style="position:relative" class="form-group form-group-sm">   
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepickerEdit"})  
+    </td>
+
+    <td class="form-group form-group-sm">
+        @Html.HiddenFor(m => m.RequiredDate)
+        @Html.DisplayFor(m => m.RequiredDate)
+    </td>
+
+    <td class="form-group form-group-sm">
+        <input class="btn btn-default btn-xs" type="submit" value="Zapisz"/>
+    </td>        
+}
+</table>

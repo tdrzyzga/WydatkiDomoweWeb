@@ -13,20 +13,20 @@
 
     @foreach (var bills in Model.Bills)
     {
-        <tr>
+        <tr id="@bills.Id.ToString()">
             <td>@Html.DisplayFor(m => bills.BillName)</td>
             <td>@Html.DisplayFor(m => bills.Recipient)</td>
             <td>@Html.DisplayFor(m => bills.Amount)</td>
             <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
             <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
             <td class="form-inline">                    
-                @using (Ajax.BeginForm("DeleteBill", "CrudBill", new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("EditBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = bills.Id.ToString(), HttpMethod = "Get" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("Id", bills.Id)
-                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
+                    <input id="buttonEditBill" class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
-                @using (Ajax.BeginForm("DeleteBill", "CrudBill", new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("Id", bills.Id)
                     <input class="btn btn-default btn-xs" type="submit" value="Usuń"/>
