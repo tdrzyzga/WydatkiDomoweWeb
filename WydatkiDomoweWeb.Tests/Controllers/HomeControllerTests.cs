@@ -70,7 +70,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.PageSize = 2;
-
             CheckboxViewModel checkbox = new CheckboxViewModel();
             checkbox.Items = listCheckbox;            
 
