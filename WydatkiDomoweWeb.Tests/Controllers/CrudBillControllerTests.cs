@@ -15,20 +15,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
     [TestClass()]
     public class CrudBillControllerTests
     {
-        [TestMethod()]
-        public void GetMethodAddBillTest()
+        private Mock<IBillRepository> mockBills;
+        private Mock<IBillNameRepository> mockBillNames;
+        private Mock<IRecipientRepository> mockRecipients;
+
+        [TestInitialize]
+        public void Initialize()
         {
-            Mock<IBillRepository> mockBills = new Mock<IBillRepository>();
+            mockBills = new Mock<IBillRepository>();
             mockBills.Setup(m => m.Bills).Returns(new Bill[]
             {
-                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-01"), RequiredDate = DateTime.Parse("2017-01-10") },
-                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-10") },
-                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-10") },
-                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-10") },
-                //new Bill {BillNameID = 4, RecipientID = 4 , Amount = 4.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-10") }
+                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
             });
 
-            Mock<IBillNameRepository> mockBillNames = new Mock<IBillNameRepository>();
+            mockBillNames = new Mock<IBillNameRepository>();
             mockBillNames.Setup(m => m.BillNames).Returns(new BillName[]
             {
                 new BillName {BillNameID = 0, Name = "Bill0", FirstPaymentDate = DateTime.Parse("2017-01-01"), PaymentsFrequency = 10 },
@@ -38,7 +41,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new BillName {BillNameID = 4, Name = "Bill4", FirstPaymentDate = DateTime.Parse("2017-01-01"), PaymentsFrequency = 10 },
             });
 
-            Mock<IRecipientRepository> mockRecipients = new Mock<IRecipientRepository>();
+            mockRecipients = new Mock<IRecipientRepository>();
             mockRecipients.Setup(m => m.Recipients).Returns(new Recipient[]
             {
                 new Recipient { RecipientID = 0, Name = "Recipient0", Account = "Account0", BuildingNR = "Nr0", CityID = 0, StreetID = 0, PostCodeID= 0 },
@@ -47,14 +50,19 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new Recipient { RecipientID = 3, Name = "Recipient3", Account = "Account3", BuildingNR = "Nr3", CityID = 3, StreetID = 3, PostCodeID= 3 },
                 new Recipient { RecipientID = 4, Name = "Recipient4", Account = "Account4", BuildingNR = "Nr4", CityID = 4, StreetID = 4, PostCodeID= 4 },
             });
+        }
 
+        [TestMethod()]
+        public void HttpGetMethodAddBillTest()
+        {     
             CrudBillController controller = new CrudBillController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
             CrudBillViewModel result = (CrudBillViewModel)controller.AddBill().Model;
+
             Assert.AreEqual("Bill2", result.Bills[2].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-20"), result.Bills[2].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[2].Date);
             Assert.AreEqual("Bill3", result.Bills[3].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-20"), result.Bills[3].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[3].Date);
             Assert.AreEqual("Bill4", result.Bills[4].Name);
             Assert.AreEqual(DateTime.Parse("2017-01-11"), result.Bills[4].Date);
         }
