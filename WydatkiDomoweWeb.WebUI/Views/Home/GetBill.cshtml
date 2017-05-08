@@ -20,10 +20,10 @@
             <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
             <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
             <td class="form-inline">                    
-                @using (Ajax.BeginForm("EditBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = bills.Id.ToString(), HttpMethod = "Get" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("EditBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = bills.Id.ToString(), HttpMethod = "Get", OnComplete = "editBill" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("Id", bills.Id)
-                    <input id="buttonEditBill" class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
+                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
                 @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
