@@ -1,6 +1,6 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.EditBillViewModel
 
-<table>
+
 @using (Html.BeginForm("EditBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
 {
     <td class="form-group form-group-sm">
@@ -35,4 +35,4 @@
         <input class="btn btn-primary btn-xs" type="submit" name="cancel" value="Anuluj"/>
     </td>        
 }
-</table>
+
