@@ -17,7 +17,7 @@ namespace WydatkiDomoweWeb.Domain.Entities
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime PaymentDate { get; set; }
 
         public int RecipientID { get; set; }

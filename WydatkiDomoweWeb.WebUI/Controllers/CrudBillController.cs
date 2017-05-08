@@ -45,10 +45,22 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return PartialView(model);
         }
 
-        [HttpPost]
-        public RedirectToRouteResult AddBill(CrudBillViewModel model)
+        protected DateTime SetDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)
         {
-            if (ModelState.IsValid)
+            DateTime date;
+
+            if (billRepository.Bills.Any(b => b.BillNameID == billNameId))
+                date = billRepository.Bills.Last(b => b.BillNameID == billNameId).RequiredDate.AddDays(paymentFerquency);
+            else
+                date = firstPaymentDate.AddDays(paymentFerquency);
+
+            return date;
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult AddBill(string save, string cancel, CrudBillViewModel model)
+        {
+            if (ModelState.IsValid && save != null)
             {
                 Bill bill = new Bill
                 {
@@ -74,18 +86,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("GetBill", "Home");
         }
 
-        public DateTime SetDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)
-        {
-            DateTime date;
-
-            if (billRepository.Bills.Any(b => b.BillNameID == billNameId))
-                date = billRepository.Bills.Last(b => b.BillNameID == billNameId).RequiredDate.AddDays(paymentFerquency);
-            else
-                date = firstPaymentDate.AddDays(paymentFerquency);
-
-            return date;
-        }
-
         [HttpGet]
         public PartialViewResult EditBill(int id)
         {
@@ -100,7 +100,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                            select bn.Name).First().ToString(),
 
                 Amount = billRepository.Bills.Single(b => b.BillsID == id).Amount,
-                PaymentDate = billRepository.Bills.Single(b => b.BillsID == id).PaymentDate.ToString("dd.MM.yyyy"),
+                PaymentDate = billRepository.Bills.Single(b => b.BillsID == id).PaymentDate.ToString("dd.MM.yyyy HH:mm"),
                 RequiredDate = billRepository.Bills.Single(b => b.BillsID == id).RequiredDate.ToString("dd.MM.yyyy"),
                 Recipients = recipientRepository.Recipients.Select(r => new SelectListItem
                 {
@@ -113,9 +113,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult EditBill(EditBillViewModel model)
+        public RedirectToRouteResult EditBill(string save, string cancel, EditBillViewModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && save != null)
             {
                 Bill bill = new Bill
                 {

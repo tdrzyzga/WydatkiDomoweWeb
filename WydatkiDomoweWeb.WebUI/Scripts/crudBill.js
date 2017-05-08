@@ -28,5 +28,9 @@
             $('#addBill').hide();
         }
     });
-
 })
+var editBill = function () {
+    $('#datetimepickerEdit').datetimepicker({
+        locale: 'pl'
+    });
+};
