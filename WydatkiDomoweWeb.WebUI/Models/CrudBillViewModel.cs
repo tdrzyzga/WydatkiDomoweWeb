@@ -16,7 +16,8 @@ namespace WydatkiDomoweWeb.WebUI.Models
 
     public abstract class CrudBillViewModel
     {
-        public int SelectedBillId { get; set; }
+        public int BillId { get; set; }
+        public int SelectedBillNameId { get; set; }
         public int SelectedRecipientId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać kwotę")]
@@ -41,7 +42,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
     }
 
     public class EditBillViewModel : CrudBillViewModel
-    {
+    {        
         public string BillName { get; set; }        
     }
 }
