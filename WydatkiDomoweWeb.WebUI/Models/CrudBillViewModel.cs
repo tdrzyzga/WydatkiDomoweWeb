@@ -14,7 +14,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public DateTime Date { get; set; }
     }
 
-    public class CrudBillViewModel
+    public abstract class CrudBillViewModel
     {
         public int SelectedBillId { get; set; }
         public int SelectedRecipientId { get; set; }
@@ -27,12 +27,21 @@ namespace WydatkiDomoweWeb.WebUI.Models
 
         public string RequiredDate { get; set; }
 
-        public List<SelectBill> Bills { get; set; }
         public List<SelectListItem> Recipients { get; set; }
+    }
 
-        public CrudBillViewModel()
+    public class AddBillViewModel : CrudBillViewModel
+    {        
+        public List<SelectBill> Bills { get; set; }
+
+        public AddBillViewModel()
         {
             Bills = new List<SelectBill>();
         }
+    }
+
+    public class EditBillViewModel : CrudBillViewModel
+    {
+        public string BillName { get; set; }        
     }
 }

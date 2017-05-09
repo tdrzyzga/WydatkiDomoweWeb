@@ -4,7 +4,7 @@
 @using (Html.BeginForm("EditBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
 {
     <td class="form-group form-group-sm">
-        @Html.HiddenFor(m => m.BillId)
+        @Html.HiddenFor(m => m.SelectedBillId)
         @Html.DisplayFor(m => m.BillName)
     </td>
 

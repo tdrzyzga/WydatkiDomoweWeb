@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult AddBill()
         {
-            CrudBillViewModel model = new CrudBillViewModel
+            AddBillViewModel model = new AddBillViewModel
             {
                 Bills = billNameRepository.BillNames.Select(bn => new SelectBill
                 {
@@ -58,25 +58,32 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBill(string save, string cancel, CrudBillViewModel model)
+        public RedirectToRouteResult AddBill(string save, string cancel, AddBillViewModel model)
         {
             if (ModelState.IsValid && save != null)
             {
-                Bill bill = new Bill
-                {
-                    BillNameID = model.SelectedBillId,
-                    RecipientID = model.SelectedRecipientId,
-                    Amount = model.Amount,
-                    PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
-                                           System.Globalization.CultureInfo.InvariantCulture),
-                    RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
-                                           System.Globalization.CultureInfo.InvariantCulture),
-                };
+                Bill bill = CreateBill(model);
 
                 billRepository.SaveBill(bill);
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        protected Bill CreateBill(CrudBillViewModel model)
+        {
+            Bill bill = new Bill
+            {
+                BillNameID = model.SelectedBillId,
+                RecipientID = model.SelectedRecipientId,
+                Amount = model.Amount,
+                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+            };
+
+            return bill;
         }
 
         [HttpPost]
@@ -91,7 +98,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             EditBillViewModel model = new EditBillViewModel
             {
-                BillId = id,
+                SelectedBillId = id,
 
                 BillName = (from b in billRepository.Bills
                            join bn in billNameRepository.BillNames
@@ -117,16 +124,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             if (ModelState.IsValid && save != null)
             {
-                Bill bill = new Bill
-                {
-                    BillNameID = model.BillId,
-                    RecipientID = model.SelectedRecipientId,
-                    Amount = model.Amount,
-                    PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
-                                           System.Globalization.CultureInfo.InvariantCulture),
-                    RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
-                                           System.Globalization.CultureInfo.InvariantCulture),
-                };
+                Bill bill = CreateBill(model);
 
                 billRepository.SaveBill(bill);
             }
