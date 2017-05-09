@@ -61,11 +61,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult AddBill(string save, string cancel, AddBillViewModel model)
         {
             if (ModelState.IsValid && save != null)
-            {
-                Bill bill = CreateBill(model);
-
-                billRepository.SaveBill(bill);
-            }
+                SaveBill(model);
 
             return RedirectToAction("Index", "Home");
         }
@@ -100,11 +96,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult EditBill(string save, string cancel, EditBillViewModel model)
         {
             if (ModelState.IsValid && save != null)
-            {
-                Bill bill = CreateBill(model);
-
-                billRepository.SaveBill(bill);
-            }
+                SaveBill(model);
 
             return RedirectToAction("Index", "Home");
         }
@@ -116,7 +108,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("GetBill", "Home");
         }
 
-        protected Bill CreateBill(CrudBillViewModel model)
+        protected void SaveBill(CrudBillViewModel model)
         {
             Bill bill = new Bill
             {
@@ -129,7 +121,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                        System.Globalization.CultureInfo.InvariantCulture),
             };
 
-            return bill;
+            billRepository.SaveBill(bill);
         }
     }
 }
