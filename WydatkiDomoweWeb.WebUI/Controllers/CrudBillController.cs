@@ -71,7 +71,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             EditBillViewModel model = new EditBillViewModel
             {
-                SelectedBillId = id,
+                BillId = id,
 
                 BillName = (from b in billRepository.Bills
                            join bn in billNameRepository.BillNames
@@ -112,7 +112,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             Bill bill = new Bill
             {
-                BillNameID = model.SelectedBillId,
+                BillsID = model.BillId,
+                BillNameID = model.SelectedBillNameId,
                 RecipientID = model.SelectedRecipientId,
                 Amount = model.Amount,
                 PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",

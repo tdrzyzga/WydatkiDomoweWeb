@@ -1,38 +1,32 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.EditBillViewModel
 
-
+<table><tr><td>
 @using (Html.BeginForm("EditBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
 {
-    <td class="form-group form-group-sm">
-        @Html.HiddenFor(m => m.SelectedBillId)
+        @Html.HiddenFor(m => m.BillId)
+        @Html.HiddenFor(m => m.SelectedBillNameId)
         @Html.DisplayFor(m => m.BillName)
-    </td>
 
-     <td class="form-group form-group-sm">
+
+     
         @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
-        @for (int i = 0; i < Model.Recipients.Count(); i++)
-        {
+    for (int i = 0; i < Model.Recipients.Count(); i++)
+    {
             @Html.HiddenFor(m => m.Recipients[i].Text)
             @Html.HiddenFor(m => m.Recipients[i].Value)
-        }
-    </td>
+    }
+   
 
-    <td class="form-group form-group-sm">
+    
         @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
-    </td>
 
-    <td style="position:relative" class="form-group form-group-sm">   
-        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepickerEdit"})  
-    </td>
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepickerEdit" })  
 
-    <td class="form-group form-group-sm">
         @Html.HiddenFor(m => m.RequiredDate)
         @Html.DisplayFor(m => m.RequiredDate)
-    </td>
 
-    <td class="form-group form-group-sm">
         <input class="btn btn-primary btn-xs" type="submit" name="save" value="Zapisz"/>
         <input class="btn btn-primary btn-xs" type="submit" name="cancel" value="Anuluj"/>
-    </td>        
+ 
 }
-
+</td></tr></table>
