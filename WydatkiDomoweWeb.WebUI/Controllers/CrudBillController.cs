@@ -70,29 +70,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        protected Bill CreateBill(CrudBillViewModel model)
-        {
-            Bill bill = new Bill
-            {
-                BillNameID = model.SelectedBillId,
-                RecipientID = model.SelectedRecipientId,
-                Amount = model.Amount,
-                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-            };
-
-            return bill;
-        }
-
-        [HttpPost]
-        public RedirectToRouteResult DeleteBill(int id)
-        {
-            billRepository.DeleteBill(id);
-            return RedirectToAction("GetBill", "Home");
-        }
-
         [HttpGet]
         public PartialViewResult EditBill(int id)
         {
@@ -130,6 +107,29 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult DeleteBill(int id)
+        {
+            billRepository.DeleteBill(id);
+            return RedirectToAction("GetBill", "Home");
+        }
+
+        protected Bill CreateBill(CrudBillViewModel model)
+        {
+            Bill bill = new Bill
+            {
+                BillNameID = model.SelectedBillId,
+                RecipientID = model.SelectedRecipientId,
+                Amount = model.Amount,
+                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+            };
+
+            return bill;
         }
     }
 }
