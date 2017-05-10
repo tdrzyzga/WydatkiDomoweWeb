@@ -1,4 +1,9 @@
 ﻿$(function () {
+    configureAddBill();
+})
+
+function configureAddBill() {
+
     $('#selectBill').change(function () {
         var value = $('#selectBill').val();
 
@@ -20,6 +25,7 @@
             $('#requiredDate').val('Termin zapłaty');
         }
     });
+
     $('#buttonAddBill').on('click', function () {
         if ($('#addBill').is(':hidden')) {
             $('#addBill').show();
@@ -28,8 +34,9 @@
             $('#addBill').hide();
         }
     });
-})
-var editBill = function () {
+}
+
+function editBill() {
     $('#datetimepickerEdit').datetimepicker({
         locale: 'pl'
     });

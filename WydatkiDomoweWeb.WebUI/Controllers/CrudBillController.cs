@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult AddBill()
         {
-            AddBillViewModel model = new AddBillViewModel
+            CrudBillViewModel model = new CrudBillViewModel
             {
                 Bills = billNameRepository.BillNames.Select(bn => new SelectBill
                 {
@@ -58,10 +58,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBill(string save, string cancel, AddBillViewModel model)
+        public RedirectToRouteResult AddBill(string save, string cancel, CrudBillViewModel model)
         {
             if (ModelState.IsValid && save != null)
-                SaveBill(model);
+                billRepository.AddBill(CreateBill(model));
 
             return RedirectToAction("Index", "Home");
         }
@@ -69,16 +69,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult EditBill(int id)
         {
-            EditBillViewModel model = new EditBillViewModel
-            {
+            var billNameId = billRepository.Bills.Single(b => b.BillsID == id).BillNameID;
+
+            CrudBillViewModel model = new CrudBillViewModel
+            {                
                 BillId = id,
-
-                BillName = (from b in billRepository.Bills
-                           join bn in billNameRepository.BillNames
-                              on b.BillNameID equals bn.BillNameID
-                           where b.BillsID == id
-                           select bn.Name).First().ToString(),
-
+                SelectedBillNameId = billNameId,
+                BillName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId).Name,
                 Amount = billRepository.Bills.Single(b => b.BillsID == id).Amount,
                 PaymentDate = billRepository.Bills.Single(b => b.BillsID == id).PaymentDate.ToString("dd.MM.yyyy HH:mm"),
                 RequiredDate = billRepository.Bills.Single(b => b.BillsID == id).RequiredDate.ToString("dd.MM.yyyy"),
@@ -93,10 +90,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult EditBill(string save, string cancel, EditBillViewModel model)
+        public RedirectToRouteResult EditBill(string save, string cancel, CrudBillViewModel model)
         {
             if (ModelState.IsValid && save != null)
-                SaveBill(model);
+                billRepository.UpdateBill(CreateBill(model));
 
             return RedirectToAction("Index", "Home");
         }
@@ -108,7 +105,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("GetBill", "Home");
         }
 
-        protected void SaveBill(CrudBillViewModel model)
+        protected Bill CreateBill(CrudBillViewModel model)
         {
             Bill bill = new Bill
             {
@@ -122,7 +119,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                        System.Globalization.CultureInfo.InvariantCulture),
             };
 
-            billRepository.SaveBill(bill);
+            return bill;
         }
     }
 }
