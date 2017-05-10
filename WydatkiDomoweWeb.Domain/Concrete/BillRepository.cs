@@ -17,22 +17,24 @@ namespace WydatkiDomoweWeb.Domain.Concrete
             get { return context.Bills; }
         }
 
-        public void SaveBill(Bill bill)
+        public void AddBill(Bill bill)
         {
-            if (bill.BillsID == 0)
-                context.Bills.Add(bill);
-            else
-            {
-                Bill dbEntry = context.Bills.Find(bill.BillsID);
+            context.Bills.Add(bill);
 
-                if (dbEntry !=null)
-                {
-                    dbEntry.BillNameID = bill.BillNameID;
-                    dbEntry.RecipientID = bill.RecipientID;
-                    dbEntry.Amount = bill.Amount;
-                    dbEntry.PaymentDate = bill.PaymentDate;
-                    dbEntry.RequiredDate = bill.RequiredDate;
-                }
+            context.SaveChanges();
+        }
+
+        public void UpdateBill(Bill bill)
+        {
+            Bill dbEntry = context.Bills.Find(bill.BillsID);
+
+            if (dbEntry != null)
+            {
+                dbEntry.BillNameID = bill.BillNameID;
+                dbEntry.RecipientID = bill.RecipientID;
+                dbEntry.Amount = bill.Amount;
+                dbEntry.PaymentDate = bill.PaymentDate;
+                dbEntry.RequiredDate = bill.RequiredDate;
             }
 
             context.SaveChanges();
