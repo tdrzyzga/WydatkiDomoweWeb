@@ -266,7 +266,6 @@
     <Compile Include="Models\BillViewModel.cs" />
     <Compile Include="Models\CheckboxViewModel.cs" />
     <Compile Include="Models\CrudBillViewModel.cs" />
-    <Compile Include="Models\EditBillViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
