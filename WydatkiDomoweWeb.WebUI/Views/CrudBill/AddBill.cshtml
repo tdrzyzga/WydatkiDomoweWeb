@@ -21,13 +21,12 @@
             @Html.HiddenFor(m => m.Recipients[i].Value)
         }
     </div>
-
     <div class="form-group form-group-sm">
         @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control" })
-
+                @Html.ValidationMessageFor(m => m.Amount)
     </div>
-
     <div style="position:relative" class="form-group form-group-sm">   
+        @Html.ValidationMessageFor(m => m.PaymentDate)
         @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" })  
     </div>
 

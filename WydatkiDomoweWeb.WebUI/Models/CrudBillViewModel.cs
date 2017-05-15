@@ -18,9 +18,11 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public int BillId { get; set; }
 
+        [Required]
         public int SelectedBillNameId { get; set; }
-        public string BillName { get; set; }    
+        public string BillName { get; set; }
 
+        [Required(ErrorMessage = "Proszę wybrać odbiorcę")]
         public int SelectedRecipientId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać kwotę")]
