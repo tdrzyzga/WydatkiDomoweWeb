@@ -18,6 +18,9 @@ namespace WydatkiDomoweWeb.WebUI
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/bootstrap-datetimepicker.min.js",
                 "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/jquery.unobtrusive-ajax.min.js",
                 "~/Scripts/crudBill.js"
                ));
         }
