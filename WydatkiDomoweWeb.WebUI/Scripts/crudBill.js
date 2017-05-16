@@ -36,8 +36,11 @@ function configureAddBill() {
     });
 }
 
-function editBill() {
+function configureEditBill() {
     $('#datetimepickerEdit').datetimepicker({
         locale: 'pl'
+    });
+    $('#cancelEdit').on('click', function () {
+        $('form').attr('action', 'Home/Index')
     });
 };

@@ -18,7 +18,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public int BillId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Proszę wybrać rachunek")]
         public int SelectedBillNameId { get; set; }
         public string BillName { get; set; }
 
@@ -26,6 +26,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public int SelectedRecipientId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać kwotę")]
+        [RegularExpression(@"([0-9]){1,6}(,?\d{1,2})", ErrorMessage = "Podana kwota musi być liczbą z przedzialu od 0 do 999999,99")]
         public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "Proszę podać datę")]
