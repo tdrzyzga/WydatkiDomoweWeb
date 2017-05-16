@@ -17,11 +17,15 @@ namespace WydatkiDomoweWeb.WebUI
                  "~/Scripts/moment-with-locales.js",
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/bootstrap-datetimepicker.min.js",
-                "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                "~/Scripts/jquery.validate.min.js",
-                "~/Scripts/jquery.validate.unobtrusive.min.js",
+                "~/Scripts/jquery.unobtrusive-ajax.min.js",                
                 "~/Scripts/jquery.unobtrusive-ajax.min.js",
                 "~/Scripts/crudBill.js"
+               ));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval")
+                .Include(
+                "~/Scripts/jqueryFix.js",
+                "~/Scripts/jquery.validate.min.js",
+                "~/Scripts/jquery.validate.unobtrusive.min.js"
                ));
         }
     } 

@@ -1,5 +1,7 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillViewModel
 
+@Scripts.Render("~/bundles/jqueryval")
+
 <p></p>
 @using (Html.BeginForm("AddBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
 {
@@ -11,6 +13,7 @@
             @Html.HiddenFor(m => m.Bills[i].Id)
             @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
         }
+         @Html.ValidationMessageFor(m => m.SelectedBillNameId)
     </div>
 
      <div class="form-group form-group-sm">
@@ -20,14 +23,15 @@
             @Html.HiddenFor(m => m.Recipients[i].Text)
             @Html.HiddenFor(m => m.Recipients[i].Value)
         }
+         @Html.ValidationMessageFor(m => m.SelectedRecipientId)
     </div>
     <div class="form-group form-group-sm">
         @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Amount)
+        @Html.ValidationMessageFor(m => m.Amount)
     </div>
     <div style="position:relative" class="form-group form-group-sm">   
-        @Html.ValidationMessageFor(m => m.PaymentDate)
-        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" })  
+        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" }) 
+        @Html.ValidationMessageFor(m => m.PaymentDate) 
     </div>
 
     <div class="form-group form-group-sm">

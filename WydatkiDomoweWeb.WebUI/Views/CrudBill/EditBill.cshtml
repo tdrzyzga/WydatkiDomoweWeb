@@ -1,5 +1,7 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillViewModel
 
+@Scripts.Render("~/bundles/jqueryval")
+
 <div class="panel-body">
     <div class="well well-sm">
         <h4>Edycja rachunku</h4>
@@ -24,6 +26,7 @@
                     @Html.HiddenFor(m => m.Recipients[i].Text)
                     @Html.HiddenFor(m => m.Recipients[i].Value)
                 }
+                @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </div>
         </div>
    
@@ -31,13 +34,15 @@
         <div class="form-group">
             @Html.Label("Kwota:", new { @class = "control-label col-sm-2" })
             <div class="col-sm-3">
-                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Amount, "{0:n2}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Amount)
             </div>
         </div>
         <div class="form-group">
             @Html.Label("Data wpłaty:", new { @class = "control-label col-sm-2" })
             <div class="col-sm-3">
                 @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepickerEdit" })
+                @Html.ValidationMessageFor(m => m.PaymentDate)
             </div>
         </div>
         <div class="form-group">
@@ -52,3 +57,5 @@
         </div>
     }
 </div>
+
+
