@@ -27,10 +27,14 @@ namespace WydatkiDomoweWeb.WebUI.Models
 
         [Required(ErrorMessage = "Proszę podać kwotę")]
 <<<<<<< HEAD
+<<<<<<< HEAD
         [RegularExpression(@"([0-9]){1,6}(,\d{1,2})?", ErrorMessage = "Podana kwota musi być liczbą z przedzialu od 0 do 999999,99")]
 =======
         [RegularExpression(@"([0-9]){1,6}(,\d{1,2})?", ErrorMessage = "Podana kwota musi być</br> liczbą z przedzialu </br>od 0 do 999999,99")]
 >>>>>>> modified validation error in AddBill
+=======
+        [RegularExpression(@"([0-9]){1,6}(,\d{1,2})?", ErrorMessage = "Podana kwota musi być liczbą z przedzialu od 0 do 999999,99")]
+>>>>>>> 4e6a580e31e2b45690937a53e7e1f3690dd64d19
         public decimal Amount { get; set; }
 
         [Required(ErrorMessage = "Proszę podać datę")]
