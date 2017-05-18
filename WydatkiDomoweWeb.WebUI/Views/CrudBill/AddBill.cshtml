@@ -2,44 +2,54 @@
 
 @Scripts.Render("~/bundles/jqueryval")
 
-<p></p>
-@using (Html.BeginForm("AddBill", "CrudBill", FormMethod.Post, new { @class = "form-inline"}))
+<p>
+</p>
+@using (Html.BeginForm("AddBill", "CrudBill"))
 {
-    <div class="form-group form-group-sm">
-        @Html.DropDownListFor(m => m.SelectedBillNameId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })
-        @for (int i = 0; i < Model.Bills.Count(); i++)
-        {
-            @Html.HiddenFor(m => m.Bills[i].Name)
-            @Html.HiddenFor(m => m.Bills[i].Id)
-            @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
-        }
-         @Html.ValidationMessageFor(m => m.SelectedBillNameId)
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.DropDownListFor(m => m.SelectedBillNameId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })
+            @for (int i = 0; i < Model.Bills.Count(); i++)
+            {
+                @Html.HiddenFor(m => m.Bills[i].Name)
+                @Html.HiddenFor(m => m.Bills[i].Id)
+                @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
+            }
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
+            @for (int i = 0; i < Model.Recipients.Count(); i++)
+            {
+                @Html.HiddenFor(m => m.Recipients[i].Text)
+                @Html.HiddenFor(m => m.Recipients[i].Value)
+            }
+        </div>
+        <div class="col-sm-2">
+            @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control" })
+        </div>
+        <div style="position: relative" class="col-sm-2">
+            @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" })
+        </div>
+        <div class="col-sm-2">
+            @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", Value = "Termin zapłaty" })
+        </div>
+        <div class="col-sm-2">
+            <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
+            <input class="btn btn-primary" type="submit" name="cancel" value="Anuluj" />
+        </div>
     </div>
-
-     <div class="form-group form-group-sm">
-        @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
-        @for (int i = 0; i < Model.Recipients.Count(); i++)
-        {
-            @Html.HiddenFor(m => m.Recipients[i].Text)
-            @Html.HiddenFor(m => m.Recipients[i].Value)
-        }
-         @Html.ValidationMessageFor(m => m.SelectedRecipientId)
-    </div>
-    <div class="form-group form-group-sm">
-        @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Amount)
-    </div>
-    <div style="position:relative" class="form-group form-group-sm">   
-        @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" }) 
-        @Html.ValidationMessageFor(m => m.PaymentDate) 
-    </div>
-
-    <div class="form-group form-group-sm">
-        @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", Value = "Termin zapłaty" })
-    </div>
-
-    <div class="form-group form-group-sm">
-        <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
-        <input class="btn btn-primary" type="submit" name="cancel" value="Anuluj" />
-    </div>        
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.ValidationMessageFor(m => m.SelectedBillNameId)
+        </div>
+        <div class="col-sm-2">
+            @Html.ValidationMessageFor(m => m.SelectedRecipientId)
+        </div>
+        <div class="col-sm-2">
+            @Html.ValidationMessageFor(m => m.Amount)
+        </div>
+        <div class="col-sm-2">
+            @Html.ValidationMessageFor(m => m.PaymentDate)
+        </div>
+    </div>    
 }
