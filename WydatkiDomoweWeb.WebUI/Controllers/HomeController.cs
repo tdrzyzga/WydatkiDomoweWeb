@@ -31,7 +31,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetBill(CheckboxViewModel checkbox, int page = 1)
+        public PartialViewResult GetBill(FilterBillViewModel filterModel, int page = 1)
         {
             var bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
@@ -46,7 +46,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              Amount = b.Amount,
                              PaymentDate = b.PaymentDate,
                              RequiredDate = b.RequiredDate
-                         }).Filter(checkbox);
+                         }).FilterByCheckbox(filterModel);
 
             BillViewModel model = new BillViewModel
             {
@@ -64,11 +64,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Checkbox(CheckboxViewModel checkbox)
+        public PartialViewResult Filter(FilterBillViewModel filterModel)
         {
-            if (checkbox.Items.Count() == 0)
+            if (filterModel.CheckboxItems.Count() == 0)
             {
-                checkbox.Items = (from bn in billNameRepository.BillNames
+                filterModel.CheckboxItems = (from bn in billNameRepository.BillNames
                                     select new CheckboxModel
                                     {
                                         Name = bn.Name,
@@ -76,13 +76,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                     }).ToList();
             }
 
-            return PartialView(checkbox.Items);  
+            return PartialView(filterModel.CheckboxItems);  
         }
 
         [HttpPost]
-        public RedirectToRouteResult Checkbox(CheckboxViewModel checkbox, List<CheckboxModel> model)
+        public RedirectToRouteResult Filter(FilterBillViewModel filterModel, List<CheckboxModel> model)
         {
-            checkbox.Items = model;
+            filterModel.CheckboxItems = model;
             return RedirectToAction("GetBill");
         }
     }

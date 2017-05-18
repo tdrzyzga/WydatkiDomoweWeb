@@ -239,7 +239,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\crudBill.js" />
+    <Content Include="Scripts\CrudBill.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -251,7 +251,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jqueryFix.js" />
+    <Content Include="Scripts\jQueryFix.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
@@ -268,11 +268,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
-    <Compile Include="Infrastructure\Binders\CheckboxBinder.cs" />
+    <Compile Include="Infrastructure\Binders\FilterBillBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\BillViewModel.cs" />
-    <Compile Include="Models\CheckboxViewModel.cs" />
+    <Compile Include="Models\FilterBillViewModel.cs" />
     <Compile Include="Models\CrudBillViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,7 +284,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\Home\Checkbox.cshtml" />
+    <Content Include="Views\Home\Filter.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\CrudBill\AddBill.cshtml" />
     <Content Include="Views\Home\GetBill.cshtml" />

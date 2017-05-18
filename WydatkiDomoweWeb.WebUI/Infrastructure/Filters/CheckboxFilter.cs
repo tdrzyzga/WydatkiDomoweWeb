@@ -8,15 +8,15 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
 {
     public static class CheckboxFilter
     {
-        public static IEnumerable<BillModel> Filter(this IEnumerable<BillModel> bills, CheckboxViewModel checkbox)
+        public static IEnumerable<BillModel> FilterByCheckbox(this IEnumerable<BillModel> bills, FilterBillViewModel filterModel)
         {
             List<BillModel> currentBills = new List<BillModel>();
 
-            if (checkbox.Items.Count() != 0)
+            if (filterModel.CheckboxItems.Count() != 0)
             {
-                for (int i = 0; i < checkbox.Items.Count(); i++)
+                for (int i = 0; i < filterModel.CheckboxItems.Count(); i++)
                 {
-                    var query = bills.Where(bn => bn.BillName.Equals(checkbox.Items[i].Name) && checkbox.Items[i].IsChecked);
+                    var query = bills.Where(bn => bn.BillName.Equals(filterModel.CheckboxItems[i].Name) && filterModel.CheckboxItems[i].IsChecked);
                     currentBills.AddRange(query);
                 }
             }

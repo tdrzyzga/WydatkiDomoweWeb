@@ -8,28 +8,28 @@ using WydatkiDomoweWeb.WebUI.Models;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
 {
-    public class CheckboxBinder : IModelBinder
+    public class FilterBillBinder : IModelBinder
     {
         private const string sessionKey = "Checkbox";
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            CheckboxViewModel checkboxItems = null;
+            FilterBillViewModel filterModel = null;
             if (controllerContext.HttpContext.Session != null)
             {
-                checkboxItems = (CheckboxViewModel)controllerContext.HttpContext.Session[sessionKey];
+                filterModel = (FilterBillViewModel)controllerContext.HttpContext.Session[sessionKey];
             }
 
-            if (checkboxItems == null)
+            if (filterModel == null)
             {
-                checkboxItems = new CheckboxViewModel();
+                filterModel = new FilterBillViewModel();
                 if (controllerContext.HttpContext.Session != null)
                 {
-                    controllerContext.HttpContext.Session[sessionKey] = checkboxItems;
+                    controllerContext.HttpContext.Session[sessionKey] = filterModel;
                 }
             }
 
-            return checkboxItems;
+            return filterModel;
         }
     }
 }

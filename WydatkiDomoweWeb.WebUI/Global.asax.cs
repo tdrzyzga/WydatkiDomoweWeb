@@ -16,7 +16,7 @@ namespace WydatkiDomoweWeb.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ModelBinders.Binders.Add(typeof(CheckboxViewModel), new CheckboxBinder());
+            ModelBinders.Binders.Add(typeof(FilterBillViewModel), new FilterBillBinder());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }

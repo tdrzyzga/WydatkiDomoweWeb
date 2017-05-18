@@ -70,8 +70,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.PageSize = 2;
-            CheckboxViewModel checkbox = new CheckboxViewModel();
-            checkbox.Items = listCheckbox;            
+            FilterBillViewModel checkbox = new FilterBillViewModel();
+            checkbox.CheckboxItems = listCheckbox;            
 
             BillViewModel result = (BillViewModel)controller.GetBill(checkbox, 1).Model;
             PagingInfo pageInfo = result.PagingInfo;
@@ -89,12 +89,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void HttpGetCheckboxTest()
+        public void HttpGetFilterTest()
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
-            CheckboxViewModel checkbox = new CheckboxViewModel();
+            FilterBillViewModel checkbox = new FilterBillViewModel();
                         
-            List<CheckboxModel> resultCheckbox = (List<CheckboxModel>)controller.Checkbox(checkbox).Model;
+            List<CheckboxModel> resultCheckbox = (List<CheckboxModel>)controller.Filter(checkbox).Model;
 
             Assert.AreEqual("Bill0", resultCheckbox[0].Name);
             Assert.AreEqual("Bill1", resultCheckbox[1].Name);
@@ -103,12 +103,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void HttpPostCheckboxTest()
+        public void HttpPostFilterTest()
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
-            CheckboxViewModel checkbox = new CheckboxViewModel();
+            FilterBillViewModel checkbox = new FilterBillViewModel();
 
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Checkbox(checkbox, listCheckbox);
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.Filter(checkbox, listCheckbox);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("GetBill", result.RouteValues["action"]);

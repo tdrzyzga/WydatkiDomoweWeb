@@ -12,13 +12,13 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public bool IsChecked { get; set; }
     }
 
-    public class CheckboxViewModel
+    public class FilterBillViewModel
     {
-        public List<CheckboxModel> Items { get; set; }
+        public List<CheckboxModel> CheckboxItems { get; set; }
 
-        public CheckboxViewModel()
+        public FilterBillViewModel()
         {
-            Items = new List<CheckboxModel>();
+            CheckboxItems = new List<CheckboxModel>();
         }
     }
 }

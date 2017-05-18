@@ -19,11 +19,11 @@ namespace WydatkiDomoweWeb.WebUI
                 "~/Scripts/bootstrap-datetimepicker.min.js",
                 "~/Scripts/jquery.unobtrusive-ajax.min.js",                
                 "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                "~/Scripts/crudBill.js"
+                "~/Scripts/CrudBill.js"
                ));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval")
                 .Include(
-                "~/Scripts/jqueryFix.js",
+                "~/Scripts/jQueryFix.js",
                 "~/Scripts/jquery.validate.min.js",
                 "~/Scripts/jquery.validate.unobtrusive.min.js"
                ));
