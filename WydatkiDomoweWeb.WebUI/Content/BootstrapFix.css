@@ -1,0 +1,6 @@
+﻿.table-addbill , .table-addbill th, .table-addbill td  
+{
+     position:relative;
+     border-top: none !important;
+     margin-bottom: 0px !important; 
+ } 
