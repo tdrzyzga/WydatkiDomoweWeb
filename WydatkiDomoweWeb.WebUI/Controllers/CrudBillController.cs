@@ -58,9 +58,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBill(string save, string cancel, CrudBillViewModel model)
+        public RedirectToRouteResult AddBill(CrudBillViewModel model)
         {
-            if (ModelState.IsValid && save != null)
+            if (ModelState.IsValid)
                 billRepository.AddBill(CreateBill(model));
 
             return RedirectToAction("Index", "Home");
@@ -90,9 +90,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult EditBill(string save, string cancel, CrudBillViewModel model)
+        public RedirectToRouteResult EditBill(CrudBillViewModel model)
         {
-            if (ModelState.IsValid && save != null)
+            if (ModelState.IsValid)
                 billRepository.UpdateBill(CreateBill(model));
 
             return RedirectToAction("Index", "Home");

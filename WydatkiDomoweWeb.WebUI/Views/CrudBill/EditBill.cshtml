@@ -53,7 +53,7 @@
         </div>
         <div class="well well-sm">
             <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
-            <input class="btn btn-primary" type="submit" name="cancel" value="Anuluj" />
+            @Html.ActionLink("Anuluj", "Index", "Home", null, new { @class = "btn btn-primary" })
         </div>
     }
 </div>

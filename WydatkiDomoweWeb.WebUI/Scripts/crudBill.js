@@ -40,7 +40,7 @@ function configureEditBill() {
     $('#datetimepickerEdit').datetimepicker({
         locale: 'pl'
     });
-    $('#cancelEdit').on('click', function () {
-        $('form').attr('action', 'Home/Index')
-    });
 };
+function hideAddBill() {
+    $('#addBill').hide();
+}

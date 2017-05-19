@@ -38,7 +38,7 @@
             </td>
             <td>
                 <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
-                <input class="btn btn-primary" type="submit" name="cancel" value="Anuluj" />
+                @Ajax.ActionLink("Anuluj", "AddBill", "CrudBill", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "hideAddBill"}, new { @class = "btn btn-primary" })
             </td>
         </tr>
     </table>  
