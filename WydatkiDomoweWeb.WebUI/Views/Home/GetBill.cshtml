@@ -1,8 +1,8 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
 
-@if (TempData["SavedBill"] != null) 
+@if (TempData["ChangedBills"] != null) 
 {
-    <div class="alert alert-success">@TempData["SavedBill"]</div>
+    <div class="alert alert-success">@TempData["ChangedBills"]</div>
 }
  <table class="table table-striped table-condensed table-bordered">
     <tr>
@@ -26,13 +26,14 @@
             <td class="form-inline">                    
                 @using (Ajax.BeginForm("EditBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeEditBill", HttpMethod = "Get", OnSuccess = "configureEditBill" }, new { @class = "form-group" }))
                 {
-                    @Html.Hidden("Id", bills.Id)
+                    @Html.Hidden("BillId", bills.Id)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
                 @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
                 {
-                    @Html.Hidden("Id", bills.Id)
+                    @Html.Hidden("BillId", bills.Id)
+                    @Html.Hidden("BillName", bills.BillName)
                     <input class="btn btn-default btn-xs" type="submit" value="Usuń"/>
                 }
             </td>

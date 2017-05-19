@@ -63,23 +63,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (ModelState.IsValid)
                 billRepository.AddBill(CreateBill(model));
 
-            TempData["SavedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
+            TempData["ChangedBills"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
             return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
-        public PartialViewResult EditBill(int id)
+        public PartialViewResult EditBill(int billId)
         {
-            var billNameId = billRepository.Bills.Single(b => b.BillsID == id).BillNameID;
+            var billNameId = billRepository.Bills.Single(b => b.BillsID == billId).BillNameID;
 
             CrudBillViewModel model = new CrudBillViewModel
             {                
-                BillId = id,
+                BillId = billId,
                 SelectedBillNameId = billNameId,
                 BillName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId).Name,
-                Amount = billRepository.Bills.Single(b => b.BillsID == id).Amount,
-                PaymentDate = billRepository.Bills.Single(b => b.BillsID == id).PaymentDate.ToString("dd.MM.yyyy HH:mm"),
-                RequiredDate = billRepository.Bills.Single(b => b.BillsID == id).RequiredDate.ToString("dd.MM.yyyy"),
+                Amount = billRepository.Bills.Single(b => b.BillsID == billId).Amount,
+                PaymentDate = billRepository.Bills.Single(b => b.BillsID == billId).PaymentDate.ToString("dd.MM.yyyy HH:mm"),
+                RequiredDate = billRepository.Bills.Single(b => b.BillsID == billId).RequiredDate.ToString("dd.MM.yyyy"),
                 Recipients = recipientRepository.Recipients.Select(r => new SelectListItem
                 {
                     Text = r.Name,
@@ -96,14 +96,16 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (ModelState.IsValid)
                 billRepository.UpdateBill(CreateBill(model));
 
-            TempData["SavedBill"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
+            TempData["ChangedBills"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
             return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
-        public RedirectToRouteResult DeleteBill(int id)
+        public RedirectToRouteResult DeleteBill(int billId, string billName)
         {
-            billRepository.DeleteBill(id);
+            billRepository.DeleteBill(billId);
+            TempData["ChangedBills"] = string.Format("Usunięto rachunek: {0} ", billName);
+
             return RedirectToAction("GetBill", "Home");
         }
 
