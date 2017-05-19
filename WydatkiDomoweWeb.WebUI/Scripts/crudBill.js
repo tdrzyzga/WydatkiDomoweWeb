@@ -4,6 +4,30 @@
 
 function configureAddBill() {
 
+    selectedBill();
+
+    $('#buttonAddBill').on('click', function () {
+        if ($('#addBill').is(':hidden')) {
+            $('#addBill').show();
+        }
+        else {
+            $('#addBill').hide();
+        }
+    });
+}
+
+function configureEditBill() {
+    $('#datetimepickerEdit').datetimepicker({
+        locale: 'pl'
+    });
+};
+
+function refreshAddBill() {
+    selectedBill();
+    $('#addBill').hide();
+}
+
+function selectedBill() {
     $('#selectBill').change(function () {
         var value = $('#selectBill').val();
 
@@ -25,22 +49,5 @@ function configureAddBill() {
             $('#requiredDate').val('Termin zapłaty');
         }
     });
-
-    $('#buttonAddBill').on('click', function () {
-        if ($('#addBill').is(':hidden')) {
-            $('#addBill').show();
-        }
-        else {
-            $('#addBill').hide();
-        }
-    });
 }
 
-function configureEditBill() {
-    $('#datetimepickerEdit').datetimepicker({
-        locale: 'pl'
-    });
-};
-function hideAddBill() {
-    $('#addBill').hide();
-}

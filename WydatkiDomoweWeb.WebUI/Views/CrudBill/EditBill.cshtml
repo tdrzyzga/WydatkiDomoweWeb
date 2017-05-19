@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.Label("Kwota:", new { @class = "control-label col-sm-2" })
             <div class="col-sm-3">
-                @Html.TextBoxFor(m => m.Amount, "{0:n2}", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Amount, "{0:f}", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </div>
         </div>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="well well-sm">
-            <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
+            <input class="btn btn-primary" type="submit" value="Zapisz" />
             @Html.ActionLink("Anuluj", "Index", "Home", null, new { @class = "btn btn-primary" })
         </div>
     }
