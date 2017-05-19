@@ -30,7 +30,7 @@
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
-                @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeBillTable" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { Confirm = "Chcesz usunąć element", UpdateTargetId = "homeBillTable"}, new { @class = "form-group" }))
                 {
                     @Html.Hidden("BillId", bills.Id)
                     @Html.Hidden("BillName", bills.BillName)
