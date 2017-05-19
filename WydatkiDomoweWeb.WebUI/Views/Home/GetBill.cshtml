@@ -1,5 +1,9 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
 
+@if (TempData["SavedBill"] != null) 
+{
+    <div class="alert alert-success">@TempData["SavedBill"]</div>
+}
  <table class="table table-striped table-condensed table-bordered">
     <tr>
         <th class="col-md-2">Rachunek</th>
