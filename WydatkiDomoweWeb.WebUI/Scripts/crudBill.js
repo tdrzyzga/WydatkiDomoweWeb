@@ -1,6 +1,23 @@
 ﻿$(function () {
     configureAddBill();
+    configureCheckbox();
 })
+
+function configureCheckbox() {
+    $('#datetimepickerMin').datetimepicker({
+        locale: 'pl'
+    });
+    $('#datetimepickerMax').datetimepicker({
+        locale: 'pl',
+        useCurrent: false //Important! See issue #1075
+    });
+    $("#datetimepickerMin").on("dp.change", function (e) {
+        $('#datetimepickerMax').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepickerMax").on("dp.change", function (e) {
+        $('#datetimepickerMin').data("DateTimePicker").maxDate(e.date);
+    });
+};
 
 function configureAddBill() {
 

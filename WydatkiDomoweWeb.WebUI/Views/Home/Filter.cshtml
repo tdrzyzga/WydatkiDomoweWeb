@@ -1,17 +1,23 @@
-﻿@using WydatkiDomoweWeb.WebUI.Models
-@model List<CheckboxModel>
+﻿@model WydatkiDomoweWeb.WebUI.Models.FilterBillViewModel
 
 
-@using (Ajax.BeginForm("Filter", "Home", new AjaxOptions { UpdateTargetId = "homeBillTable"}, new { @class = "form" }))
+@using (Ajax.BeginForm("FilterPost", "Home", new AjaxOptions { UpdateTargetId = "homeBillTable"}, new { @class = "form-inline" }))
 {
-    for (int i = 0; i < Model.Count(); i++)
+    for (int i = 0; i < Model.CheckboxItems.Count(); i++)
     {
         <label class="checkbox-inline">
-            @Html.CheckBoxFor(m => m[i].IsChecked)
-            @Html.HiddenFor(m => m[i].Name)
-            @Html.DisplayFor(m => m[i].Name)
+            @Html.CheckBoxFor(m => m.CheckboxItems[i].IsChecked)
+            @Html.HiddenFor(m => m.CheckboxItems[i].Name)
+            @Html.DisplayFor(m => m.CheckboxItems[i].Name)
         </label>
     }
+    
+<div style="position: relative" class="form-group">
+    @Html.TextBoxFor(m => m.MinDate, new { @class = "form-control", id = "datetimepickerM", Value = @Model.MinDate.ToString() })
+    </div>
+    <div style="position: relative" class="form-group">
+    @Html.TextBoxFor(m => m.MaxDate, new { @class = "form-control", id = "datetimepickerM", Value = @Model.MaxDate.ToString() })
+    </div>
         
     <input class="btn btn-primary" type="submit" value="Filtruj" />
 }

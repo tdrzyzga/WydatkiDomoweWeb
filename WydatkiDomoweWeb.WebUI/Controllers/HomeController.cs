@@ -74,15 +74,17 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                         Name = bn.Name,
                                         IsChecked = true
                                     }).ToList();
+
+                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate;
+                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate;
             }
 
-            return PartialView(filterModel.CheckboxItems);  
+            return PartialView(filterModel);  
         }
 
         [HttpPost]
-        public RedirectToRouteResult Filter(FilterBillViewModel filterModel, List<CheckboxModel> model)
+        public RedirectToRouteResult FilterPost(FilterBillViewModel filterPostModel)
         {
-            filterModel.CheckboxItems = model;
             return RedirectToAction("GetBill");
         }
     }

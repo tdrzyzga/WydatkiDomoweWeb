@@ -16,6 +16,9 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public List<CheckboxModel> CheckboxItems { get; set; }
 
+        public DateTime MinDate { get; set; }
+        public DateTime MaxDate { get; set; }
+
         public FilterBillViewModel()
         {
             CheckboxItems = new List<CheckboxModel>();
