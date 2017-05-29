@@ -29,6 +29,24 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
                 }
             }
 
+            if (bindingContext.ModelName == "filterPostModel")
+            {
+                string[] checkboxLabelName;
+                List<string> checkboxLabelValue = new List<string>();
+
+                checkboxLabelName = controllerContext.HttpContext.Request.Form.AllKeys;
+
+                for (int i = 0; i < checkboxLabelName.Count(); i++)
+                {
+                    if (checkboxLabelName[i] == "MinDate" || checkboxLabelName[i] == "MaxDate")
+                        break;
+                    checkboxLabelValue.Add(bindingContext.ValueProvider.GetValue(checkboxLabelName[i++]).AttemptedValue.Split(',')[0]);
+                }
+                for (int i=0; i<filterModel.CheckboxItems.Count(); i++)
+                    filterModel.CheckboxItems[i].IsChecked = checkboxLabelValue[i] == "true" ? true : false;
+
+            }          
+
             return filterModel;
         }
     }

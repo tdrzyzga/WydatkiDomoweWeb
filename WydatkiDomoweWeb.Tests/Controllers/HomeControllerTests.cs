@@ -94,12 +94,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             FilterBillViewModel checkbox = new FilterBillViewModel();
                         
-            List<CheckboxModel> resultCheckbox = (List<CheckboxModel>)controller.Filter(checkbox).Model;
+            FilterBillViewModel resultCheckbox = (FilterBillViewModel)controller.Filter(checkbox).Model;
 
-            Assert.AreEqual("Bill0", resultCheckbox[0].Name);
-            Assert.AreEqual("Bill1", resultCheckbox[1].Name);
-            Assert.AreEqual(true, resultCheckbox[0].IsChecked);
-            Assert.AreEqual(true, resultCheckbox[1].IsChecked);
+            Assert.AreEqual("Bill0", resultCheckbox.CheckboxItems[0].Name);
+            Assert.AreEqual("Bill1", resultCheckbox.CheckboxItems[1].Name);
+            Assert.AreEqual(true, resultCheckbox.CheckboxItems[0].IsChecked);
+            Assert.AreEqual(true, resultCheckbox.CheckboxItems[1].IsChecked);
         }
 
         [TestMethod()]
@@ -108,7 +108,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             FilterBillViewModel checkbox = new FilterBillViewModel();
 
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.Filter(checkbox, listCheckbox);
+            RedirectToRouteResult result = (RedirectToRouteResult)controller.FilterPost(checkbox);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("GetBill", result.RouteValues["action"]);

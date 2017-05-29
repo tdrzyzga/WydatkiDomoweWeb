@@ -12,11 +12,13 @@
         </label>
     }
     
-<div style="position: relative" class="form-group">
-    @Html.TextBoxFor(m => m.MinDate, new { @class = "form-control", id = "datetimepickerM", Value = @Model.MinDate.ToString() })
+    <div style="position: relative" class="form-group">
+        @Html.TextBoxFor(m => m.MinDate, new { @class = "form-control", id = "datetimepickerMin", Value = @Model.MinDate })
+         @Html.ValidationMessageFor(m => m.MinDate)
     </div>
     <div style="position: relative" class="form-group">
-    @Html.TextBoxFor(m => m.MaxDate, new { @class = "form-control", id = "datetimepickerM", Value = @Model.MaxDate.ToString() })
+        @Html.TextBoxFor(m => m.MaxDate, new { @class = "form-control", id = "datetimepickerMax", Value = @Model.MaxDate})
+        @Html.ValidationMessageFor(m => m.MaxDate)
     </div>
         
     <input class="btn btn-primary" type="submit" value="Filtruj" />

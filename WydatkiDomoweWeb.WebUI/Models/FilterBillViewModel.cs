@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WydatkiDomoweWeb.Domain.Abstract;
+using System.ComponentModel.DataAnnotations;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
@@ -10,14 +11,19 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public string Name { get; set; }
         public bool IsChecked { get; set; }
+
+        public CheckboxModel() { }
     }
 
     public class FilterBillViewModel
     {
         public List<CheckboxModel> CheckboxItems { get; set; }
 
-        public DateTime MinDate { get; set; }
-        public DateTime MaxDate { get; set; }
+        [Required(ErrorMessage = "Proszę podać datę")]
+        public string MinDate { get; set; }
+
+        [Required(ErrorMessage = "Proszę podać datę")]
+        public string MaxDate { get; set; }
 
         public FilterBillViewModel()
         {

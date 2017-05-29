@@ -75,8 +75,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                         IsChecked = true
                                     }).ToList();
 
-                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate;
-                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate;
+                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate.ToString("dd.MM.yyyy HH:mm");
+                filterModel.MaxDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate.ToString("dd.MM.yyyy HH:mm");
             }
 
             return PartialView(filterModel);  
