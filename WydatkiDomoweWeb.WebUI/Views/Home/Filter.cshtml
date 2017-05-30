@@ -13,11 +13,11 @@
     }
     
     <div style="position: relative" class="form-group">
-        @Html.TextBoxFor(m => m.MinDate, new { @class = "form-control", id = "datetimepickerMin", Value = @Model.MinDate })
+        @Html.TextBoxFor(m => m.MinDate, new { @class = "form-control form-centered", id = "datetimepickerMin", Value = @Model.MinDate })
          @Html.ValidationMessageFor(m => m.MinDate)
     </div>
     <div style="position: relative" class="form-group">
-        @Html.TextBoxFor(m => m.MaxDate, new { @class = "form-control", id = "datetimepickerMax", Value = @Model.MaxDate})
+        @Html.TextBoxFor(m => m.MaxDate, new { @class = "form-control form-centered", id = "datetimepickerMax", Value = @Model.MaxDate })
         @Html.ValidationMessageFor(m => m.MaxDate)
     </div>
         
