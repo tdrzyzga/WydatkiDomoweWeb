@@ -117,7 +117,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 BillNameID = model.SelectedBillNameId,
                 RecipientID = model.SelectedRecipientId,
                 Amount = model.Amount,
-                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy HH:mm",
+                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy",
                                        System.Globalization.CultureInfo.InvariantCulture),
                 RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
                                        System.Globalization.CultureInfo.InvariantCulture),

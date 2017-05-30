@@ -45,6 +45,8 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
                 for (int i=0; i<filterModel.CheckboxItems.Count(); i++)
                     filterModel.CheckboxItems[i].IsChecked = checkboxLabelValue[i] == "true" ? true : false;
 
+                filterModel.MinDate = bindingContext.ValueProvider.GetValue("MinDate").AttemptedValue;
+                filterModel.MaxDate = bindingContext.ValueProvider.GetValue("MaxDate").AttemptedValue;
             }          
 
             return filterModel;

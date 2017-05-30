@@ -46,7 +46,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              Amount = b.Amount,
                              PaymentDate = b.PaymentDate,
                              RequiredDate = b.RequiredDate
-                         }).FilterByCheckbox(filterModel);
+                         }).FilterByCheckbox(filterModel).FilterByDateRange(filterModel);
 
             BillViewModel model = new BillViewModel
             {
@@ -75,8 +75,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                                         IsChecked = true
                                     }).ToList();
 
-                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate.ToString("dd.MM.yyyy HH:mm");
-                filterModel.MaxDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate.ToString("dd.MM.yyyy HH:mm");
+                if (billRepository.Bills.Count() != 0)
+                {
+                    filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate.ToString("dd.MM.yyyy");
+                    filterModel.MaxDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate.ToString("dd.MM.yyyy");
+                }
             }
 
             return PartialView(filterModel);  

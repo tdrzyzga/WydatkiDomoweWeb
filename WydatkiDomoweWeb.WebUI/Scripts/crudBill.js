@@ -5,10 +5,12 @@
 
 function configureCheckbox() {
     $('#datetimepickerMin').datetimepicker({
-        locale: 'pl'
+        locale: 'pl',
+        format: 'DD.MM.YYYY'
     });
     $('#datetimepickerMax').datetimepicker({
         locale: 'pl',
+        format: 'DD.MM.YYYY',
         useCurrent: false //Important! See issue #1075
     });
     $("#datetimepickerMin").on("dp.change", function (e) {
@@ -35,7 +37,8 @@ function configureAddBill() {
 
 function configureEditBill() {
     $('#datetimepickerEdit').datetimepicker({
-        locale: 'pl'
+        locale: 'pl',
+        format: 'DD.MM.YYYY'
     });
 };
 
@@ -55,7 +58,8 @@ function selectedBill() {
             var correctDate = date[2] + "." + date[1] + "." + date[0];
 
             $('#datetimepicker').datetimepicker({
-                locale: 'pl'
+                locale: 'pl',
+                format: 'DD.MM.YYYY'
             });
             $('#datetimepicker').val('Data wpłaty');
 
