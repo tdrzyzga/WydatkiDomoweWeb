@@ -1,8 +1,8 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillViewModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsViewModel
 
 @Scripts.Render("~/bundles/jqueryval")
 
-@using (Html.BeginForm("AddBill", "CrudBill"))
+@using (Html.BeginForm("AddBill", "CrudBills"))
 {
     <table class="table table-condensed table-addbill">
         <tr>
@@ -38,7 +38,7 @@
             </td>
             <td>
                 <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
-                @Ajax.ActionLink("Anuluj", "AddBill", "CrudBill", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "refreshAddBill"}, new { @class = "btn btn-primary" })
+                @Ajax.ActionLink("Anuluj", "AddBill", "CrudBills", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "refreshAddBill"}, new { @class = "btn btn-primary" })
             </td>
         </tr>
     </table>  

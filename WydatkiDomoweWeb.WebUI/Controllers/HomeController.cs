@@ -31,7 +31,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetBill(FilterBillViewModel filterModel, int page = 1)
+        public PartialViewResult GetBills(FilterBillsViewModel filterModel, int page = 1)
         {
             var bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
@@ -48,7 +48,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              RequiredDate = b.RequiredDate
                          }).FilterByCheckbox(filterModel).FilterByDateRange(filterModel);
 
-            BillViewModel model = new BillViewModel
+            BillsViewModel model = new BillsViewModel
             {
                 Bills = bills.OrderByDescending(b => b.PaymentDate).Skip((page - 1) * PageSize).Take(PageSize),
 
@@ -64,7 +64,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult Filter(FilterBillViewModel filterModel)
+        public PartialViewResult Filter(FilterBillsViewModel filterModel)
         {
             if (filterModel.CheckboxItems.Count() == 0)
             {
@@ -86,9 +86,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult FilterPost(FilterBillViewModel filterPostModel)
+        public RedirectToRouteResult FilterPost(FilterBillsViewModel filterPostModel)
         {
-            return RedirectToAction("GetBill");
+            return RedirectToAction("GetBills");
         }
     }
 }

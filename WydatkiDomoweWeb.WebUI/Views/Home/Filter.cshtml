@@ -1,7 +1,7 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.FilterBillViewModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.FilterBillsViewModel
 
 
-@using (Ajax.BeginForm("FilterPost", "Home", new AjaxOptions { UpdateTargetId = "homeBillTable"}, new { @class = "form-inline" }))
+@using (Ajax.BeginForm("FilterPost", "Home", new AjaxOptions { UpdateTargetId = "billsTable"}, new { @class = "form-inline" }))
 {
     for (int i = 0; i < Model.CheckboxItems.Count(); i++)
     {

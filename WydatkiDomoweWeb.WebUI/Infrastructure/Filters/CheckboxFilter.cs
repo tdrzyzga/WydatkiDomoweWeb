@@ -8,7 +8,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
 {
     public static class CheckboxFilter
     {
-        public static IEnumerable<BillModel> FilterByCheckbox(this IEnumerable<BillModel> bills, FilterBillViewModel filterModel)
+        public static IEnumerable<BillModel> FilterByCheckbox(this IEnumerable<BillModel> bills, FilterBillsViewModel filterModel)
         {
             List<BillModel> currentBills = new List<BillModel>();
 

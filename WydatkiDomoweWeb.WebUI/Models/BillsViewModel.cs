@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public DateTime RequiredDate { get; set; }
     }
 
-    public class BillViewModel
+    public class BillsViewModel
     {
         public IEnumerable<BillModel> Bills { get; set; }
         public PagingInfo PagingInfo { get; set; }

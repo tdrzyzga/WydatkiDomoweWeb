@@ -15,7 +15,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public CheckboxModel() { }
     }
 
-    public class FilterBillViewModel
+    public class FilterBillsViewModel
     {
         public List<CheckboxModel> CheckboxItems { get; set; }
 
@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         [Required(ErrorMessage = "Proszę podać datę")]
         public string MaxDate { get; set; }
 
-        public FilterBillViewModel()
+        public FilterBillsViewModel()
         {
             CheckboxItems = new List<CheckboxModel>();
         }

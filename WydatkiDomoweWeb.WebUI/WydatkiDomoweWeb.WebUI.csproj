@@ -256,13 +256,15 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\navBar.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CrudBillController.cs" />
+    <Compile Include="Controllers\BillsNamesController.cs" />
+    <Compile Include="Controllers\CrudBillsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -270,10 +272,12 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\Binders\FilterBillBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
+    <Compile Include="Infrastructure\Filters\DateRangeFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\BillViewModel.cs" />
-    <Compile Include="Models\FilterBillViewModel.cs" />
-    <Compile Include="Models\CrudBillViewModel.cs" />
+    <Compile Include="Models\BillsNamesViewModel.cs" />
+    <Compile Include="Models\BillsViewModel.cs" />
+    <Compile Include="Models\CrudBillsViewModel.cs" />
+    <Compile Include="Models\FilterBillsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -286,9 +290,11 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Home\Filter.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\CrudBill\AddBill.cshtml" />
-    <Content Include="Views\Home\GetBill.cshtml" />
-    <Content Include="Views\CrudBill\EditBill.cshtml" />
+    <Content Include="Views\CrudBills\AddBill.cshtml" />
+    <Content Include="Views\CrudBills\EditBill.cshtml" />
+    <Content Include="Views\BillsNames\GetBillsNames.cshtml" />
+    <Content Include="Views\BillsNames\Index.cshtml" />
+    <Content Include="Views\Home\GetBills.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -9,13 +9,13 @@ using WydatkiDomoweWeb.Domain.Entities;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
-    public class CrudBillController : Controller
+    public class CrudBillsController : Controller
     {
         private IBillRepository billRepository;
         private IBillNameRepository billNameRepository;
         private IRecipientRepository recipientRepository;
 
-        public CrudBillController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient)
+        public CrudBillsController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient)
         {
             this.billRepository = bill;
             this.billNameRepository = billName;
@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult AddBill()
         {
-            CrudBillViewModel model = new CrudBillViewModel
+            CrudBillsViewModel model = new CrudBillsViewModel
             {
                 Bills = billNameRepository.BillNames.Select(bn => new SelectBill
                 {
@@ -58,7 +58,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBill(CrudBillViewModel model)
+        public RedirectToRouteResult AddBill(CrudBillsViewModel model)
         {
             if (ModelState.IsValid)
                 billRepository.AddBill(CreateBill(model));
@@ -72,7 +72,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             var billNameId = billRepository.Bills.Single(b => b.BillsID == billId).BillNameID;
 
-            CrudBillViewModel model = new CrudBillViewModel
+            CrudBillsViewModel model = new CrudBillsViewModel
             {                
                 BillId = billId,
                 SelectedBillNameId = billNameId,
@@ -91,7 +91,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult EditBill(CrudBillViewModel model)
+        public RedirectToRouteResult EditBill(CrudBillsViewModel model)
         {
             if (ModelState.IsValid)
                 billRepository.UpdateBill(CreateBill(model));
@@ -106,10 +106,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             billRepository.DeleteBill(billId);
             TempData["ChangedBills"] = string.Format("Usunięto rachunek: {0} ", billName);
 
-            return RedirectToAction("GetBill", "Home");
+            return RedirectToAction("GetBills", "Home");
         }
 
-        protected Bill CreateBill(CrudBillViewModel model)
+        protected Bill CreateBill(CrudBillsViewModel model)
         {
             Bill bill = new Bill
             {

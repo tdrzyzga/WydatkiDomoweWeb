@@ -1,4 +1,4 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.BillsViewModel
 
 @if (TempData["ChangedBills"] != null) 
 {
@@ -24,13 +24,13 @@
             <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
             <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
             <td class="form-inline">                    
-                @using (Ajax.BeginForm("EditBill", "CrudBill", null, new AjaxOptions { UpdateTargetId = "homeEditBill", HttpMethod = "Get", OnSuccess = "configureEditBill" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("EditBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "bills", HttpMethod = "Get", OnSuccess = "configureEditBill" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("BillId", bills.Id)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
                 }
                 
-                @using (Ajax.BeginForm("DeleteBill", "CrudBill", null, new AjaxOptions { Confirm = "Chcesz usunąć element", UpdateTargetId = "homeBillTable"}, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("DeleteBill", "CrudBills", null, new AjaxOptions { Confirm = "Chcesz usunąć element", UpdateTargetId = "billsTable"}, new { @class = "form-group" }))
                 {
                     @Html.Hidden("BillId", bills.Id)
                     @Html.Hidden("BillName", bills.BillName)
@@ -42,6 +42,6 @@
 </table>
 
 <div class="btn-group pull-right">
-    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetBill", new { page = x }), new AjaxOptions { UpdateTargetId = "homeBillTable" })
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetBills", new { page = x }), new AjaxOptions { UpdateTargetId = "billsTable" })
 </div>
 

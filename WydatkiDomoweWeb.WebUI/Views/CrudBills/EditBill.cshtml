@@ -1,4 +1,4 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillViewModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsViewModel
 
 @Scripts.Render("~/bundles/jqueryval")
 
@@ -6,7 +6,7 @@
     <div class="well well-sm">
         <h4>Edycja rachunku</h4>
     </div>
-    @using (Html.BeginForm("EditBill", "CrudBill", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("EditBill", "CrudBills", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         <div class="form-group">
             @Html.Label("Rachunek:", new { @class = "control-label col-sm-2" })

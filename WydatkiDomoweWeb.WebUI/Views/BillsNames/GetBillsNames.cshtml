@@ -1,0 +1,45 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.BillsNamesViewModel
+
+@if (TempData["ChangedBillsNames"] != null) 
+{
+    <div class="alert alert-success">@TempData["ChangedBillsNames"]</div>
+}
+ <table class="table table-striped table-condensed table-bordered table-getbill">
+    <tr>
+        <th class="col-md-2">Rachunek</th>
+        <th class="col-md-2">Termin pierwszej wpłaty</th>
+        <th class="col-md-1">Częstotliwość wpłat</th>
+        <th class="col-md-1">Akcja</th>
+    </tr>
+
+
+    @foreach (var billName in Model.BillsNames)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => billName.Name)</td>
+            <td>@Html.DisplayFor(m => billName.FirstPaymentDate)</td>
+            <td>@Html.DisplayFor(m => billName.PaymentsFerquency)</td>
+            <td class="form-inline">                    
+                @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "billsNames", HttpMethod = "Get", OnSuccess = "configureEditBill" }, new { @class = "form-group" }))
+                {
+                    @Html.Hidden("BillNameId", billName.Id)
+                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
+                }
+                
+                @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", null, new AjaxOptions { Confirm = "Chcesz usunąć element", UpdateTargetId = "billsNamesTable"}, new { @class = "form-group" }))
+                {
+                    @Html.Hidden("BillNameId", billName.Id)
+                    @Html.Hidden("BillName", billName.Name)
+                    <input class="btn btn-default btn-xs" type="submit" value="Usuń"/>
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="btn-group pull-right">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("GetBillsNames", new { page = x }), new AjaxOptions { UpdateTargetId = "billsNamesTable" })
+</div>
+
+
+

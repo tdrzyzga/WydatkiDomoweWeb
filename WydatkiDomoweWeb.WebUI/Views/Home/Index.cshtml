@@ -1,17 +1,13 @@
-﻿@using WydatkiDomoweWeb.Domain.Entities
-
-
-
-@{
-    ViewBag.Title = "Rachunki";
+﻿@{
+    ViewBag.Title = "Główna";
 }
 
-<div id="homeEditBill" class="panel panel-default">
+<div id="bills" class="panel panel-default">
     <div class="panel-body">
         @Html.Action("Filter")
     </div>
-    <div class="panel-body" id="homeBillTable">
-        @Html.Action("GetBill")
+    <div class="panel-body" id="billsTable">
+        @Html.Action("GetBills")
     </div>
     <div class="panel-footer">
         <div>
@@ -19,7 +15,7 @@
                 Dodaj nowy rachunek</button>
         </div>
         <div style="display: none;" id="addBill">
-            @Html.Action("AddBill", "CrudBill")
+            @Html.Action("AddBill", "CrudBills")
         </div>
     </div>
 </div>

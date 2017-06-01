@@ -14,15 +14,15 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            FilterBillViewModel filterModel = null;
+            FilterBillsViewModel filterModel = null;
             if (controllerContext.HttpContext.Session != null)
             {
-                filterModel = (FilterBillViewModel)controllerContext.HttpContext.Session[sessionKey];
+                filterModel = (FilterBillsViewModel)controllerContext.HttpContext.Session[sessionKey];
             }
 
             if (filterModel == null)
             {
-                filterModel = new FilterBillViewModel();
+                filterModel = new FilterBillsViewModel();
                 if (controllerContext.HttpContext.Session != null)
                 {
                     controllerContext.HttpContext.Session[sessionKey] = filterModel;
