@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @Scripts.Render("~/bundles/webscripts")
+    @Scripts.Render("~/bundles/navbar")
     @Styles.Render("~/Content/css")
     <title>@ViewBag.Title</title>
 </head>
@@ -15,10 +16,10 @@
                     Wydatki Domowe</h2>
             </div>
             <ul class="nav nav-pills nav-justified">
-                <li class="active">
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
                     @Html.ActionLink("Główna", "Index", "Home")
                 </li>
-                <li>
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "BillsNames" ? "active" : "")">
                     @Html.ActionLink("Rachunki", "Index", "BillsNames")
                 </li>
                 <li><a href="#">Odbiorcy</a></li>
