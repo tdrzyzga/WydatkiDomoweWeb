@@ -52,7 +52,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (billRepository.Bills.Any(b => b.BillNameID == billNameId))
                 date = billRepository.Bills.Last(b => b.BillNameID == billNameId).RequiredDate.AddDays(paymentFerquency);
             else
-                date = firstPaymentDate.AddDays(paymentFerquency);
+                date = firstPaymentDate;
 
             return date;
         }
