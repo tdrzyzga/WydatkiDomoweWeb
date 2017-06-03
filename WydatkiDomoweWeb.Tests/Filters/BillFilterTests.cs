@@ -35,7 +35,7 @@ namespace WydatkiDomoweWeb.WebUI.Filters.Tests
                 new CheckboxModel {Name = "Bill4", IsChecked = true}
             };
 
-            FilterBillViewModel checkbox = new FilterBillViewModel();
+            FilterBillsViewModel checkbox = new FilterBillsViewModel();
             checkbox.CheckboxItems = listCheckbox;
             IEnumerable<BillModel> result = listBill.FilterByCheckbox(checkbox);
 

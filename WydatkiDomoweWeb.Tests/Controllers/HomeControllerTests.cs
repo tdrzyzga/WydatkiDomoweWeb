@@ -70,10 +70,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.PageSize = 2;
-            FilterBillViewModel checkbox = new FilterBillViewModel();
+            FilterBillsViewModel checkbox = new FilterBillsViewModel();
             checkbox.CheckboxItems = listCheckbox;            
 
-            BillViewModel result = (BillViewModel)controller.GetBill(checkbox, 1).Model;
+            BillsViewModel result = (BillsViewModel)controller.GetBills(checkbox, 1).Model;
             PagingInfo pageInfo = result.PagingInfo;
 
             Assert.AreEqual(1, pageInfo.CurrentPage);
@@ -92,9 +92,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         public void HttpGetFilterTest()
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
-            FilterBillViewModel checkbox = new FilterBillViewModel();
+            FilterBillsViewModel checkbox = new FilterBillsViewModel();
                         
-            FilterBillViewModel resultCheckbox = (FilterBillViewModel)controller.Filter(checkbox).Model;
+            FilterBillsViewModel resultCheckbox = (FilterBillsViewModel)controller.Filter(checkbox).Model;
 
             Assert.AreEqual("Bill0", resultCheckbox.CheckboxItems[0].Name);
             Assert.AreEqual("Bill1", resultCheckbox.CheckboxItems[1].Name);
@@ -106,12 +106,12 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         public void HttpPostFilterTest()
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
-            FilterBillViewModel checkbox = new FilterBillViewModel();
+            FilterBillsViewModel checkbox = new FilterBillsViewModel();
 
             RedirectToRouteResult result = (RedirectToRouteResult)controller.FilterPost(checkbox);
 
             Assert.IsNotNull(result);
-            Assert.AreEqual("GetBill", result.RouteValues["action"]);
+            Assert.AreEqual("GetBills", result.RouteValues["action"]);
         }
     }
 }

@@ -55,16 +55,16 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         [TestMethod()]
         public void HttpGetMethodAddBillTest()
         {     
-            CrudBillController controller = new CrudBillController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
-            CrudBillViewModel result = (CrudBillViewModel)controller.AddBill().Model;
+            CrudBillsViewModel result = (CrudBillsViewModel)controller.AddBill().Model;
 
             Assert.AreEqual("Bill2", result.Bills[2].Name);
             Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[2].Date);
             Assert.AreEqual("Bill3", result.Bills[3].Name);
             Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[3].Date);
             Assert.AreEqual("Bill4", result.Bills[4].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-11"), result.Bills[4].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-01"), result.Bills[4].Date);
         }
     }
 }
