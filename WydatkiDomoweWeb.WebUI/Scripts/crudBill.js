@@ -1,6 +1,7 @@
 ﻿$(function () {
-    configureAddBill();
     configureCheckbox();
+    var divAddBill;
+    savePreviousAddBill();
 })
 
 function configureCheckbox() {
@@ -21,20 +22,6 @@ function configureCheckbox() {
     });
 };
 
-function configureAddBill() {
-
-    selectedBill();
-
-    $("#buttonAddBill").on("click", function () {
-        if ($("#addBill").is(":hidden")) {
-            $("#addBill").show();
-        }
-        else {
-            $("#addBill").hide();
-        }
-    });
-}
-
 function configureEditBill() {
     $("#datetimepickerEdit").datetimepicker({
         locale: "pl",
@@ -42,12 +29,7 @@ function configureEditBill() {
     });
 };
 
-function refreshAddBill() {
-    selectedBill();
-    $("#addBill").hide();
-}
-
-function selectedBill() {
+function configureAddBill() {
     $("#selectBill").change(function () {
         var value = $("#selectBill").val();
 
@@ -70,5 +52,13 @@ function selectedBill() {
             $("#requiredDate").val("Termin zapłaty");
         }
     });
-}
+};
+
+function savePreviousAddBill() {
+    previousDivAddBill = $("#addBill").html();
+};
+
+function undoAddBillToPreviousContent() {
+    $("#addBill").html(previousDivAddBill);
+};
 

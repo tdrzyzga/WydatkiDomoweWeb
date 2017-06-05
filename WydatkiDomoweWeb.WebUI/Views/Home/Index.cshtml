@@ -10,12 +10,8 @@
         @Html.Action("GetBills")
     </div>
     <div class="panel-footer">
-        <div>
-            <button class="btn btn-primary" type="button" id="buttonAddBill">
-                Dodaj nowy rachunek</button>
-        </div>
-        <div style="display: none;" id="addBill">
-            @Html.Action("AddBill", "CrudBills")
+        <div  id="addBill">
+            @Ajax.ActionLink("Dodaj nowy rachunek", "AddBill", "CrudBills", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "configureAddBill" }, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@
                     @Html.HiddenFor(m => m.Bills[i].Name)
                     @Html.HiddenFor(m => m.Bills[i].Id)
                     @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
-                    }
+                }
                 @Html.ValidationMessageFor(m => m.SelectedBillNameId)
             </td>
             <td>
@@ -22,7 +22,7 @@
                 {
                     @Html.HiddenFor(m => m.Recipients[i].Text)
                     @Html.HiddenFor(m => m.Recipients[i].Value)
-                    }
+                }
                 @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </td>
             <td>
@@ -37,8 +37,8 @@
                 @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", Value = "Termin zapłaty" })
             </td>
             <td>
-                <input class="btn btn-primary" type="submit" name="save" value="Zapisz" />
-                @Ajax.ActionLink("Anuluj", "AddBill", "CrudBills", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "refreshAddBill"}, new { @class = "btn btn-primary" })
+                <input class="btn btn-primary" type="submit" value="Zapisz" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick = "undoAddBillToPreviousContent()"/>
             </td>
         </tr>
     </table>  
