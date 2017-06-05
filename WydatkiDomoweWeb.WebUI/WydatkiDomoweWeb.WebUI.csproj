@@ -256,7 +256,6 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="Scripts\navBar.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +264,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BillsNamesController.cs" />
     <Compile Include="Controllers\CrudBillsController.cs" />
+    <Compile Include="Controllers\CrudBillsNamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,6 +276,7 @@
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\BillsNamesViewModel.cs" />
     <Compile Include="Models\BillsViewModel.cs" />
+    <Compile Include="Models\CrudBillsNamesViewModel.cs" />
     <Compile Include="Models\CrudBillsViewModel.cs" />
     <Compile Include="Models\FilterBillsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
@@ -295,6 +296,7 @@
     <Content Include="Views\BillsNames\GetBillsNames.cshtml" />
     <Content Include="Views\BillsNames\Index.cshtml" />
     <Content Include="Views\Home\GetBills.cshtml" />
+    <Content Include="Views\CrudBillsNames\AddBillName.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

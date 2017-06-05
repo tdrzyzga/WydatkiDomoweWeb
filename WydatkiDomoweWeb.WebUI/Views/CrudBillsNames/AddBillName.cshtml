@@ -1,0 +1,27 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsNamesViewModel
+
+@Scripts.Render("~/bundles/jqueryval")
+
+@using (Html.BeginForm("AddBillName", "CrudBillsNames"))
+{
+    <table class="table table-condensed table-addbill">
+        <tr>
+            <td>
+                @Html.TextBoxFor(m => m.Name, "Nazwa", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Termin pierwszej wpłaty" })
+                @Html.ValidationMessageFor(m => m.FirstPaymentDate)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.PaymentsFerquency, "Częstotliwość wpłat", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.PaymentsFerquency)
+            </td>
+            <td>
+                <input class="btn btn-primary" type="submit" value="Zapisz" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
+            </td>
+        </tr>
+    </table>  
+}

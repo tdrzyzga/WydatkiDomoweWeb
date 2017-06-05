@@ -7,10 +7,8 @@
         @Html.Action("GetBillsNames")
     </div>
     <div class="panel-footer">
-        <div>
-            <button class="btn btn-primary" type="button" id="buttonBillsNames">
-                Dodaj nową nazwę rachunku</button>
+       <div  id="addBill">
+            @Ajax.ActionLink("Dodaj nowy rachunek", "AddBillName", "CrudBillsNames", null, new AjaxOptions() { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker" }, new { @class = "btn btn-primary" })
         </div>
-
     </div>
 </div>

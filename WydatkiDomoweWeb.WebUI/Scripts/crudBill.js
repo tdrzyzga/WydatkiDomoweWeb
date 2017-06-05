@@ -22,8 +22,8 @@ function configureCheckbox() {
     });
 };
 
-function configureEditBill() {
-    $("#datetimepickerEdit").datetimepicker({
+function setDefaultDateTimePicker() {
+    $("#datetimepicker").datetimepicker({
         locale: "pl",
         format: "DD.MM.YYYY"
     });

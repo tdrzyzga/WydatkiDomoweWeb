@@ -25,7 +25,7 @@
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepickerEdit" })
+                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
             <td>
@@ -37,4 +37,4 @@
             </td>
         </tr>
     </table>  
-    }
+}
