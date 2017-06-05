@@ -1,7 +1,7 @@
 ﻿$(function () {
     configureCheckbox();
-    var divAddBill;
-    savePreviousAddBill();
+    var defaultAddBill;
+    saveDefaultAddBill();
 })
 
 function configureCheckbox() {
@@ -54,11 +54,11 @@ function configureAddBill() {
     });
 };
 
-function savePreviousAddBill() {
-    previousDivAddBill = $("#addBill").html();
+function saveDefaultAddBill() {
+    defaultAddBill = $("#addBill").html();
 };
 
-function undoAddBillToPreviousContent() {
-    $("#addBill").html(previousDivAddBill);
+function undoToDefaultAddBill() {
+    $("#addBill").html(defaultAddBill);
 };
 
