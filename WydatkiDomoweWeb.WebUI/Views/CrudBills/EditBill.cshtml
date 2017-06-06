@@ -1,10 +1,10 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsViewModel
 
-@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/validation")
 
 @using (Html.BeginForm("EditBill", "CrudBills"))
 {
-    <table class="table table-condensed table-addbill">
+    <table class="table table-addbill">
         <tr>
             <td>
                 @Html.HiddenFor(m => m.BillId)

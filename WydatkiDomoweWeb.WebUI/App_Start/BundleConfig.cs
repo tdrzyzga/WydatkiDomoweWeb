@@ -11,21 +11,26 @@ namespace WydatkiDomoweWeb.WebUI
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/*.css"));
-            bundles.Add(new ScriptBundle("~/bundles/webscripts")
+            bundles.Add(new ScriptBundle("~/bundles/webScripts")
                 .Include(
-                 "~/Scripts/jquery-{version}.js",
-                 "~/Scripts/moment-with-locales.js",
-                "~/Scripts/bootstrap.js",
-                "~/Scripts/bootstrap-datetimepicker.min.js",
-                "~/Scripts/jquery.unobtrusive-ajax.min.js",                
-                "~/Scripts/crudBill.js"
+                    "~/Scripts/jquery-{version}.js",
+                    "~/Scripts/moment-with-locales.js",
+                    "~/Scripts/bootstrap.js",
+                    "~/Scripts/bootstrap-datetimepicker.min.js",
+                    "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                    "~/Scripts/configureCheckbox.js",
+                    "~/Scripts/crud.js"
                ));
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval")
+            bundles.Add(new ScriptBundle("~/bundles/validation")
                 .Include(
-                "~/Scripts/jqueryFix.js",
-                "~/Scripts/jquery.validate.min.js",
-                "~/Scripts/jquery.validate.unobtrusive.min.js"
+                    "~/Scripts/jqueryFix.js",
+                    "~/Scripts/jquery.validate.min.js",
+                    "~/Scripts/jquery.validate.unobtrusive.min.js"                
                ));
+            bundles.Add(new ScriptBundle("~/bundles/crudAddBillName")
+                .Include(
+                    "~/Scripts/crudAddBillName.js"
+                ));
         }
     } 
 }

@@ -1,24 +1,25 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsNamesViewModel
 
-@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/validation")
+@Scripts.Render("~/bundles/crudAddBillName")
 
 @using (Html.BeginForm("AddBillName", "CrudBillsNames"))
 {
-    <table class="table table-condensed table-addbill">
-        <tr>
-            <td>
-                @Html.TextBoxFor(m => m.Name, "Nazwa", new { @class = "form-control" })
+    <table class="table table-addbill">
+        <tr class="col-md-8">
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", Value = "Nazwa" })
                 @Html.ValidationMessageFor(m => m.Name)
             </td>
-            <td>
-                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Termin pierwszej wpłaty" })
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Pierwsza wpłata" })
                 @Html.ValidationMessageFor(m => m.FirstPaymentDate)
             </td>
-            <td>
-                @Html.TextBoxFor(m => m.PaymentsFerquency, "Częstotliwość wpłat", new { @class = "form-control" })
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.PaymentsFerquency, "Częstotliwość wpłat",new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.PaymentsFerquency)
             </td>
-            <td>
+            <td class="col-md-2">
                 <input class="btn btn-primary" type="submit" value="Zapisz" />
                 <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
             </td>
