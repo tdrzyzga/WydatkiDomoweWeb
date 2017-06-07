@@ -66,23 +66,20 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult Filter(FilterBillsViewModel filterModel)
         {
-            if (filterModel.CheckboxItems.Count() == 0)
+            filterModel.CheckboxItems = (from bn in billNameRepository.BillNames
+                                         select new CheckboxModel
+                                         {
+                                             Name = bn.Name,
+                                             IsChecked = true
+                                         }).ToList();
+
+            if (billRepository.Bills.Count() != 0)
             {
-                filterModel.CheckboxItems = (from bn in billNameRepository.BillNames
-                                    select new CheckboxModel
-                                    {
-                                        Name = bn.Name,
-                                        IsChecked = true
-                                    }).ToList();
-
-                if (billRepository.Bills.Count() != 0)
-                {
-                    filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate.ToString("dd.MM.yyyy");
-                    filterModel.MaxDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate.ToString("dd.MM.yyyy");
-                }
+                filterModel.MinDate = billRepository.Bills.OrderBy(b => b.PaymentDate).First().PaymentDate.ToString("dd.MM.yyyy");
+                filterModel.MaxDate = billRepository.Bills.OrderBy(b => b.PaymentDate).Last().PaymentDate.ToString("dd.MM.yyyy");
             }
-
-            return PartialView(filterModel);  
+            
+            return PartialView(filterModel);
         }
 
         [HttpPost]
