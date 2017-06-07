@@ -1,5 +1,5 @@
 ﻿$(function () {
-    $("#datetimepicker").on('mousemove', function () {
-        setDefaultDateTimePicker();
+    $("#firstPaymentDate").on('mousemove', function () {
+        setDefaultDateTimePicker("firstPaymentDate");
     });
 })

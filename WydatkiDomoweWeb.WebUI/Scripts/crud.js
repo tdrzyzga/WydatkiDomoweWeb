@@ -13,17 +13,20 @@ function configureAddBill() {
             date = date[0].split("-");
             var correctDate = date[2] + "." + date[1] + "." + date[0];
 
-            $("#datetimepicker").datetimepicker({
+            $("#paymentDate").datetimepicker({
                 locale: "pl",
                 format: "DD.MM.YYYY"
             });
-            $("#datetimepicker").val("Data wpłaty");
+            $("#paymentDate").attr("placeholder", "Data wpłaty");
 
             $("#requiredDate").val(correctDate);
         }
         else {
-            $("#datetimepicker").val("Data wpłaty");
-            $("#requiredDate").val("Termin zapłaty");
+            $("#paymentDate").attr("placeholder", "Data wpłaty");
+            $("#paymentDate").val("");
+
+            $("#requiredDate").attr("placeholder", "Termin zapłaty");
+            $("#requiredDate").val("");            
         }
     });
 };
@@ -36,8 +39,8 @@ function undoToDefaultAddBill() {
     $("#addBill").html(defaultAddBill);
 };
 
-function setDefaultDateTimePicker() {
-    $("#datetimepicker").datetimepicker({
+function setDefaultDateTimePicker(datetimepicker) {
+    $("#" + datetimepicker).datetimepicker({
         locale: "pl",
         format: "DD.MM.YYYY"
     });

@@ -26,15 +26,15 @@
                 @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.Amount, "Kwota", new { @class = "form-control"})
+                @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", placeholder = "Kwota", Value = "" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker", Value = "Data wpłaty" })
+                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate", placeholder = "Data wpłaty" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", Value = "Termin zapłaty" })
+                @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", placeholder = "Termin zapłaty", Value = ""})
             </td>
             <td>
                 <input class="btn btn-primary" type="submit" value="Zapisz" />

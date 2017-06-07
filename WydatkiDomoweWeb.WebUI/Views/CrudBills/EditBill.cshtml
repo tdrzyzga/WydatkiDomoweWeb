@@ -4,7 +4,7 @@
 
 @using (Html.BeginForm("EditBill", "CrudBills"))
 {
-    <table class="table table-addbill">
+    <table class="table table-condensed table-addbill">
         <tr>
             <td>
                 @Html.HiddenFor(m => m.BillId)
@@ -25,7 +25,7 @@
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "datetimepicker" })
+                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
             <td>
