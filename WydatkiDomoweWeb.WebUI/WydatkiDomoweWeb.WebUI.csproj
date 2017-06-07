@@ -273,6 +273,7 @@
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Infrastructure\Binders\FilterBillBinder.cs" />
+    <Compile Include="Infrastructure\Binders\StringTrimingBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\Filters\DateRangeFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />

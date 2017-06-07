@@ -1,12 +1,13 @@
 ﻿.table-addbill, .table-addbill tr, .table-addbill td {
-    position:relative;
+    position: relative;
     border: 0px !important;
     margin: 0px !important;
-    padding: 1px !important;
+    padding: 1px !important;    
  } 
  
  .table-getbill td, th {
-   text-align: center;   
+   text-align: center;
+   text-transform: capitalize;
 }
 
 .form-centered {

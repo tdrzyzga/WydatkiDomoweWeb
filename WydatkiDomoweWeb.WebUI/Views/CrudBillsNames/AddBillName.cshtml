@@ -5,14 +5,14 @@
 
 @using (Html.BeginForm("AddBillName", "CrudBillsNames"))
 {
-    <table class="tabletable-condensed table-addbill">
-        <tr class="col-md-12">
+    <table class="table table-addbill">
+        <tr class="col-md-8">
             <td class="col-md-2">
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "15" })
                 @Html.ValidationMessageFor(m => m.Name)
             </td>
             <td class="col-md-2">
-                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "firstPaymentDate", placeholder = "Pierwsza wpłata"})
+                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "firstPaymentDate", placeholder = "Pierwsza wpłata" })
                 @Html.ValidationMessageFor(m => m.FirstPaymentDate)
             </td>
             <td class="col-md-2">

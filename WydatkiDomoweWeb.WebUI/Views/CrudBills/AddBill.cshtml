@@ -6,7 +6,7 @@
 {
     <table class="table table-addbill">
         <tr class="col-md-12">
-            <td>
+            <td class="col-md-2">
                 @Html.DropDownListFor(m => m.SelectedBillNameId, new SelectList(Model.Bills, "Id", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })
                 @for (int i = 0; i < Model.Bills.Count(); i++)
                 {
@@ -16,7 +16,7 @@
                 }
                 @Html.ValidationMessageFor(m => m.SelectedBillNameId)
             </td>
-            <td>
+            <td class="col-md-2">
                 @Html.DropDownListFor(m => m.SelectedRecipientId, new SelectList(Model.Recipients, "Value", "Text"), "Wybierz odbiorcę", new { @class = "form-control" })
                 @for (int i = 0; i < Model.Recipients.Count(); i++)
                 {
@@ -25,18 +25,18 @@
                 }
                 @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </td>
-            <td>
+            <td class="col-md-2">
                 @Html.TextBoxFor(m => m.Amount, new { @class = "form-control", placeholder = "Kwota", Value = "" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
-            <td>
+            <td class="col-md-2">
                 @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate", placeholder = "Data wpłaty" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
-            <td>
+            <td class="col-md-2">
                 @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", id = "requiredDate", placeholder = "Termin zapłaty", Value = ""})
             </td>
-            <td>
+            <td class="col-md-2">
                 <input class="btn btn-primary" type="submit" value="Zapisz" />
                 <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
             </td>
