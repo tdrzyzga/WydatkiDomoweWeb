@@ -12,5 +12,6 @@ namespace WydatkiDomoweWeb.Domain.Abstract
         void AddBillName(BillName billName);
         void UpdateBillName(BillName billName);
         void DeleteBillName(int billNameId);
+        bool Exists(string name);
     }
 }

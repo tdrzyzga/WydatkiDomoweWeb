@@ -36,6 +36,14 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("Index", "BillsNames");
         }
 
+        public JsonResult ValidateName(string name)
+        {
+            if (billNameRepository.Exists(name))
+                return Json("Wybrana nazwa już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            else
+                return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
         protected BillName CreateBillName(CrudBillsNamesViewModel model)
         {
             BillName billName = new BillName

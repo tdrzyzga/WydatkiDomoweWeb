@@ -48,5 +48,10 @@ namespace WydatkiDomoweWeb.Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public bool Exists(string name)
+        {
+            return context.BillNames.Any(bn => bn.Name == name);
+        }
     }
 }
