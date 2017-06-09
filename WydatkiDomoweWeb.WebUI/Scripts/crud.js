@@ -45,3 +45,8 @@ function setDefaultDateTimePicker(datetimepicker) {
         format: "DD.MM.YYYY"
     });
 };
+
+function hideModal() {
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+};
