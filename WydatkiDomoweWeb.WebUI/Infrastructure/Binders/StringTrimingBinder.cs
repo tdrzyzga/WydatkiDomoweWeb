@@ -7,30 +7,24 @@ using System.Text.RegularExpressions;
 
 namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
 {
-    public class StringTrimmingBinder : DefaultModelBinder
+    public class StringTrimmingBinder : IModelBinder
     {
-        protected override void SetProperty(ControllerContext controllerContext, ModelBindingContext bindingContext,
-          System.ComponentModel.PropertyDescriptor propertyDescriptor, object value)
+        public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            if (propertyDescriptor.PropertyType == typeof(string))
+            var valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+
+            var stringValue = (string)valueResult.AttemptedValue;
+
+            if (!string.IsNullOrWhiteSpace(stringValue))
             {
-                var stringValue = (string)value;
-
-                if (!string.IsNullOrWhiteSpace(stringValue))
-                {
-                    RegexOptions options = RegexOptions.None;
-                    Regex regex = new Regex("[ ]{2,}", options);
-                    stringValue = regex.Replace(stringValue, " ");
-
-                    value = stringValue;
-                }
-                else
-                {
-                    value = null;
-                }
+                RegexOptions options = RegexOptions.None;
+                Regex regex = new Regex("[ ]{2,}", options);
+                stringValue = regex.Replace(stringValue, " ");
+                stringValue = stringValue.Trim();
             }
 
-            base.SetProperty(controllerContext, bindingContext, propertyDescriptor, value);
+            return stringValue;
         }
     }
 }
+        
