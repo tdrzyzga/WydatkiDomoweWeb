@@ -300,6 +300,7 @@
     <Content Include="Views\BillsNames\Index.cshtml" />
     <Content Include="Views\Home\GetBills.cshtml" />
     <Content Include="Views\CrudBillsNames\AddBillName.cshtml" />
+    <Content Include="Views\CrudBillsNames\EditBillName.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
