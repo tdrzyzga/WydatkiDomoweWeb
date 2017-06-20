@@ -53,6 +53,16 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return PartialView(model);
         }
 
+        [HttpPost]
+        public RedirectToRouteResult EditBillName(CrudBillsNamesViewModel model)
+        {
+            if (ModelState.IsValid)
+                billNameRepository.UpdateBillName(CreateBillName(model));
+
+            TempData["ChangedBillName"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.Name);
+            return RedirectToAction("Index", "BillsNames");
+        }
+
         public JsonResult ValidateName(string name)
         {
             if (billNameRepository.Exists(name))

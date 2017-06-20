@@ -8,6 +8,7 @@
     <table class="table table-addbill">
         <tr class="col-md-8">
             <td class="col-md-2">
+                @Html.HiddenFor(m => m.BillNameId)
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "15", @readonly = "readonly", data_val = "false" })
             </td>
             <td class="col-md-2">
