@@ -1,0 +1,27 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.CrudBillsNamesViewModel
+
+@Scripts.Render("~/bundles/validation")
+@Scripts.Render("~/bundles/crudAddBillName")
+
+@using (Html.BeginForm("EditBillName", "CrudBillsNames"))
+{
+    <table class="table table-addbill">
+        <tr class="col-md-8">
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "15", @readonly = "readonly", data_val = "false" })
+            </td>
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "firstPaymentDate", placeholder = "Pierwsza wpłata" })
+                @Html.ValidationMessageFor(m => m.FirstPaymentDate)
+            </td>
+            <td class="col-md-2">
+                @Html.TextBoxFor(m => m.PaymentsFerquency, new { @class = "form-control", placeholder = "Częstotliwość wpłat"})
+                @Html.ValidationMessageFor(m => m.PaymentsFerquency)
+            </td>
+            <td class="col-md-2">
+                <input class="btn btn-primary" type="submit" value="Zapisz" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
+            </td>
+        </tr>
+    </table>  
+}

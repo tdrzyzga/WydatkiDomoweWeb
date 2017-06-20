@@ -15,23 +15,23 @@
     </tr>
 
 
-    @foreach (var bills in Model.Bills)
+    @foreach (var bill in Model.Bills)
     {
         <tr>
-            <td>@Html.DisplayFor(m => bills.BillName)</td>
-            <td>@Html.DisplayFor(m => bills.Recipient)</td>
-            <td>@Html.DisplayFor(m => bills.Amount)</td>
-            <td>@Html.DisplayFor(m => bills.PaymentDate)</td>
-            <td>@Html.DisplayFor(m => bills.RequiredDate)</td>
+            <td>@Html.DisplayFor(m => bill.BillName)</td>
+            <td>@Html.DisplayFor(m => bill.Recipient)</td>
+            <td>@Html.DisplayFor(m => bill.Amount)</td>
+            <td>@Html.DisplayFor(m => bill.PaymentDate)</td>
+            <td>@Html.DisplayFor(m => bill.RequiredDate)</td>
             <td class="form-inline">                    
                 @using (Ajax.BeginForm("EditBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker(\"paymentDate\")" }, new { @class = "form-group" }))
                 {
-                    @Html.Hidden("BillId", bills.Id)
+                    @Html.Hidden("BillId", bill.Id)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
                 }
-                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + bills.Id)">Usuń</button>
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + bill.Id)">Usuń</button>                
                 
-                <div id="@("modal" + bills.Id)" class="modal fade" role="dialog">
+                <div id="@("modal" + bill.Id)" class="modal fade" role="dialog">                
                     <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -40,13 +40,13 @@
                                 <h3 class="modal-title">Usuwanie rachunku</h3>
                             </div>
                             <div class="modal-body">
-                                <p>Chcesz usunąć element @bills.BillName?</p>
+                                <p>Chcesz usunąć element @bill.BillName?</p>
                             </div>
                             <div class="modal-footer">
                                 @using (Ajax.BeginForm("DeleteBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "billsTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
                                 {
-                                    @Html.Hidden("BillId", bills.Id)
-                                    @Html.Hidden("BillName", bills.BillName)
+                                    @Html.Hidden("BillId", bill.Id)
+                                    @Html.Hidden("BillName", bill.BillName)
                                     <input class="btn btn-primary" type="submit" value="Usuń" />
                                 }
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>

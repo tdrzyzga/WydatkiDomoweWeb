@@ -21,11 +21,11 @@
                 @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.Amount, "{0:f}", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Amount, "{0:f}", new { @class = "form-control", placeholder = "Kwota" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate" })
+                @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate", placeholder = "Data wpłaty" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
             <td>

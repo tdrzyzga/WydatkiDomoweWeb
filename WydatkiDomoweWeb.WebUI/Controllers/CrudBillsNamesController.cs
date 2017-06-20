@@ -33,7 +33,24 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 billNameRepository.AddBillName(CreateBillName(model));
 
             TempData["ChangedBillName"] = string.Format("Zapisano nazwę rachunku: {0} ", model.Name.ToString());
+
             return RedirectToAction("Index", "BillsNames");
+        }
+
+        [HttpGet]
+        public PartialViewResult EditBillName(int billNameId)
+        {
+            var billName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId);
+
+            CrudBillsNamesViewModel model = new CrudBillsNamesViewModel
+            {
+                BillNameId = billNameId,
+                Name = billName.Name,
+                FirstPaymentDate = billName.FirstPaymentDate.ToString("dd.MM.yyyy"),
+                PaymentsFerquency = billName.PaymentsFrequency
+            };
+
+            return PartialView(model);
         }
 
         public JsonResult ValidateName(string name)

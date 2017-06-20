@@ -78,7 +78,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 SelectedBillNameId = billNameId,
                 BillName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId).Name,
                 Amount = billRepository.Bills.Single(b => b.BillsID == billId).Amount,
-                PaymentDate = billRepository.Bills.Single(b => b.BillsID == billId).PaymentDate.ToString("dd.MM.yyyy HH:mm"),
+                PaymentDate = billRepository.Bills.Single(b => b.BillsID == billId).PaymentDate.ToString("dd.MM.yyyy"),
                 RequiredDate = billRepository.Bills.Single(b => b.BillsID == billId).RequiredDate.ToString("dd.MM.yyyy"),
                 Recipients = recipientRepository.Recipients.Select(r => new SelectListItem
                 {

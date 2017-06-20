@@ -30,6 +30,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             var billsNames = (from bn in billNameRepository.BillNames
                          select new BillNameModel
                          {
+                             Id = bn.BillNameID,
                              Name = bn.Name,
                              FirstPaymentDate = bn.FirstPaymentDate,
                              PaymentsFerquency = bn.PaymentsFrequency
