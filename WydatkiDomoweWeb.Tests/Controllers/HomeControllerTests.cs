@@ -66,14 +66,14 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
         }
         [TestMethod()]
-        public void GetBillTest()
+        public void GetBillsTest()
         {
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.PageSize = 2;
-            FilterBillsViewModel checkbox = new FilterBillsViewModel();
-            checkbox.CheckboxItems = listCheckbox;            
+            FilterBillsViewModel filter = new FilterBillsViewModel();
+            filter.CheckboxItems = listCheckbox;            
 
-            BillsViewModel result = (BillsViewModel)controller.GetBills(checkbox, 1).Model;
+            BillsViewModel result = (BillsViewModel)controller.GetBills(filter, 1).Model;
             PagingInfo pageInfo = result.PagingInfo;
 
             Assert.AreEqual(1, pageInfo.CurrentPage);
@@ -81,11 +81,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             Assert.AreEqual(2, pageInfo.TotalPages);
             Assert.AreEqual(3, pageInfo.TotalItems);
 
-            BillModel[] billView = result.Bills.ToArray();
-
-            Assert.IsTrue(billView.Length == 2);
-            Assert.AreEqual("Bill0", billView[0].BillName);
-            Assert.AreEqual("Bill2", billView[1].BillName);
+            Assert.IsTrue(result.Bills.Count() == 2);
+            Assert.AreEqual("Bill0", result.Bills.ElementAt(0).BillName);
+            Assert.AreEqual("Bill2", result.Bills.ElementAt(1).BillName);
         }
 
         [TestMethod()]

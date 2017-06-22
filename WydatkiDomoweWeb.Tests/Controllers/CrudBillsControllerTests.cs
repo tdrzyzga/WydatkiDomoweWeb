@@ -13,7 +13,7 @@ using WydatkiDomoweWeb.WebUI.Models;
 namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 {
     [TestClass()]
-    public class CrudBillControllerTests
+    public class CrudBillsControllerTests
     {
         private Mock<IBillRepository> mockBills;
         private Mock<IBillNameRepository> mockBillNames;
@@ -25,10 +25,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             mockBills = new Mock<IBillRepository>();
             mockBills.Setup(m => m.Bills).Returns(new Bill[]
             {
-                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
             });
 
             mockBillNames = new Mock<IBillNameRepository>();

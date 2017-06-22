@@ -19,8 +19,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
                 minDate = DateTime.ParseExact(filterModel.MinDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 maxDate = DateTime.ParseExact(filterModel.MaxDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
-                currentBills = bills.Where(b => b.PaymentDate >= minDate && b.PaymentDate <= maxDate).ToList();
-                
+                currentBills = bills.Where(b => b.PaymentDate >= minDate && b.PaymentDate <= maxDate).ToList();                
             }
             else
             {
