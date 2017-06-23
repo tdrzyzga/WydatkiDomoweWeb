@@ -62,6 +62,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 billNameRepository.UpdateBillName(CreateBillName(model));
                 TempData["ChangedBillName"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.Name);
             }
+
             return RedirectToAction("Index", "BillsNames");
         }
 

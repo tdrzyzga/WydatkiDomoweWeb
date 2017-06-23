@@ -100,6 +100,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 billRepository.UpdateBill(CreateBill(model));
                 TempData["ChangedBill"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
             }
+
             return RedirectToAction("Index", "Home");
         }
 
