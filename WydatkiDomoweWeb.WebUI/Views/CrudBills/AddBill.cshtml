@@ -12,7 +12,7 @@
                 {
                     @Html.HiddenFor(m => m.Bills[i].Name)
                     @Html.HiddenFor(m => m.Bills[i].Id)
-                    @Html.HiddenFor(m => m.Bills[i].Date, new { id = Model.Bills[i].Id })
+                    @Html.HiddenFor(m => m.Bills[i].RequiredDate, new { id = Model.Bills[i].Id })
                 }
                 @Html.ValidationMessageFor(m => m.SelectedBillNameId)
             </td>

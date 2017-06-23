@@ -27,11 +27,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             mockBills = new Mock<IBillRepository>();
             mockBills.Setup(m => m.Bills).Returns(new Bill[]
             {
-                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 4, RecipientID = 4 , Amount = 4.0M, PaymentDate = DateTime.Parse("2017-01-01"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 0, BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 1, BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 2, BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 3, BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 4, BillNameID = 4, RecipientID = 4 , Amount = 4.0M, PaymentDate = DateTime.Parse("2017-01-01"), RequiredDate = DateTime.Parse("2017-01-11") },
 
             });
 
@@ -106,7 +106,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             HomeController controller = new HomeController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             FilterBillsViewModel checkbox = new FilterBillsViewModel();
 
-            RedirectToRouteResult result = (RedirectToRouteResult)controller.FilterPost(checkbox);
+            RedirectToRouteResult result = controller.FilterPost(checkbox);
 
             Assert.IsNotNull(result);
             Assert.AreEqual("GetBills", result.RouteValues["action"]);

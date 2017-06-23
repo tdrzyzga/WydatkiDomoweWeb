@@ -31,7 +31,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 {
                     Name = bn.Name,
                     Id = bn.BillNameID.ToString(),
-                    Date = SetDate(bn.FirstPaymentDate, bn.PaymentsFrequency, bn.BillNameID)
+                    RequiredDate = SetRequiredDate(bn.FirstPaymentDate, bn.PaymentsFrequency, bn.BillNameID)
 
                 }).ToList(),
 
@@ -45,7 +45,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return PartialView(model);
         }
 
-        protected DateTime SetDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)
+        protected DateTime SetRequiredDate(DateTime firstPaymentDate, int paymentFerquency, int billNameId)
         {
             DateTime date;
 
@@ -61,9 +61,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult AddBill(CrudBillsViewModel model)
         {
             if (ModelState.IsValid)
+            {
                 billRepository.AddBill(CreateBill(model));
+                TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
+            }
 
-            TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
             return RedirectToAction("Index", "Home");
         }
 

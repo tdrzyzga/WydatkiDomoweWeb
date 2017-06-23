@@ -11,7 +11,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
     {
         public string Name { get; set; }
         public string Id { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime RequiredDate { get; set; }
     }
 
     public class CrudBillsViewModel

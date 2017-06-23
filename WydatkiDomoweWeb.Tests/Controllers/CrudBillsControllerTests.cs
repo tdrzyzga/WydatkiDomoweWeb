@@ -9,6 +9,7 @@ using Moq;
 using WydatkiDomoweWeb.Domain.Abstract;
 using WydatkiDomoweWeb.Domain.Entities;
 using WydatkiDomoweWeb.WebUI.Models;
+using System.Web.Mvc;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 {
@@ -18,6 +19,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         private Mock<IBillRepository> mockBills;
         private Mock<IBillNameRepository> mockBillNames;
         private Mock<IRecipientRepository> mockRecipients;
+        private CrudBillsViewModel model;
+        private Bill bill;
 
         [TestInitialize]
         public void Initialize()
@@ -25,10 +28,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             mockBills = new Mock<IBillRepository>();
             mockBills.Setup(m => m.Bills).Returns(new Bill[]
             {
-                new Bill {BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
-                new Bill {BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 0, BillNameID = 0, RecipientID = 0 , Amount = 0.0M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 1, BillNameID = 1, RecipientID = 1 , Amount = 1.0M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 2, BillNameID = 2, RecipientID = 2 , Amount = 2.0M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11") },
+                new Bill {BillsID = 3, BillNameID = 3, RecipientID = 3 , Amount = 3.0M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11") },
             });
 
             mockBillNames = new Mock<IBillNameRepository>();
@@ -50,21 +53,68 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 new Recipient { RecipientID = 3, Name = "Recipient3", Account = "Account3", BuildingNR = "Nr3", CityID = 3, StreetID = 3, PostCodeID= 3 },
                 new Recipient { RecipientID = 4, Name = "Recipient4", Account = "Account4", BuildingNR = "Nr4", CityID = 4, StreetID = 4, PostCodeID= 4 },
             });
+
+            model = new CrudBillsViewModel
+            {
+                BillId = 0,
+                BillName = "Bill0",
+                SelectedBillNameId = 1,
+                SelectedRecipientId = 2,
+                Amount = 28.00M,
+                PaymentDate = "01.01.2017",
+                RequiredDate = "11.01.2017",
+                Bills = new List<SelectBill> { new SelectBill { Name = "Bill", Id = "1", RequiredDate = DateTime.Parse("2017-01-11") } }
+            };
+
+            bill = new Bill
+            {
+                BillsID = 0,
+                BillNameID = 1,
+                RecipientID = 2,
+                Amount = 28.00M,
+                PaymentDate = DateTime.Parse("2017-01-01"),
+                RequiredDate = DateTime.Parse("2017-01-11")
+            };
         }
 
         [TestMethod()]
         public void HttpGetMethodAddBillTest()
-        {     
+        {
             CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
             CrudBillsViewModel result = (CrudBillsViewModel)controller.AddBill().Model;
 
             Assert.AreEqual("Bill2", result.Bills[2].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[2].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[2].RequiredDate);
             Assert.AreEqual("Bill3", result.Bills[3].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[3].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-21"), result.Bills[3].RequiredDate);
             Assert.AreEqual("Bill4", result.Bills[4].Name);
-            Assert.AreEqual(DateTime.Parse("2017-01-01"), result.Bills[4].Date);
+            Assert.AreEqual(DateTime.Parse("2017-01-01"), result.Bills[4].RequiredDate);
+        }
+
+        [TestMethod()]
+        public void HttpPostAddBillTest_CanSave()
+        { 
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+
+            RedirectToRouteResult result = controller.AddBill(model);
+
+            mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Once());
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.RouteValues["action"]);         
+        }
+
+        [TestMethod()]
+        public void HttpPostAddBillTest_CannotSave()
+        {
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+            controller.ModelState.AddModelError("error", "error");
+
+            RedirectToRouteResult result = controller.AddBill(model);
+
+            mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Never());
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
         }
     }
 }
