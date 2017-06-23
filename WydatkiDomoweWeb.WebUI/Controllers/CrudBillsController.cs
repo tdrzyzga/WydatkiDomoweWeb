@@ -63,7 +63,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (ModelState.IsValid)
                 billRepository.AddBill(CreateBill(model));
 
-            TempData["ChangedBills"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
+            TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
             return RedirectToAction("Index", "Home");
         }
 
