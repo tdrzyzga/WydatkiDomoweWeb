@@ -30,31 +30,9 @@
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
                 }
                 <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + bill.Id)">Usuń</button>                
-                
                 <div id="@("modal" + bill.Id)" class="modal fade" role="dialog">                
-                    <div class="modal-dialog modal-sm">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title">Usuwanie rachunku</h3>
-                            </div>
-                            <div class="modal-body">
-                                <p>Chcesz usunąć element @bill.BillName?</p>
-                            </div>
-                            <div class="modal-footer">
-                                @using (Ajax.BeginForm("DeleteBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "billsTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
-                                {
-                                    @Html.Hidden("BillId", bill.Id)
-                                    @Html.Hidden("BillName", bill.BillName)
-                                    <input class="btn btn-primary" type="submit" value="Usuń" />
-                                }
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
-                            </div>
-                        </div>
-                    </div>
+                    @Html.Partial("DeleteBillDialog", bill)
                 </div>
-
             </td>
         </tr>
     }
