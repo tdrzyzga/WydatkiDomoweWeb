@@ -96,9 +96,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult EditBill(CrudBillsViewModel model)
         {
             if (ModelState.IsValid)
+            {
                 billRepository.UpdateBill(CreateBill(model));
-
-            TempData["ChangedBill"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
+                TempData["ChangedBill"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
+            }
             return RedirectToAction("Index", "Home");
         }
 

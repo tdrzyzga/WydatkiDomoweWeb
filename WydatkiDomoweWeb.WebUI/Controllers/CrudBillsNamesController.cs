@@ -30,9 +30,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult AddBillName(CrudBillsNamesViewModel model)
         {
             if (ModelState.IsValid)
+            {
                 billNameRepository.AddBillName(CreateBillName(model));
-
-            TempData["ChangedBillName"] = string.Format("Zapisano nazwę rachunku: {0} ", model.Name.ToString());
+                TempData["ChangedBillName"] = string.Format("Zapisano nazwę rachunku: {0} ", model.Name.ToString());
+            }
 
             return RedirectToAction("Index", "BillsNames");
         }
@@ -57,9 +58,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public RedirectToRouteResult EditBillName(CrudBillsNamesViewModel model)
         {
             if (ModelState.IsValid)
+            {
                 billNameRepository.UpdateBillName(CreateBillName(model));
-
-            TempData["ChangedBillName"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.Name);
+                TempData["ChangedBillName"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.Name);
+            }
             return RedirectToAction("Index", "BillsNames");
         }
 
