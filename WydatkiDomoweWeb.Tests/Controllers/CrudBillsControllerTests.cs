@@ -20,7 +20,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         private Mock<IBillNameRepository> mockBillNames;
         private Mock<IRecipientRepository> mockRecipients;
         private CrudBillsViewModel model;
-        private Bill bill;
 
         [TestInitialize]
         public void Initialize()
@@ -65,16 +64,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 RequiredDate = "11.01.2017",
                 Bills = new List<SelectBill> { new SelectBill { Name = "Bill", Id = "1", RequiredDate = DateTime.Parse("2017-01-11") } }
             };
-
-            bill = new Bill
-            {
-                BillsID = 0,
-                BillNameID = 1,
-                RecipientID = 2,
-                Amount = 28.00M,
-                PaymentDate = DateTime.Parse("2017-01-01"),
-                RequiredDate = DateTime.Parse("2017-01-11")
-            };
         }
 
         [TestMethod()]
@@ -93,7 +82,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void HttpPostAddBillTest_CanSave()
+        public void HttpPostAddBillTest_CanAdd()
         { 
             CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
@@ -105,7 +94,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void HttpPostAddBillTest_CannotSave()
+        public void HttpPostAddBillTest_CannotAdd()
         {
             CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
             controller.ModelState.AddModelError("error", "error");
