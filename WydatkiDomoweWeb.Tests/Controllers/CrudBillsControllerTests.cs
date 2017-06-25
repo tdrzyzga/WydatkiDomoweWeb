@@ -83,14 +83,14 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
         [TestMethod()]
         public void HttpPostAddBillTest_CanAdd()
-        { 
+        {
             CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
 
             RedirectToRouteResult result = controller.AddBill(model);
 
             mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Once());
             Assert.IsNotNull(result);
-            Assert.AreEqual("Index", result.RouteValues["action"]);         
+            Assert.AreEqual("Index", result.RouteValues["action"]);
         }
 
         [TestMethod()]
@@ -104,6 +104,57 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
             mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Never());
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+        [TestMethod()]
+        public void HttpGetEditBillTest()
+        {
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+
+            CrudBillsViewModel result = (CrudBillsViewModel)controller.EditBill(1).Model;
+
+            Assert.AreEqual(1, result.BillId);
+            Assert.AreEqual(1, result.SelectedBillNameId);
+            Assert.AreEqual("Bill1", result.BillName);
+            Assert.AreEqual(1.0M, result.Amount);
+            Assert.AreEqual("03.01.2017", result.PaymentDate);
+        }
+
+        [TestMethod()]
+        public void HttpPostEditBillTest_CanUpdate()
+        {
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+
+            RedirectToRouteResult result = controller.EditBill(model);
+
+            mockBills.Verify(m => m.UpdateBill(It.IsAny<Bill>()), Times.Once());
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+        [TestMethod()]
+        public void HttpPostAddBillTest_CannotUpdate()
+        {
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+            controller.ModelState.AddModelError("error", "error");
+
+            RedirectToRouteResult result = controller.EditBill(model);
+
+            mockBills.Verify(m => m.UpdateBill(It.IsAny<Bill>()), Times.Never());
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+        }
+
+        [TestMethod()]
+        public void DeleteBillTest()
+        {
+            CrudBillsController controller = new CrudBillsController(mockBills.Object, mockBillNames.Object, mockRecipients.Object);
+
+            RedirectToRouteResult result = controller.DeleteBill(1, "Bill1");
+
+            mockBills.Verify(m => m.DeleteBill(It.IsAny<int>()), Times.Once());
+            Assert.IsNotNull(result);
+            Assert.AreEqual("GetBills", result.RouteValues["action"]);
         }
     }
 }
