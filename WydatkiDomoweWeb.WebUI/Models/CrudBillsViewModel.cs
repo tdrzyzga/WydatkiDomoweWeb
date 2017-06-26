@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
-    public class SelectBill
+    public class SelectBillName
     {
-        public string Name { get; set; }
-        public string Id { get; set; }
+        public string BillNameId { get; set; }
+        public string Name { get; set; }        
         public DateTime RequiredDate { get; set; }
     }
 
@@ -35,11 +35,11 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public string RequiredDate { get; set; }
 
         public List<SelectListItem> Recipients { get; set; }
-        public List<SelectBill> Bills { get; set; }
+        public List<SelectBillName> Bills { get; set; }
 
         public CrudBillsViewModel()
         {
-            Bills = new List<SelectBill>();
+            Bills = new List<SelectBillName>();
         }
     }
 }

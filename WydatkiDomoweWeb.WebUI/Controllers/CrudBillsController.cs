@@ -27,10 +27,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             CrudBillsViewModel model = new CrudBillsViewModel
             {
-                Bills = billNameRepository.BillNames.Select(bn => new SelectBill
+                Bills = billNameRepository.BillNames.Select(bn => new SelectBillName
                 {
-                    Name = bn.Name,
-                    Id = bn.BillNameID.ToString(),
+                    BillNameId = bn.BillNameID.ToString(),
+                    Name = bn.Name,                    
                     RequiredDate = SetRequiredDate(bn.FirstPaymentDate, bn.PaymentsFrequency, bn.BillNameID)
 
                 }).ToList(),
@@ -63,7 +63,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 billRepository.AddBill(CreateBill(model));
-                TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.Id == model.SelectedBillNameId.ToString()).Name);
+                TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.BillNameId == model.SelectedBillNameId.ToString()).Name);
             }
 
             return RedirectToAction("Index", "Home");

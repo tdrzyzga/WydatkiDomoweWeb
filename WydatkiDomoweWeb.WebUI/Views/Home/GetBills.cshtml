@@ -27,11 +27,11 @@
             <td class="form-inline">                    
                 @using (Ajax.BeginForm("EditBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker(\"paymentDate\")" }, new { @class = "form-group" }))
                 {
-                    @Html.Hidden("BillId", bill.Id)
+                    @Html.Hidden("BillId", bill.BillId)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
                 }
-                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + bill.Id)">Usuń</button>                
-                <div id="@("modal" + bill.Id)" class="modal fade" role="dialog">                
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + bill.BillId)">Usuń</button>                
+                <div id="@("modal" + bill.BillId)" class="modal fade" role="dialog">                
                     @Html.Partial("DeleteBillDialog", bill)
                 </div>
             </td>

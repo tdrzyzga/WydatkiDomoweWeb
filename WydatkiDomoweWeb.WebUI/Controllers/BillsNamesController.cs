@@ -28,11 +28,11 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public PartialViewResult GetBillsNames(int page = 1)
         {
             var billsNames = (from bn in billNameRepository.BillNames
-                         select new BillNameModel
+                         select new BillNameViewModel
                          {
-                             Id = bn.BillNameID,
+                             BillNameId = bn.BillNameID,
                              Name = bn.Name,
-                             FirstPaymentDate = bn.FirstPaymentDate,
+                             FirstPaymentDate = bn.FirstPaymentDate.ToString("dd.MM.yyyy"),
                              PaymentsFerquency = bn.PaymentsFrequency
 
                          });

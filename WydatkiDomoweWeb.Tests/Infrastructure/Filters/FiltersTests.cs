@@ -14,19 +14,19 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters.Tests
     [TestClass()]
     public class FiltersTests
     {
-        private List<BillModel> listBill;
+        private List<BillViewModel> listBill;
         private List<CheckboxModel> listCheckbox;
 
         [TestInitialize]
         public void Initialize()
         {
-            listBill = new List<BillModel>
+            listBill = new List<BillViewModel>
             {
-                new BillModel {Id = 0, BillName="Bill0", Recipient = "Recipient0", Amount = 0.00M, PaymentDate = DateTime.Parse("2017-01-01"), RequiredDate = DateTime.Parse("2017-01-11")},
-                new BillModel {Id = 1, BillName="Bill1", Recipient = "Recipient1", Amount = 1.00M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11")},
-                new BillModel {Id = 2, BillName="Bill2", Recipient = "Recipient2", Amount = 2.00M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11")},
-                new BillModel {Id = 3, BillName="Bill3", Recipient = "Recipient3", Amount = 3.00M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11")},
-                new BillModel {Id = 4, BillName="Bill4", Recipient = "Recipient4", Amount = 4.00M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11")},
+                new BillViewModel {BillId = 0, BillName="Bill0", Recipient = "Recipient0", Amount = 0.00M, PaymentDate = DateTime.Parse("2017-01-01"), RequiredDate = DateTime.Parse("2017-01-11")},
+                new BillViewModel {BillId = 1, BillName="Bill1", Recipient = "Recipient1", Amount = 1.00M, PaymentDate = DateTime.Parse("2017-01-02"), RequiredDate = DateTime.Parse("2017-01-11")},
+                new BillViewModel {BillId = 2, BillName="Bill2", Recipient = "Recipient2", Amount = 2.00M, PaymentDate = DateTime.Parse("2017-01-03"), RequiredDate = DateTime.Parse("2017-01-11")},
+                new BillViewModel {BillId = 3, BillName="Bill3", Recipient = "Recipient3", Amount = 3.00M, PaymentDate = DateTime.Parse("2017-01-04"), RequiredDate = DateTime.Parse("2017-01-11")},
+                new BillViewModel {BillId = 4, BillName="Bill4", Recipient = "Recipient4", Amount = 4.00M, PaymentDate = DateTime.Parse("2017-01-05"), RequiredDate = DateTime.Parse("2017-01-11")},
             };
 
             listCheckbox = new List<CheckboxModel>
@@ -45,7 +45,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters.Tests
             FilterBillsViewModel filter = new FilterBillsViewModel();
             filter.CheckboxItems = listCheckbox;
 
-            IEnumerable<BillModel> result = listBill.FilterByCheckbox(filter);
+            IEnumerable<BillViewModel> result = listBill.FilterByCheckbox(filter);
 
             Assert.IsTrue(result.Count() == 3);
             Assert.AreEqual("Bill0", result.ElementAt(0).BillName);
@@ -61,7 +61,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters.Tests
             filter.MinDate = "01.01.2017";
             filter.MaxDate = "03.01.2017";
 
-            IEnumerable<BillModel> result = listBill.FilterByDateRange(filter);
+            IEnumerable<BillViewModel> result = listBill.FilterByDateRange(filter);
 
             Assert.IsTrue(result.Count() == 3);
             Assert.AreEqual(DateTime.Parse("2017-01-01"), result.ElementAt(0).PaymentDate);

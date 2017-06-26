@@ -277,9 +277,9 @@
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\Filters\DateRangeFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\BillNameDeleteViewModel.cs" />
     <Compile Include="Models\BillsNamesViewModel.cs" />
     <Compile Include="Models\BillsViewModel.cs" />
-    <Compile Include="Models\CrudBillsNamesViewModel.cs" />
     <Compile Include="Models\CrudBillsViewModel.cs" />
     <Compile Include="Models\FilterBillsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />

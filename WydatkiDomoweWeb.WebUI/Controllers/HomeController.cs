@@ -38,9 +38,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                             on b.BillNameID equals bn.BillNameID
                          join r in recipientRepository.Recipients
                             on b.RecipientID equals r.RecipientID
-                         select new BillModel
+                         select new BillViewModel
                          {
-                             Id = b.BillsID,
+                             BillId = b.BillsID,
                              BillName = bn.Name,
                              Recipient = r.Name,
                              Amount = b.Amount,

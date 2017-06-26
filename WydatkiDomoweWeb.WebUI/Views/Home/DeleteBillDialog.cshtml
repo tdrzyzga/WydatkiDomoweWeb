@@ -1,4 +1,4 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.BillModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.BillViewModel
 
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -12,7 +12,7 @@
         <div class="modal-footer">
             @using (Ajax.BeginForm("DeleteBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "billsTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
             {
-                @Html.Hidden("BillId", Model.Id)
+                @Html.Hidden("BillId", Model.BillId)
                 @Html.Hidden("BillName", Model.BillName)
                 <input class="btn btn-primary" type="submit" value="Usuń" />
             }

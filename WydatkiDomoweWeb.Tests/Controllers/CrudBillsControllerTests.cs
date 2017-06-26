@@ -62,7 +62,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
                 Amount = 28.00M,
                 PaymentDate = "01.01.2017",
                 RequiredDate = "11.01.2017",
-                Bills = new List<SelectBill> { new SelectBill { Name = "Bill", Id = "1", RequiredDate = DateTime.Parse("2017-01-11") } }
+                Bills = new List<SelectBillName> { new SelectBillName { Name = "Bill", BillNameId = "1", RequiredDate = DateTime.Parse("2017-01-11") } }
             };
         }
 

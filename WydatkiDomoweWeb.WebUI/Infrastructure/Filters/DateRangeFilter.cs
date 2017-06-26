@@ -8,11 +8,11 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
 {
     public static class DateRangeFilter
     {
-        public static IEnumerable<BillModel> FilterByDateRange(this IEnumerable<BillModel> bills, FilterBillsViewModel filterModel)
+        public static IEnumerable<BillViewModel> FilterByDateRange(this IEnumerable<BillViewModel> bills, FilterBillsViewModel filterModel)
         {
             DateTime minDate;
             DateTime maxDate;
-            List<BillModel> currentBills = new List<BillModel>();
+            List<BillViewModel> currentBills = new List<BillViewModel>();
 
             if (filterModel.MinDate != null && filterModel.MaxDate != null)
             {

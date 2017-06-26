@@ -7,9 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
-    public class BillModel
+    public class BillViewModel
     {
-        public int Id { get; set; }
+        public int BillId { get; set; }
         public string BillName { get; set; }
         public string Recipient { get; set; }
 
@@ -27,7 +27,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
 
     public class BillsViewModel
     {
-        public IEnumerable<BillModel> Bills { get; set; }
+        public IEnumerable<BillViewModel> Bills { get; set; }
         public PagingInfo PagingInfo { get; set; }
     }
 }

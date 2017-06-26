@@ -1,4 +1,4 @@
-﻿@model WydatkiDomoweWeb.WebUI.Models.BillNameModel
+﻿@model WydatkiDomoweWeb.WebUI.Models.BillNameViewModel
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <h5>Pozycje powiązane z nazwą "@Model.Name" zostaną równeż usunięte z bazy danych. Chcesz dalej kontynuować?</h5>
-            @Html.Action("DeleteBillName", "CrudBillsNames", new { billNameId = Model.Id })
+                @Html.Action("DeleteBillName", "CrudBillsNames", new { billNameId = Model.BillNameId })
         </div>
     </div>
 </div>

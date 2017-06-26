@@ -25,13 +25,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult AddBillName()
         {
-            CrudBillsNamesViewModel model = new CrudBillsNamesViewModel();
+            BillNameViewModel model = new BillNameViewModel();
 
             return PartialView(model);
         }
 
         [HttpPost]
-        public RedirectToRouteResult AddBillName(CrudBillsNamesViewModel model)
+        public RedirectToRouteResult AddBillName(BillNameViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -47,7 +47,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             var billName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId);
 
-            CrudBillsNamesViewModel model = new CrudBillsNamesViewModel
+            BillNameViewModel model = new BillNameViewModel
             {
                 BillNameId = billNameId,
                 Name = billName.Name,
@@ -59,7 +59,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult EditBillName(CrudBillsNamesViewModel model)
+        public RedirectToRouteResult EditBillName(BillNameViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult DeleteBillName(int billNameId)
         {
-            CrudBillsNamesViewModel model = new CrudBillsNamesViewModel
+            BillNameDeleteViewModel model = new BillNameDeleteViewModel
             {
                 Bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
@@ -80,9 +80,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                          join r in recipientRepository.Recipients
                             on b.RecipientID equals r.RecipientID
                          where b.BillNameID == billNameId
-                         select new BillModel
+                         select new BillViewModel
                          {
-                             Id = b.BillsID,
+                             BillId = b.BillsID,
                              BillName = bn.Name,
                              Recipient = r.Name,
                              Amount = b.Amount,
@@ -96,16 +96,17 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpPost]
-        public RedirectToRouteResult DeleteBillName(CrudBillsNamesViewModel model)
+        public RedirectToRouteResult DeleteBillName(BillNameDeleteViewModel model)
         {
             foreach(var bill in model.Bills)
-                billRepository.DeleteBill(bill.Id);
+                billRepository.DeleteBill(bill.BillId);
 
             billNameRepository.DeleteBillName(model.BillNameId);
             TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", billNameRepository.BillNames.Single(bn => bn.BillNameID == model.BillNameId).Name);
-
+            
             return RedirectToAction("GetBillsNames", "CrudBillsNames");
         }
+
         public JsonResult ValidateName(string name)
         {
             if (billNameRepository.Exists(name))
@@ -114,7 +115,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        protected BillName CreateBillName(CrudBillsNamesViewModel model)
+        protected BillName CreateBillName(BillNameViewModel model)
         {
             BillName billName = new BillName
             {
@@ -126,23 +127,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             };
 
             return billName;
-        }
-
-        protected Bill CreateBill(CrudBillsViewModel model)
-        {
-            Bill bill = new Bill
-            {
-                BillsID = model.BillId,
-                BillNameID = model.SelectedBillNameId,
-                RecipientID = model.SelectedRecipientId,
-                Amount = model.Amount,
-                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture),
-            };
-
-            return bill;
         }
     }
 }
