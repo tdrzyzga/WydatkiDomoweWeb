@@ -302,6 +302,8 @@
     <Content Include="Views\CrudBillsNames\AddBillName.cshtml" />
     <Content Include="Views\CrudBillsNames\EditBillName.cshtml" />
     <Content Include="Views\Home\DeleteBillDialog.cshtml" />
+    <Content Include="Views\BillsNames\DeleteBillNameDialog.cshtml" />
+    <Content Include="Views\CrudBillsNames\DeleteBillName.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
