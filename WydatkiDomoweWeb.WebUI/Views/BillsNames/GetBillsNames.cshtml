@@ -16,22 +16,22 @@
     @foreach (var billName in Model.BillsNames)
     {
         <tr>
-            <td>@Html.DisplayFor(m => billName.Name)</td>
-            <td>@Html.DisplayFor(m => billName.FirstPaymentDate)</td>
-            <td>@Html.DisplayFor(m => billName.PaymentsFerquency)</td>
-            <td class="form-inline">                    
+            <td>@Html.DisplayFor(m => billName.Name)
+            </td>
+            <td>@Html.DisplayFor(m => billName.FirstPaymentDate)
+            </td>
+            <td>@Html.DisplayFor(m => billName.PaymentsFerquency)
+            </td>
+            <td class="form-inline">
                 @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker(\"firstPaymentDate\")" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("BillNameId", billName.Id)
-                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj"/>
+                    <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
                 }
-                
-                @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", null, new AjaxOptions { Confirm = "Chcesz usunąć element", UpdateTargetId = "billsNamesTable"}, new { @class = "form-group" }))
-                {
-                    @Html.Hidden("BillNameId", billName.Id)
-                    @Html.Hidden("BillName", billName.Name)
-                    <input class="btn btn-default btn-xs" type="submit" value="Usuń"/>
-                }
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + billName.Id)">Usuń</button>
+                <div id="@("modal" + billName.Id)" class="modal fade" role="dialog">
+                    @Html.Partial("DeleteBillNameDialog", billName)
+                </div>
             </td>
         </tr>
     }

@@ -11,11 +11,15 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class CrudBillsNamesController : Controller
     {
+        private IBillRepository billRepository;
         private IBillNameRepository billNameRepository;
+        private IRecipientRepository recipientRepository;
 
-        public CrudBillsNamesController(IBillNameRepository billName)
+        public CrudBillsNamesController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient)
         {
+            this.billRepository = bill;
             this.billNameRepository = billName;
+            this.recipientRepository = recipient;
         }
 
         [HttpGet]
@@ -60,12 +64,48 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (ModelState.IsValid)
             {
                 billNameRepository.UpdateBillName(CreateBillName(model));
-                TempData["ChangedBillName"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.Name);
+                TempData["ChangedBillName"] = string.Format("Zapisano zmiany w nazwie rachunku: {0} ", model.Name);
             }
 
             return RedirectToAction("Index", "BillsNames");
         }
+        [HttpGet]
+        public PartialViewResult DeleteBillName(int billNameId)
+        {
+            CrudBillsNamesViewModel model = new CrudBillsNamesViewModel
+            {
+                Bills = (from b in billRepository.Bills
+                         join bn in billNameRepository.BillNames
+                            on b.BillNameID equals bn.BillNameID
+                         join r in recipientRepository.Recipients
+                            on b.RecipientID equals r.RecipientID
+                         where b.BillNameID == billNameId
+                         select new BillModel
+                         {
+                             Id = b.BillsID,
+                             BillName = bn.Name,
+                             Recipient = r.Name,
+                             Amount = b.Amount,
+                             PaymentDate = b.PaymentDate,
+                             RequiredDate = b.RequiredDate
+                         }).ToList(),
+                 BillNameId = billNameId
+            };
 
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult DeleteBillName(CrudBillsNamesViewModel model)
+        {
+            foreach(var bill in model.Bills)
+                billRepository.DeleteBill(bill.Id);
+
+            billNameRepository.DeleteBillName(model.BillNameId);
+            TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", billNameRepository.BillNames.Single(bn => bn.BillNameID == model.BillNameId).Name);
+
+            return RedirectToAction("GetBillsNames", "CrudBillsNames");
+        }
         public JsonResult ValidateName(string name)
         {
             if (billNameRepository.Exists(name))
@@ -86,6 +126,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             };
 
             return billName;
+        }
+
+        protected Bill CreateBill(CrudBillsViewModel model)
+        {
+            Bill bill = new Bill
+            {
+                BillsID = model.BillId,
+                BillNameID = model.SelectedBillNameId,
+                RecipientID = model.SelectedRecipientId,
+                Amount = model.Amount,
+                PaymentDate = DateTime.ParseExact(model.PaymentDate, "dd.MM.yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+                RequiredDate = DateTime.ParseExact(model.RequiredDate, "dd.MM.yyyy",
+                                       System.Globalization.CultureInfo.InvariantCulture),
+            };
+
+            return bill;
         }
     }
 }

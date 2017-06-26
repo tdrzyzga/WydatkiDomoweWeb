@@ -7,7 +7,7 @@
             <h3 class="modal-title"> Usuwanie rachunku</h3>
         </div>
         <div class="modal-body">
-            <p>Chcesz usunąć rachunek "@Model.BillName"?</p>
+            <h5>Chcesz usunąć rachunek "@Model.BillName"?</h5>
         </div>
         <div class="modal-footer">
             @using (Ajax.BeginForm("DeleteBill", "CrudBills", null, new AjaxOptions { UpdateTargetId = "billsTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
