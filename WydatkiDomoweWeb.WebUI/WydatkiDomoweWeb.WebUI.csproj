@@ -272,6 +272,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
+    <Compile Include="Infrastructure\Binders\BillNameDeleteViewModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\FilterBillBinder.cs" />
     <Compile Include="Infrastructure\Binders\StringTrimingBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
