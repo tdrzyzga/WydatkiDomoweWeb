@@ -17,23 +17,23 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders.Tests
         [TestMethod()]
         public void BindModelTest()
         {
-            /*Mock<ControllerContext> mockControllerContext = new Mock<ControllerContext>();
-            Mock<ValueProviderResult> valueProviderResult = new Mock<ValueProviderResult>();
-            valueProviderResult.Setup(m => m).Returns(new ValueProviderResult(null, " o   ja pier  le  ", null));
-            valueProviderResult.Setup(m => m.AttemptedValue).Returns(" o   ja pier  le  ");
+            Mock<ControllerContext> mockControllerContext = new Mock<ControllerContext>();
+
+            ValueProviderResult valueProviderResult = new ValueProviderResult(null, " o   ja    pierdole  ", System.Globalization.CultureInfo.InvariantCulture);
+            
             Mock<IValueProvider> valueProvider = new Mock<IValueProvider>();
-            valueProvider.Setup(m => m.GetValue("Trim")).Returns(valueProviderResult.Object);
+            valueProvider.Setup(m => m.GetValue("")).Returns(valueProviderResult);
             
             ModelBindingContext bindingContext = new ModelBindingContext
             {
                 ValueProvider = valueProvider.Object
             };
 
-            StringTrimmingBinder trim = new StringTrimmingBinder();
+            StringTrimmingBinder binder = new StringTrimmingBinder();
 
-            string result = trim.BindModel(mockControllerContext.Object, bindingContext).ToString();
+            string result = binder.BindModel(mockControllerContext.Object, bindingContext).ToString();
 
-            Assert.AreEqual("o ja pierdole", result);*/
+            Assert.AreEqual("o ja pierdole", result);
         }
     }
 }
