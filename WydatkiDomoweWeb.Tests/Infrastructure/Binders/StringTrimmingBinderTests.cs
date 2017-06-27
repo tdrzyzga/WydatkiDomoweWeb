@@ -19,7 +19,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders.Tests
         {
             Mock<ControllerContext> mockControllerContext = new Mock<ControllerContext>();
 
-            ValueProviderResult valueProviderResult = new ValueProviderResult(null, " o   ja    pierdole  ", System.Globalization.CultureInfo.InvariantCulture);
+            ValueProviderResult valueProviderResult = new ValueProviderResult(null, " w    jak   wydatki    ", System.Globalization.CultureInfo.InvariantCulture);
             
             Mock<IValueProvider> valueProvider = new Mock<IValueProvider>();
             valueProvider.Setup(m => m.GetValue("")).Returns(valueProviderResult);
@@ -33,7 +33,7 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders.Tests
 
             string result = binder.BindModel(mockControllerContext.Object, bindingContext).ToString();
 
-            Assert.AreEqual("o ja pierdole", result);
+            Assert.AreEqual("w jak wydatki", result);
         }
     }
 }
