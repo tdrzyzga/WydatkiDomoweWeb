@@ -21,8 +21,14 @@
     }
  </table>
 <div class="modal-footer">
-    @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", Model , new AjaxOptions { UpdateTargetId = "billsNamesTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
-    {        
+    @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", Model, new AjaxOptions { UpdateTargetId = "billsNamesTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
+    {
+        for (int i = 0; i < Model.Bills.Count(); i++ )
+        {
+            @Html.HiddenFor(m => m.Bills[i].BillId)
+            @Html.HiddenFor(m => m.Bills[i].BillName)            
+        }
+        @Html.HiddenFor(m => m.BillNameId)
         <input class="btn btn-primary" type="submit" value="Usuń" />
     }
     <button type="button" class="btn btn-default" data-dismiss="modal"> Anuluj</button>

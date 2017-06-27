@@ -102,9 +102,9 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 billRepository.DeleteBill(bill.BillId);
 
             billNameRepository.DeleteBillName(model.BillNameId);
-            TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", billNameRepository.BillNames.Single(bn => bn.BillNameID == model.BillNameId).Name);
+            TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", model.Bills[0].BillName);
             
-            return RedirectToAction("GetBillsNames", "CrudBillsNames");
+            return RedirectToAction("GetBillsNames", "BillsNames");
         }
 
         public JsonResult ValidateName(string name)
