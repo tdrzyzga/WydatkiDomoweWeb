@@ -11,9 +11,9 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
     {
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            BillNameDeleteViewModel modelBillToRemove = new BillNameDeleteViewModel();
-            modelBillToRemove.BillNameId = Int32.Parse(controllerContext.HttpContext.Request.Form["BillNameId"]);
-            modelBillToRemove.Name = controllerContext.HttpContext.Request.Form["Name"];
+            BillNameDeleteViewModel modelBillsToRemove = new BillNameDeleteViewModel();
+            modelBillsToRemove.BillNameId = Int32.Parse(controllerContext.HttpContext.Request.Form["BillNameId"]);
+            modelBillsToRemove.Name = controllerContext.HttpContext.Request.Form["Name"];
 
             string[] idBillsToRemove = controllerContext.HttpContext.Request.Form.AllKeys;
             idBillsToRemove = idBillsToRemove.Take(idBillsToRemove.Count() - 3).ToArray();
@@ -25,10 +25,10 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
                     BillId = Int32.Parse(bindingContext.ValueProvider.GetValue(idBillsToRemove[i]).AttemptedValue)
                 };
 
-                modelBillToRemove.Bills.Add(billViewModel);
+                modelBillsToRemove.Bills.Add(billViewModel);
             }
 
-            return modelBillToRemove;
+            return modelBillsToRemove;
         }
     }
 }
