@@ -1,13 +1,16 @@
 ﻿@model WydatkiDomoweWeb.WebUI.Models.BillNameDeleteViewModel
 
-<table class="table table-striped table-condensed table-bordered table-getbill">
-    <tr>
-        <th class="col-md-2">Rachunek</th>
-        <th class="col-md-2">Odbiorca</th>
-        <th class="col-md-1">Cena</th>
-        <th class="col-md-2">Data wpłaty</th>
-        <th class="col-md-2">Termin zapłaty</th>
-    </tr>
+@if (Model.Bills.Count() != 0)
+{
+    <h4>Pozycje powiązane z nazwą "@Model.Name" zostaną równeż usunięte z bazy danych. Chcesz dalej kontynuować?</h4>
+    <table class="table table-striped table-condensed table-bordered table-getbill">
+        <tr>
+            <th class="col-md-2">Rachunek</th>
+            <th class="col-md-2">Odbiorca</th>
+            <th class="col-md-1">Cena</th>
+            <th class="col-md-2">Data wpłaty</th>
+            <th class="col-md-2">Termin zapłaty</th>
+        </tr>
 
     @foreach (var bill in Model.Bills)
     {
@@ -19,16 +22,28 @@
             <td>@Html.DisplayFor(m => bill.RequiredDate)</td>            
         </tr>
     }
- </table>
+     </table>
+}
+else
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#"+ "@Model.BillNameId").addClass("modal-sm").removeClass("modal-lg");
+        })
+    </script>
+    
+    <h5>Chcesz usunąc nazwę rachunku "@Model.Name"?</h5>
+}
 <div class="modal-footer">
-    @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", Model, new AjaxOptions { UpdateTargetId = "billsNamesTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
+    @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "billsNamesTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
     {
-        for (int i = 0; i < Model.Bills.Count(); i++ )
+        for (int i = 0; i < Model.Bills.Count(); i++)
         {
-            @Html.HiddenFor(m => m.Bills[i].BillId)
-            @Html.HiddenFor(m => m.Bills[i].BillName)            
+            @Html.HiddenFor(m => m.Bills[i].BillId)            
         }
         @Html.HiddenFor(m => m.BillNameId)
+        @Html.HiddenFor(m => m.Name)
+
         <input class="btn btn-primary" type="submit" value="Usuń" />
     }
     <button type="button" class="btn btn-default" data-dismiss="modal"> Anuluj</button>

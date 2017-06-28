@@ -4,6 +4,8 @@
 })
 
 function configureAddBill() {
+    setDefaultDateTimePicker("paymentDate");
+
     $("#selectBill").change(function () {
         var value = $("#selectBill").val();
 
@@ -13,10 +15,6 @@ function configureAddBill() {
             date = date[0].split("-");
             var correctDate = date[2] + "." + date[1] + "." + date[0];
 
-            $("#paymentDate").datetimepicker({
-                locale: "pl",
-                format: "DD.MM.YYYY"
-            });
             $("#paymentDate").attr("placeholder", "Data wpłaty");
 
             $("#requiredDate").val(correctDate);
@@ -47,6 +45,6 @@ function setDefaultDateTimePicker(datetimepicker) {
 };
 
 function hideModal() {
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
+    $("body").removeClass("modal-open");
+    $(".modal-backdrop").remove();
 };

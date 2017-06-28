@@ -89,7 +89,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                              PaymentDate = b.PaymentDate,
                              RequiredDate = b.RequiredDate
                          }).ToList(),
-                 BillNameId = billNameId
+                 BillNameId = billNameId,
+                 Name = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId).Name
             };
 
             return PartialView(model);
@@ -98,11 +99,14 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpPost]
         public RedirectToRouteResult DeleteBillName(BillNameDeleteViewModel model)
         {
-            foreach(var bill in model.Bills)
-                billRepository.DeleteBill(bill.BillId);
+            if (model.Bills.Count() != 0)
+            {
+                foreach (var bill in model.Bills)
+                    billRepository.DeleteBill(bill.BillId);
+            }
 
             billNameRepository.DeleteBillName(model.BillNameId);
-            TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", model.Bills[0].BillName);
+            TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", model.Name);
             
             return RedirectToAction("GetBillsNames", "BillsNames");
         }

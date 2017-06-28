@@ -27,10 +27,6 @@ namespace WydatkiDomoweWeb.WebUI
                     "~/Scripts/jquery.validate.min.js",
                     "~/Scripts/jquery.validate.unobtrusive.min.js"                
                ));
-            bundles.Add(new ScriptBundle("~/bundles/crudAddBillName")
-                .Include(
-                    "~/Scripts/crudAddBillName.js"
-                ));
         }
     } 
 }

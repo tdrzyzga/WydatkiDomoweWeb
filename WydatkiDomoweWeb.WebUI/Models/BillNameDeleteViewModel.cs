@@ -8,6 +8,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
     public class BillNameDeleteViewModel
     {
         public int BillNameId { get; set; }
+        public string Name { get; set; }
         public List<BillViewModel> Bills { get; set; }
 
         public BillNameDeleteViewModel()
