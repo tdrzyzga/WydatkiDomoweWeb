@@ -23,7 +23,7 @@
             <td>@Html.DisplayFor(m => billName.PaymentsFerquency)
             </td>
             <td class="form-inline">
-                @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker(\"firstPaymentDate\")" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker('firstPaymentDate')" }, new { @class = "form-group" }))
                 {
                     @Html.Hidden("BillNameId", billName.BillNameId)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
