@@ -4,7 +4,7 @@
 
 @using (Html.BeginForm("AddBill", "CrudBills"))
 {
-    <table class="table table-addbill">
+    <table class="table table-addItem">
         <tr class="col-md-12">
             <td>
                 @Html.DropDownListFor(m => m.SelectedBillNameId, new SelectList(Model.Bills, "BillNameId", "Name"), "Wybierz rachunek", new { @class = "form-control", id = "selectBill" })

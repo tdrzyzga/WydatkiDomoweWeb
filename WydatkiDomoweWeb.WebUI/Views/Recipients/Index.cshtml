@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Odbiorcy";
+}
+
+<div id="recipients" class="panel panel-default">
+    <div class="panel-body" id="recipientsTable">
+        @Html.Action("GetRecipients")
+    </div>
+    <div class="panel-footer">
+       <div  id="addRecipient">
+
+        </div>
+    </div>
+</div>

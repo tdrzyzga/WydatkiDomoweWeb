@@ -81,10 +81,16 @@
   <ItemGroup>
     <Compile Include="Abstract\IBillNameRepository.cs" />
     <Compile Include="Abstract\IBillRepository.cs" />
+    <Compile Include="Abstract\ICityRepository.cs" />
+    <Compile Include="Abstract\IPostCodeRepository.cs" />
     <Compile Include="Abstract\IRecipientRepository.cs" />
+    <Compile Include="Abstract\IStreetRepository.cs" />
     <Compile Include="Concrete\BillNameRepository.cs" />
     <Compile Include="Concrete\BillRepository.cs" />
+    <Compile Include="Concrete\CityRepository.cs" />
+    <Compile Include="Concrete\PostCodeRepository.cs" />
     <Compile Include="Concrete\RecipientRepository.cs" />
+    <Compile Include="Concrete\StreetRepository.cs" />
     <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\BillName.cs" />
     <Compile Include="Entities\City.cs" />

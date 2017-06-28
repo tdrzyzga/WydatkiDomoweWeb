@@ -35,6 +35,9 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure
             kernel.Bind<IBillRepository>().To<BillRepository>();
             kernel.Bind<IBillNameRepository>().To<BillNameRepository>();
             kernel.Bind<IRecipientRepository>().To<RecipientRepository>();
+            kernel.Bind<IPostCodeRepository>().To<PostCodeRepository>();
+            kernel.Bind<ICityRepository>().To<CityRepository>();
+            kernel.Bind<IStreetRepository>().To<StreetRepository>();
         }
     }
 }

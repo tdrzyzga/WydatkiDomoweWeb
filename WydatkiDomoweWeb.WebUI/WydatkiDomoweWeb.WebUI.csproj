@@ -241,7 +241,6 @@
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\configureCheckbox.js" />
     <Content Include="Scripts\crud.js" />
-    <Content Include="Scripts\crudAddBillName.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -268,6 +267,7 @@
     <Compile Include="Controllers\CrudBillsController.cs" />
     <Compile Include="Controllers\CrudBillsNamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,6 +284,7 @@
     <Compile Include="Models\CrudBillsViewModel.cs" />
     <Compile Include="Models\FilterBillsViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
+    <Compile Include="Models\RecipientsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +306,8 @@
     <Content Include="Views\Home\DeleteBillDialog.cshtml" />
     <Content Include="Views\BillsNames\DeleteBillNameDialog.cshtml" />
     <Content Include="Views\CrudBillsNames\DeleteBillName.cshtml" />
+    <Content Include="Views\Recipients\GetRecipients.cshtml" />
+    <Content Include="Views\Recipients\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
