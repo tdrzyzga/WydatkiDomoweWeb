@@ -5,7 +5,7 @@
 @using (Html.BeginForm("EditBill", "CrudBills"))
 {
     <table class="table table-addItem">
-        <tr>
+        <tr class="col-md-12">
             <td>
                 @Html.HiddenFor(m => m.BillId)
                 @Html.HiddenFor(m => m.SelectedBillNameId)
@@ -20,20 +20,20 @@
                 }
                 @Html.ValidationMessageFor(m => m.SelectedRecipientId)
             </td>
-            <td>
+            <td style="width:90px">
                 @Html.TextBoxFor(m => m.Amount, "{0:f}", new { @class = "form-control", placeholder = "Kwota" })
                 @Html.ValidationMessageFor(m => m.Amount)
             </td>
-            <td>
+            <td style="width:120px">
                 @Html.TextBoxFor(m => m.PaymentDate, new { @class = "form-control", id = "paymentDate", placeholder = "Data wpłaty" })
                 @Html.ValidationMessageFor(m => m.PaymentDate)
             </td>
-            <td>
+            <td style="width:120px">
                 @Html.TextBoxFor(m => m.RequiredDate, new { @class = "form-control", @readonly = "readonly" })
             </td>
-            <td>
+            <td style="width:140px">
                 <input class="btn btn-primary" type="submit" value="Zapisz" />
-                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddItem()" />
             </td>
         </tr>
     </table>  

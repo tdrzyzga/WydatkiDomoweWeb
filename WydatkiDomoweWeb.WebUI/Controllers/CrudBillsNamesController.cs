@@ -35,7 +35,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                billNameRepository.AddBillName(CreateBillName(model));
+                billNameRepository.Add(CreateBillName(model));
                 TempData["ChangedBillName"] = string.Format("Zapisano nazwę rachunku: {0} ", model.Name.ToString());
             }
 
@@ -63,7 +63,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                billNameRepository.UpdateBillName(CreateBillName(model));
+                billNameRepository.Update(CreateBillName(model));
                 TempData["ChangedBillName"] = string.Format("Zapisano zmiany w nazwie rachunku: {0} ", model.Name);
             }
 
@@ -102,10 +102,10 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             if (model.Bills.Count() != 0)
             {
                 foreach (var bill in model.Bills)
-                    billRepository.DeleteBill(bill.BillId);
+                    billRepository.Delete(bill.BillId);
             }
 
-            billNameRepository.DeleteBillName(model.BillNameId);
+            billNameRepository.Delete(model.BillNameId);
             TempData["ChangedBillName"] = string.Format("Usunięto nazwę rachunku: {0} ", model.Name);
             
             return RedirectToAction("GetBillsNames", "BillsNames");

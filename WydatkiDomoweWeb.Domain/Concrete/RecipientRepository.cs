@@ -15,5 +15,12 @@ namespace WydatkiDomoweWeb.Domain.Concrete
         {
             get { return context.Recipients; }
         }
+
+        public void Add(Recipient recipient)
+        {
+            context.Recipients.Add(recipient);
+
+            context.SaveChanges();
+        }
     }
 }

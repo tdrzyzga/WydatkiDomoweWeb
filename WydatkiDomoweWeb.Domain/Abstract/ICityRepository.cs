@@ -9,5 +9,7 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     public interface ICityRepository
     {
         IEnumerable<City> Cities { get; }
+        int Add(string city);
+        int? Exists(string city);
     }
 }

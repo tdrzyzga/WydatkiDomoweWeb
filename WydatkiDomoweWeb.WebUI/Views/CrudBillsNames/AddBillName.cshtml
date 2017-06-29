@@ -6,21 +6,21 @@
 {
     <table class="table table-addItem">
         <tr class="col-md-8">
-            <td class="col-md-2">
+             <td style="width:130px">
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "15" })
                 @Html.ValidationMessageFor(m => m.Name)
             </td>
-            <td class="col-md-2">
+            <td style="width:130px">
                 @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "firstPaymentDate", placeholder = "Pierwsza wpłata" })
                 @Html.ValidationMessageFor(m => m.FirstPaymentDate)
             </td>
-            <td class="col-md-2">
-                @Html.TextBoxFor(m => m.PaymentsFerquency, new { @class = "form-control", placeholder = "Częstotliwość wpłat", Value = "" })
+            <td style="width:130px">
+                @Html.TextBoxFor(m => m.PaymentsFerquency, new { @class = "form-control", placeholder = "Częstotliwość", Value = "" })
                 @Html.ValidationMessageFor(m => m.PaymentsFerquency)
             </td>
-            <td class="col-md-2">
+            <td style="width:140px">
                 <input class="btn btn-primary" type="submit" value="Zapisz" />
-                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddBill()" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddItem()" />
             </td>
         </tr>
     </table>  

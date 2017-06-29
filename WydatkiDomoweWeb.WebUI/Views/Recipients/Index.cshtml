@@ -7,8 +7,8 @@
         @Html.Action("GetRecipients")
     </div>
     <div class="panel-footer">
-       <div  id="addRecipient">
-
+        <div id="addItem">
+            @Ajax.ActionLink("Dodaj nowego odbiorcę", "AddRecipient", "CrudRecipients", null, new AjaxOptions() { UpdateTargetId = "addItem", HttpMethod = "Get" }, new { @class = "btn btn-primary" })
         </div>
     </div>
 </div>

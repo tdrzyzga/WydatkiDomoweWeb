@@ -15,5 +15,24 @@ namespace WydatkiDomoweWeb.Domain.Concrete
         {
             get { return context.Cities; }
         }
+
+        public int Add(string city)
+        {
+            context.Cities.Add(new City { Name = city });
+
+            context.SaveChanges();
+
+            return context.Cities.Single(c => c.Name == city).CityID;
+        }
+
+        public int? Exists(string city)
+        {
+            bool cityExists = context.Cities.Any(c => c.Name == city);
+
+            if (cityExists)
+                return context.Cities.Single(c => c.Name == city).CityID;
+            else
+                return null;
+        }
     }
 }

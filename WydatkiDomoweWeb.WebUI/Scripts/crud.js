@@ -1,6 +1,6 @@
 ﻿$(function () {
-    var defaultAddBill;
-    saveDefaultAddBill();
+    var defaultAddItem;
+    saveDefaultAddItem();
 })
 
 function configureAddBill() {
@@ -29,12 +29,12 @@ function configureAddBill() {
     });
 };
 
-function saveDefaultAddBill() {
-    defaultAddBill = $("#addBill").html();
+function saveDefaultAddItem() {
+    defaultAddItem = $("#addItem").html();
 };
 
-function undoToDefaultAddBill() {
-    $("#addBill").html(defaultAddBill);
+function undoToDefaultAddItem() {
+    $("#addItem").html(defaultAddItem);
 };
 
 function setDefaultDateTimePicker(datetimepicker) {

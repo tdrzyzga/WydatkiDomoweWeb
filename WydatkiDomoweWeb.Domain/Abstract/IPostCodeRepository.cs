@@ -9,5 +9,7 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     public interface IPostCodeRepository
     {
         IEnumerable<PostCode> PostCodes { get; }
+        int Add(string postCode);
+        int? Exists(string postCode);
     }
 }

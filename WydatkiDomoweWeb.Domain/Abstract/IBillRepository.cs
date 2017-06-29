@@ -9,8 +9,8 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     public interface IBillRepository
     {
         IEnumerable<Bill> Bills { get; }
-        void AddBill(Bill bill);
-        void UpdateBill(Bill bill);
-        void DeleteBill(int billId);
+        void Add(Bill bill);
+        void Update(Bill bill);
+        void Delete(int billId);
     }
 }

@@ -62,7 +62,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                billRepository.AddBill(CreateBill(model));
+                billRepository.Add(CreateBill(model));
                 TempData["ChangedBill"] = string.Format("Zapisano rachunek: {0} ", model.Bills.Single(b => b.BillNameId == model.SelectedBillNameId.ToString()).Name);
             }
 
@@ -97,7 +97,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                billRepository.UpdateBill(CreateBill(model));
+                billRepository.Update(CreateBill(model));
                 TempData["ChangedBill"] = string.Format("Zapisano zmiany w rachunku: {0} ", model.BillName);
             }
 
@@ -107,7 +107,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpPost]
         public RedirectToRouteResult DeleteBill(int billId, string billName)
         {
-            billRepository.DeleteBill(billId);
+            billRepository.Delete(billId);
             TempData["ChangedBill"] = string.Format("Usunięto rachunek: {0} ", billName);
 
             return RedirectToAction("GetBills", "Home");

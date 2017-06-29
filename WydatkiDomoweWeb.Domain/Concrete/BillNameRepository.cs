@@ -16,14 +16,14 @@ namespace WydatkiDomoweWeb.Domain.Concrete
             get { return context.BillNames; }
         }
 
-        public void AddBillName(BillName billName)
+        public void Add(BillName billName)
         {
             context.BillNames.Add(billName);
 
             context.SaveChanges();
         }
 
-        public void UpdateBillName(BillName billName)
+        public void Update(BillName billName)
         {
             BillName dbEntry = context.BillNames.Find(billName.BillNameID);
 
@@ -37,7 +37,7 @@ namespace WydatkiDomoweWeb.Domain.Concrete
             context.SaveChanges();
         }
 
-        public void DeleteBillName(int billNameId)
+        public void Delete(int billNameId)
         {
             BillName dbEntry = context.BillNames.Find(billNameId);
 

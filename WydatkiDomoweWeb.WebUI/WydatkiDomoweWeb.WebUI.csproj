@@ -266,6 +266,7 @@
     <Compile Include="Controllers\BillsNamesController.cs" />
     <Compile Include="Controllers\CrudBillsController.cs" />
     <Compile Include="Controllers\CrudBillsNamesController.cs" />
+    <Compile Include="Controllers\CrudRecipientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -308,6 +309,7 @@
     <Content Include="Views\CrudBillsNames\DeleteBillName.cshtml" />
     <Content Include="Views\Recipients\GetRecipients.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\CrudRecipients\AddRecipient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

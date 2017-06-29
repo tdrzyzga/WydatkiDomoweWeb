@@ -9,5 +9,6 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     public interface IRecipientRepository
     {
         IEnumerable<Recipient> Recipients { get; }
+        void Add(Recipient recipient);
     }
 }
