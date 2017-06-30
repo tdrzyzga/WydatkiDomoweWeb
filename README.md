@@ -48,9 +48,13 @@ Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/DeleteBillName.PNG)
 
-#### c) Zakładka "Odbiorcy" zawiera zestawienie odbiorców rachunków wraz z takimi danymi jak nr konta bankowego oraz adres. W zakładce tej można dodawać nowe nazwych odbiorców. Edycja wpisów oraz usuwanie jest w trakcie realizacji.
+#### c) Zakładka "Odbiorcy" zawiera zestawienie odbiorców rachunków wraz z takimi danymi jak nr konta bankowego oraz adres. W zakładce tej można dodawać nowe nazwych odbiorców, edytować już istniających oraz usuwać wpisy.
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/Recipients.PNG)
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/AddRecipient.PNG)
+
+![Alt text](WydatkiDomoweWeb.Domain/Image/EditRecipient.PNG)
+
+![Alt text](WydatkiDomoweWeb.Domain/Image/DeleteRecipient.PNG)
 
