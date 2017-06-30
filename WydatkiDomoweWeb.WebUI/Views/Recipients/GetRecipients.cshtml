@@ -26,7 +26,7 @@
             <td>@Html.DisplayFor(m => recipient.Street)</td>
             <td>@Html.DisplayFor(m => recipient.BuildingNr)</td>
             <td class="form-inline">
-                @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker('firstPaymentDate')" }, new { @class = "form-group" }))
+                @using (Ajax.BeginForm("EditRecipient", "CrudRecipients", null, new AjaxOptions { UpdateTargetId = "addItem", HttpMethod = "Get"}, new { @class = "form-group" }))
                 {
                     @Html.Hidden("RecipientId", recipient.RecipientId)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />

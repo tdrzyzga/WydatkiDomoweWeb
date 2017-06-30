@@ -25,11 +25,11 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public string PostCode { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę miasta")]
-        [RegularExpression(@"[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*\s*[-]?\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+\s*", ErrorMessage = "Miasto nie może zawierać cyfr oraz znaków: /, _, -")]
+        [RegularExpression(@"\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*\s*[-]?\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+\s*", ErrorMessage = "Miasto nie może zawierać cyfr oraz znaków: /, _, -")]
         public string City { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę ulicy")]
-        [RegularExpression(@"[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*\s*[-]?\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+\s*", ErrorMessage = "Ulica nie może zawierać cyfr oraz znaków: /, _, -")]
+        [RegularExpression(@"\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]*\s*[-]?\s*[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+\s*", ErrorMessage = "Ulica nie może zawierać cyfr oraz znaków: /, _, -")]
         public string Street { get; set; }
 
         [Required(ErrorMessage = "Proszę podać numer")]

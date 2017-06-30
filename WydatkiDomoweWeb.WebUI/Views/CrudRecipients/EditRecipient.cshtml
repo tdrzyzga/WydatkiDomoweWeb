@@ -1,0 +1,38 @@
+﻿@model WydatkiDomoweWeb.WebUI.Models.RecipientViewModel
+
+@Scripts.Render("~/bundles/validation")
+
+@using (Html.BeginForm("EditRecipient", "CrudRecipients"))
+{
+    <table class="table table-addItem">
+        <tr class="col-md-12">
+            <td style="width:240px">
+                @Html.HiddenFor(m => m.RecipientId)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "26", @readonly = "readonly", data_val = "false" })
+            </td>
+             <td style="width:240px">
+                @Html.TextBoxFor(m => m.Account, new { @class = "form-control", placeholder = "Numer konta", maxlength = "26", @readonly = "readonly", data_val = "false" })
+            </td>
+             <td style="width:80px">
+                @Html.TextBoxFor(m => m.PostCode, new { @class = "form-control", placeholder = "Kod", maxlength = "6" })
+                @Html.ValidationMessageFor(m => m.PostCode)
+            </td>
+             <td style="width:140px">
+                @Html.TextBoxFor(m => m.City, new { @class = "form-control", placeholder = "Miasto", maxlength = "15" })
+                @Html.ValidationMessageFor(m => m.City)
+            </td>
+             <td style="width:140px">
+                @Html.TextBoxFor(m => m.Street, new { @class = "form-control", placeholder = "Ulica", maxlength = "15" })
+                @Html.ValidationMessageFor(m => m.Street)
+            </td>
+             <td style="width:70px">
+                @Html.TextBoxFor(m => m.BuildingNr, new { @class = "form-control", placeholder = "Nr", maxlength = "5" })
+                @Html.ValidationMessageFor(m => m.BuildingNr)
+            </td>
+             <td style="width:140px">
+                <input class="btn btn-primary" type="submit" value="Zapisz" />
+                <input class="btn btn-primary" type="button" value="Anuluj" onclick="undoToDefaultAddItem()" />
+            </td>
+        </tr>
+    </table>  
+}

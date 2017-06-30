@@ -69,6 +69,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
             return RedirectToAction("Index", "BillsNames");
         }
+
         [HttpGet]
         public PartialViewResult DeleteBillName(int billNameId)
         {
