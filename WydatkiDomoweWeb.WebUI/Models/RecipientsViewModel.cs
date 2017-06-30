@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace WydatkiDomoweWeb.WebUI.Models
 {
@@ -11,10 +12,12 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public int RecipientId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę")]
+        [Remote("ValidateName", "CrudRecipients")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Proszę podać numer konta")]
         [RegularExpression(@"([0-9]{26})", ErrorMessage = "Numer konta musi posiadać 26 znaków i nie zawierać liter")]
+        [Remote("ValidateAccount", "CrudRecipients")]
         public string Account { get; set; }
 
         [Required(ErrorMessage = "Proszę podać kod pocztowy")]

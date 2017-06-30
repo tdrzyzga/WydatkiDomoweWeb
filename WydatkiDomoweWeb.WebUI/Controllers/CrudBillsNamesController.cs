@@ -114,7 +114,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public JsonResult ValidateName(string name)
         {
             if (billNameRepository.Exists(name))
-                return Json("Wybrana nazwa już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+                return Json("Wybrana nazwa rachunku już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
             else
                 return Json(true, JsonRequestBehavior.AllowGet);
         }

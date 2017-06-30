@@ -10,5 +10,7 @@ namespace WydatkiDomoweWeb.Domain.Abstract
     {
         IEnumerable<Recipient> Recipients { get; }
         void Add(Recipient recipient);
+        bool ExistsName(string name);
+        bool ExistsAccount(string account);
     }
 }

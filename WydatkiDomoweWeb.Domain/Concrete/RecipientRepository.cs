@@ -22,5 +22,15 @@ namespace WydatkiDomoweWeb.Domain.Concrete
 
             context.SaveChanges();
         }
+
+        public bool ExistsName(string name)
+        {
+            return context.Recipients.Any(r => r.Name == name);
+        }
+
+        public bool ExistsAccount(string account)
+        {
+            return context.Recipients.Any(r => r.Account == account);
+        }
     }
 }

@@ -45,7 +45,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("Index", "Recipients");
         }
 
-        public Recipient CreateRecipient(RecipientViewModel model)
+        public JsonResult ValidateName(string name)
+        {
+            if (recipientRepository.ExistsName(name))
+                return Json("Wybrana nazwa odbiorcy już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            else
+                return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ValidateAccount(string name)
+        {
+            if (recipientRepository.ExistsAccount(name))
+                return Json("Wybrana konto już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            else
+                return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        protected Recipient CreateRecipient(RecipientViewModel model)
         {
             Recipient recipient = new Recipient
             {
