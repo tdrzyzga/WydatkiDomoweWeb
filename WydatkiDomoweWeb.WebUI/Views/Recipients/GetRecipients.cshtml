@@ -31,11 +31,10 @@
                     @Html.Hidden("RecipientId", recipient.RecipientId)
                     <input class="btn btn-default btn-xs" type="submit" value="Edytuj" />
                 }
-                @using (Ajax.BeginForm("EditBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "addBill", HttpMethod = "Get", OnSuccess = "setDefaultDateTimePicker('firstPaymentDate')" }, new { @class = "form-group" }))
-                {
-                    @Html.Hidden("RecipientId", recipient.RecipientId)
-                    <input class="btn btn-default btn-xs" type="submit" value="Usuń" />
-                }
+                <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#@("modal" + recipient.RecipientId)">Usuń</button>
+                <div id="@("modal" + recipient.RecipientId)" class="modal fade" role="dialog">
+                    @Html.Partial("DeleteRecipientDialog", recipient)
+                </div>
             </td>
         </tr>
     }

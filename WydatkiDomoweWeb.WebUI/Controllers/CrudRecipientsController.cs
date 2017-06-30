@@ -11,13 +11,17 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 {
     public class CrudRecipientsController : Controller
     {
+        private IBillRepository billRepository;
+        private IBillNameRepository billNameRepository;
         private IRecipientRepository recipientRepository;
         private IPostCodeRepository postcodeRepository;
         private ICityRepository cityRepository;
         private IStreetRepository streetRepository;
 
-        public CrudRecipientsController(IRecipientRepository recipient, IPostCodeRepository postcode, ICityRepository city, IStreetRepository street)
+        public CrudRecipientsController(IBillRepository bill, IBillNameRepository billName, IRecipientRepository recipient, IPostCodeRepository postcode, ICityRepository city, IStreetRepository street)
         {
+            this.billRepository = bill;
+            this.billNameRepository = billName;
             this.recipientRepository = recipient;
             this.postcodeRepository = postcode;
             this.cityRepository = city;
@@ -74,6 +78,48 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             }
 
             return RedirectToAction("Index", "Recipients");
+        }
+
+        [HttpGet]
+        public PartialViewResult DeleteRecipient(int recipientId)
+        {
+            ItemDeleteViewModel model = new ItemDeleteViewModel
+            {
+                Bills = (from b in billRepository.Bills
+                         join bn in billNameRepository.BillNames
+                            on b.BillNameID equals bn.BillNameID
+                         join r in recipientRepository.Recipients
+                            on b.RecipientID equals r.RecipientID
+                         where r.RecipientID == recipientId
+                         select new BillViewModel
+                         {
+                             BillId = b.BillsID,
+                             BillName = bn.Name,
+                             Recipient = r.Name,
+                             Amount = b.Amount,
+                             PaymentDate = b.PaymentDate,
+                             RequiredDate = b.RequiredDate
+                         }).ToList(),
+                Id = recipientId,
+                Name = recipientRepository.Recipients.Single(r => r.RecipientID == recipientId).Name
+            };
+
+            return PartialView(model);
+        }
+
+        [HttpPost]
+        public RedirectToRouteResult DeleteRecipient(ItemDeleteViewModel model)
+        {
+            if (model.Bills.Count() != 0)
+            {
+                foreach (var bill in model.Bills)
+                    billRepository.Delete(bill.BillId);
+            }
+
+            recipientRepository.Delete(model.Id);
+            TempData["ChangedRecipient"] = string.Format("Usunięto odbiorcę: {0} ", model.Name);
+
+            return RedirectToAction("GetRecipients", "Recipients");
         }
 
         public JsonResult ValidateName(string name)

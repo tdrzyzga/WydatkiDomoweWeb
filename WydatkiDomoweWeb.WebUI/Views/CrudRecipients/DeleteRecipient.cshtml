@@ -28,14 +28,14 @@ else
 {
     <script type="text/javascript">
         $(function () {
-            $("#"+ "@Model.Id").addClass("modal-sm").removeClass("modal-lg");
+            $("#" + "@Model.Id").addClass("modal-sm").removeClass("modal-lg");
         })
     </script>
     
     <h5>Chcesz usunąc nazwę rachunku "@Model.Name"?</h5>
 }
 <div class="modal-footer">
-    @using (Ajax.BeginForm("DeleteBillName", "CrudBillsNames", null, new AjaxOptions { UpdateTargetId = "billsNamesTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
+    @using (Ajax.BeginForm("DeleteRecipient", "CrudRecipients", null, new AjaxOptions { UpdateTargetId = "recipientsTable", OnSuccess = "hideModal()" }, new { @class = "form-group" }))
     {
         for (int i = 0; i < Model.Bills.Count(); i++)
         {

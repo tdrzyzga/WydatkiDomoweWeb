@@ -40,6 +40,18 @@ namespace WydatkiDomoweWeb.Domain.Concrete
             context.SaveChanges();
         }
 
+        public void Delete(int recipientId)
+        {
+            Recipient dbEntry = context.Recipients.Find(recipientId);
+
+            if (dbEntry != null)
+            {
+                context.Recipients.Remove(dbEntry);
+            }
+
+            context.SaveChanges();
+        }
+
         public bool ExistsName(string name)
         {
             return context.Recipients.Any(r => r.Name == name);

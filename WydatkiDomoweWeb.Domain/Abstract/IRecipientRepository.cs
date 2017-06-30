@@ -11,6 +11,7 @@ namespace WydatkiDomoweWeb.Domain.Abstract
         IEnumerable<Recipient> Recipients { get; }
         void Add(Recipient recipient);
         void Update(Recipient recipient);
+        void Delete(int recipientId);
         bool ExistsName(string name);
         bool ExistsAccount(string account);        
     }
