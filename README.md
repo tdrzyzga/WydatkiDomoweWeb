@@ -28,7 +28,7 @@ Aplikacja w trakcie tworzenia.... Jej głownym celem jest nauka ASP.NET MVC 5, E
 
 ## 5) Postęp prac
 Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
-###### a) Zakładka "Główna" zawiera zestawienie wszystkich zapłaconych rachunków. W zakładce tej można dodawać nowe rachunki, edytować już istniejące oraz usuwać wpisy.
+#### a) Zakładka "Główna" zawiera zestawienie wszystkich zapłaconych rachunków. W zakładce tej można dodawać nowe rachunki, edytować      już istniejące oraz usuwać wpisy.
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/Home.PNG)
 
@@ -38,7 +38,7 @@ Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/DeleteBill.PNG)
 
-###### b) Zakładka "Rachunki" zawiera zestawienie nazw rachunków wraz z danymi potrzebnymi do ustalenia terminów płatności. W zakładce tej można dodawać nowe nazwy rachunków, edytować już istniejące oraz usuwać wpisy.
+#### b) Zakładka "Rachunki" zawiera zestawienie nazw rachunków wraz z danymi potrzebnymi do ustalenia terminów płatności. W            zakładce tej można dodawać nowe nazwy rachunków, edytować już istniejące oraz usuwać wpisy.
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/BillsNames.PNG)
 
@@ -48,7 +48,7 @@ Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/DeleteBillName.PNG)
 
-###### c) Zakładka "Odbiorcy" zawiera zestawienie odbiorców rachunków wraz z takimi danymi jak nr konta bankowego oraz adres. W zakładce tej można dodawać nowe nazwych odbiorców. Edycja wpisów oraz usuwanie jest w trakcie realizacji.
+#### c) Zakładka "Odbiorcy" zawiera zestawienie odbiorców rachunków wraz z takimi danymi jak nr konta bankowego oraz adres. W zakładce tej można dodawać nowe nazwych odbiorców. Edycja wpisów oraz usuwanie jest w trakcie realizacji.
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/Recipients.PNG)
 
