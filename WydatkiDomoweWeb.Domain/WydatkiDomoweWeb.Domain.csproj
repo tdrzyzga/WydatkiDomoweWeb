@@ -105,7 +105,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Image\AddBill.PNG" />
+    <Content Include="Image\AddBillName.PNG" />
+    <Content Include="Image\AddRecipient.PNG" />
+    <Content Include="Image\BillsNames.PNG" />
+    <Content Include="Image\DeleteBill.PNG" />
+    <Content Include="Image\DeleteBillName.PNG" />
+    <Content Include="Image\DeleteRecipient.PNG" />
+    <Content Include="Image\EditBill.PNG" />
+    <Content Include="Image\EditBillName.PNG" />
+    <Content Include="Image\EditRecipient.PNG" />
+    <Content Include="Image\Home.PNG" />
     <Content Include="Image\HouseholdExpenses.png" />
+    <Content Include="Image\Recipients.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -273,17 +273,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
-    <Compile Include="Infrastructure\Binders\BillNameDeleteViewModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\FilterBillBinder.cs" />
+    <Compile Include="Infrastructure\Binders\ItemDeleteViewModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\StringTrimingBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\Filters\DateRangeFilter.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Models\BillNameDeleteViewModel.cs" />
     <Compile Include="Models\BillsNamesViewModel.cs" />
     <Compile Include="Models\BillsViewModel.cs" />
     <Compile Include="Models\CrudBillsViewModel.cs" />
     <Compile Include="Models\FilterBillsViewModel.cs" />
+    <Compile Include="Models\ItemDeleteViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Models\RecipientsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -310,6 +310,9 @@
     <Content Include="Views\Recipients\GetRecipients.cshtml" />
     <Content Include="Views\Recipients\Index.cshtml" />
     <Content Include="Views\CrudRecipients\AddRecipient.cshtml" />
+    <Content Include="Views\CrudRecipients\DeleteRecipient.cshtml" />
+    <Content Include="Views\CrudRecipients\EditRecipient.cshtml" />
+    <Content Include="Views\Recipients\DeleteRecipientDialog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

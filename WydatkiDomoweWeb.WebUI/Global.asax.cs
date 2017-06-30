@@ -17,7 +17,7 @@ namespace WydatkiDomoweWeb.WebUI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ModelBinders.Binders.Add(typeof(FilterBillsViewModel), new FilterBillBinder());
-ModelBinders.Binders.Add(typeof(BillNameDeleteViewModel), new BillNameDeleteViewModelBinder());
+            ModelBinders.Binders.Add(typeof(ItemDeleteViewModel), new ItemDeleteViewModelBinder());
             ModelBinders.Binders.Add(typeof(string), new StringTrimmingBinder());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

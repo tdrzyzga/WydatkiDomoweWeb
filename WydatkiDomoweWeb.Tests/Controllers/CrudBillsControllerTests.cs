@@ -88,7 +88,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             RedirectToRouteResult result = controller.AddBill(model);
 
-            mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Once());
+            mockBills.Verify(m => m.Add(It.IsAny<Bill>()), Times.Once());
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
@@ -101,7 +101,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             RedirectToRouteResult result = controller.AddBill(model);
 
-            mockBills.Verify(m => m.AddBill(It.IsAny<Bill>()), Times.Never());
+            mockBills.Verify(m => m.Add(It.IsAny<Bill>()), Times.Never());
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
@@ -127,7 +127,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             RedirectToRouteResult result = controller.EditBill(model);
 
-            mockBills.Verify(m => m.UpdateBill(It.IsAny<Bill>()), Times.Once());
+            mockBills.Verify(m => m.Update(It.IsAny<Bill>()), Times.Once());
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
@@ -140,7 +140,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             RedirectToRouteResult result = controller.EditBill(model);
 
-            mockBills.Verify(m => m.UpdateBill(It.IsAny<Bill>()), Times.Never());
+            mockBills.Verify(m => m.Update(It.IsAny<Bill>()), Times.Never());
             Assert.IsNotNull(result);
             Assert.AreEqual("Index", result.RouteValues["action"]);
         }
@@ -152,7 +152,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers.Tests
 
             RedirectToRouteResult result = controller.DeleteBill(1, "Bill1");
 
-            mockBills.Verify(m => m.DeleteBill(It.IsAny<int>()), Times.Once());
+            mockBills.Verify(m => m.Delete(It.IsAny<int>()), Times.Once());
             Assert.IsNotNull(result);
             Assert.AreEqual("GetBills", result.RouteValues["action"]);
         }
