@@ -55,6 +55,8 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 PaymentsFerquency = billName.PaymentsFrequency
             };
 
+            TempData["EditId"] = billNameId;
+
             return PartialView(model);
         }
 
@@ -112,12 +114,23 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("GetBillsNames", "BillsNames");
         }
 
-        public JsonResult ValidateName(string name)
+        public JsonResult ValidateName(string name, int BillNameId)
         {
+            JsonResult result;
+
             if (billNameRepository.Exists(name))
-                return Json("Wybrana nazwa rachunku już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            {
+                int idByName = billNameRepository.BillNames.Single(bn => bn.Name.ToLower() == name.ToLower()).BillNameID;
+                
+                if (BillNameId != idByName)
+                    result = Json("Wybrana nazwa rachunku już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+                else
+                    result = Json(true, JsonRequestBehavior.AllowGet);
+            }
             else
-                return Json(true, JsonRequestBehavior.AllowGet);
+                result = Json(true, JsonRequestBehavior.AllowGet);
+
+            return result;
         }
 
         protected BillName CreateBillName(BillNameViewModel model)

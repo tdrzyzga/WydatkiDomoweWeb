@@ -2,20 +2,23 @@
 
 @Scripts.Render("~/bundles/validation")
 
+
+
 @using (Html.BeginForm("EditBillName", "CrudBillsNames"))
 {
     <table class="table table-addItem">
         <tr class="col-md-8">
            <td style="width:130px">
                 @Html.HiddenFor(m => m.BillNameId)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "15", @readonly = "readonly", data_val = "false" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "15" })
+                @Html.ValidationMessageFor(m => m.Name)
             </td>
             <td style="width:130px">
                 @Html.TextBoxFor(m => m.FirstPaymentDate, new { @class = "form-control", id = "firstPaymentDate", placeholder = "Pierwsza wpłata" })
                 @Html.ValidationMessageFor(m => m.FirstPaymentDate)
             </td>
             <td style="width:130px">
-                @Html.TextBoxFor(m => m.PaymentsFerquency, new { @class = "form-control", placeholder = "Częstotliwość"})
+                @Html.TextBoxFor(m => m.PaymentsFerquency, new { @class = "form-control", placeholder = "Częstotliwość" })
                 @Html.ValidationMessageFor(m => m.PaymentsFerquency)
             </td>
             <td style="width:140px">

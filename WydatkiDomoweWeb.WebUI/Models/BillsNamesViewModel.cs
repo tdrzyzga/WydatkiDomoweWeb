@@ -12,7 +12,7 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public int BillNameId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę")]
-        [Remote("ValidateName", "CrudBillsNames")]
+        [Remote("ValidateName", "CrudBillsNames",  AdditionalFields = "BillNameId")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Proszę podać datę")]
