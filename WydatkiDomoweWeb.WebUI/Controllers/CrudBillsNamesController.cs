@@ -55,8 +55,6 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
                 PaymentsFerquency = billName.PaymentsFrequency
             };
 
-            TempData["EditId"] = billNameId;
-
             return PartialView(model);
         }
 

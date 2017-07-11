@@ -122,20 +122,42 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             return RedirectToAction("GetRecipients", "Recipients");
         }
 
-        public JsonResult ValidateName(string name)
+        public JsonResult ValidateName(string name, int RecipientId)
         {
+            JsonResult result;
+
             if (recipientRepository.ExistsName(name))
-                return Json("Wybrana nazwa odbiorcy już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            {
+                int idByName = recipientRepository.Recipients.Single(r => r.Name.ToLower() == name.ToLower()).RecipientID;
+
+                if (RecipientId != idByName)
+                    result = Json("Wybrana nazwa odbiorcy już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+                else
+                    result = Json(true, JsonRequestBehavior.AllowGet);
+            }
             else
-                return Json(true, JsonRequestBehavior.AllowGet);
+                result = Json(true, JsonRequestBehavior.AllowGet);
+
+            return result;
         }
 
-        public JsonResult ValidateAccount(string account)
+        public JsonResult ValidateAccount(string account, int RecipientId)
         {
+            JsonResult result;
+
             if (recipientRepository.ExistsAccount(account))
-                return Json("Wybrana konto już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+            {
+                int idByAccount = recipientRepository.Recipients.Single(r => r.Account == account).RecipientID;
+
+                if (RecipientId != idByAccount)
+                    result = Json("Wybrana nazwa odbiorcy już istnieje w bazie danych", JsonRequestBehavior.AllowGet);
+                else
+                    result = Json(true, JsonRequestBehavior.AllowGet);
+            }
             else
-                return Json(true, JsonRequestBehavior.AllowGet);
+                result = Json(true, JsonRequestBehavior.AllowGet);
+
+            return result;
         }
 
         protected Recipient CreateRecipient(RecipientViewModel model)

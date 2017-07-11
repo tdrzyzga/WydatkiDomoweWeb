@@ -8,10 +8,12 @@
         <tr class="col-md-12">
             <td style="width:240px">
                 @Html.HiddenFor(m => m.RecipientId)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "26", @readonly = "readonly", data_val = "false" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "26" })
+                @Html.ValidationMessageFor(m => m.Name)
             </td>
              <td style="width:240px">
-                @Html.TextBoxFor(m => m.Account, new { @class = "form-control", placeholder = "Numer konta", maxlength = "26", @readonly = "readonly", data_val = "false" })
+                @Html.TextBoxFor(m => m.Account, new { @class = "form-control", placeholder = "Numer konta", maxlength = "26" })
+                @Html.ValidationMessageFor(m => m.Account)
             </td>
              <td style="width:80px">
                 @Html.TextBoxFor(m => m.PostCode, new { @class = "form-control", placeholder = "Kod", maxlength = "6" })

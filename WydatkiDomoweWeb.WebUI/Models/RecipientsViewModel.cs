@@ -12,12 +12,12 @@ namespace WydatkiDomoweWeb.WebUI.Models
         public int RecipientId { get; set; }
 
         [Required(ErrorMessage = "Proszę podać nazwę")]
-        [Remote("ValidateName", "CrudRecipients")]
+        [Remote("ValidateName", "CrudRecipients", AdditionalFields = "RecipientId")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Proszę podać numer konta")]
         [RegularExpression(@"([0-9]{26})", ErrorMessage = "Numer konta musi posiadać 26 znaków i nie zawierać liter")]
-        [Remote("ValidateAccount", "CrudRecipients")]
+        [Remote("ValidateAccount", "CrudRecipients", AdditionalFields = "RecipientId")]
         public string Account { get; set; }
 
         [Required(ErrorMessage = "Proszę podać kod pocztowy")]

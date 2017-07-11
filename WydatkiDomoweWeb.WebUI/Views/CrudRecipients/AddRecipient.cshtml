@@ -7,6 +7,7 @@
     <table class="table table-addItem">
         <tr class="col-md-12">
             <td style="width:240px">
+                @Html.HiddenFor(m => m.RecipientId)
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Nazwa", maxlength = "26" })
                 @Html.ValidationMessageFor(m => m.Name)
             </td>
