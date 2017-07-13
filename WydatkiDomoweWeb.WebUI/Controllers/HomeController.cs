@@ -25,7 +25,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public ViewResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult GetBills(FilterBillsViewModel filterModel, int page = 1)
         {
-            var bills = (from b in billRepository.Bills
+            IEnumerable<BillViewModel> bills = (from b in billRepository.Bills
                          join bn in billNameRepository.BillNames
                             on b.BillNameID equals bn.BillNameID
                          join r in recipientRepository.Recipients

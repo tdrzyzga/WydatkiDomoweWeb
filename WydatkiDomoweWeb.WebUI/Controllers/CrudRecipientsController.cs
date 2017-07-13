@@ -52,7 +52,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult EditRecipient(int recipientId)
         {
-            var recipient = recipientRepository.Recipients.Single(r => r.RecipientID == recipientId);
+            Recipient recipient = recipientRepository.Recipients.Single(r => r.RecipientID == recipientId);
 
             RecipientViewModel model = new RecipientViewModel
             {

@@ -11,12 +11,12 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Binders
     {
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            var valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
+            ValueProviderResult valueResult = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
 
             if (valueResult == null)
                 return null;
 
-            var stringValue = (string)valueResult.AttemptedValue;
+            string stringValue = (string)valueResult.AttemptedValue;
 
             if (!string.IsNullOrWhiteSpace(stringValue))
             {

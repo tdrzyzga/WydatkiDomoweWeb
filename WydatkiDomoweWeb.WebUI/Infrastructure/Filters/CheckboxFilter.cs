@@ -16,8 +16,8 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Filters
             {
                 for (int i = 0; i < filterModel.CheckboxItems.Count(); i++)
                 {
-                    var query = bills.Where(bn => bn.BillName.Equals(filterModel.CheckboxItems[i].Name) && filterModel.CheckboxItems[i].IsChecked);
-                    currentBills.AddRange(query);
+                    IEnumerable<BillViewModel> billsFiltered = bills.Where(bn => bn.BillName.Equals(filterModel.CheckboxItems[i].Name) && filterModel.CheckboxItems[i].IsChecked);
+                    currentBills.AddRange(billsFiltered);
                 }
             }
             else

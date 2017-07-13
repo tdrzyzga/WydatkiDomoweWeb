@@ -27,7 +27,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult GetBillsNames(int page = 1)
         {
-            var billsNames = (from bn in billNameRepository.BillNames
+            IEnumerable<BillNameViewModel> billsNames = (from bn in billNameRepository.BillNames
                          select new BillNameViewModel
                          {
                              BillNameId = bn.BillNameID,

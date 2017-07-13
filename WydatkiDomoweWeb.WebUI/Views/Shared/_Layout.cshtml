@@ -24,7 +24,9 @@
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Recipients" ? "active" : "")">
                     @Html.ActionLink("Odbiorcy", "Index", "Recipients")
                 </li>
-                <li><a href="#">Raporty</a></li>
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Charts" ? "active" : "")">
+                    @Html.ActionLink("Zestawienia", "Index", "Charts")
+                </li>
             </ul>
         </div>
         <div>

@@ -33,7 +33,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult GetRecipients(int page = 1)
         {
-            var recipients = from r in recipientRepository.Recipients
+            IEnumerable<RecipientViewModel> recipients = from r in recipientRepository.Recipients
                              join p in postcodeRepository.PostCodes
                                 on r.PostCodeID equals p.PostCodeID
                              join c in cityRepository.Cities

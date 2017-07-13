@@ -45,7 +45,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult EditBillName(int billNameId)
         {
-            var billName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId);
+            BillName billName = billNameRepository.BillNames.Single(bn => bn.BillNameID == billNameId);
 
             BillNameViewModel model = new BillNameViewModel
             {

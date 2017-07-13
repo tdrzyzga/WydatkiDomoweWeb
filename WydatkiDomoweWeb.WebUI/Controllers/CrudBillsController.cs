@@ -72,7 +72,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult EditBill(int billId)
         {
-            var billNameId = billRepository.Bills.Single(b => b.BillsID == billId).BillNameID;
+            int billNameId = billRepository.Bills.Single(b => b.BillsID == billId).BillNameID;
 
             CrudBillsViewModel model = new CrudBillsViewModel
             {                
