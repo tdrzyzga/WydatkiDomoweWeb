@@ -27,6 +27,10 @@ namespace WydatkiDomoweWeb.WebUI
                     "~/Scripts/jquery.validate.min.js",
                     "~/Scripts/jquery.validate.unobtrusive.min.js"                
                ));
+            bundles.Add(new ScriptBundle("~/bundles/charts")
+                .Include(
+                    "~/Scripts/highcharts/4.2.0/highcharts.js"
+               ));
         }
     } 
 }

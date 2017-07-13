@@ -30,16 +30,16 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult YearChart()
+        public PartialViewResult MonthChart()
         {
-            List<string> category = billRepository.Bills.GroupBy(b => b.PaymentDate.Month).Select(c => System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(c.Key)).ToList();
+            List<string> category = billRepository.Bills.GroupBy(b => b.PaymentDate.Month).Select(b => System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(b.Key)).ToList();
             
-            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).Select(cs => new ColumnSeries
+            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(cs => new ColumnSeries
             {
                 Name = cs.Key.ToString(),
-                Data = cs.GroupBy(g => g.PaymentDate.Month).Select(csd => new ColumnSeriesData
+                Data = cs.GroupBy(b => b.PaymentDate.Month).Select(b => new ColumnSeriesData
                 {
-                    Y = csd.Sum(a => Decimal.ToDouble(a.Amount)),
+                    Y = b.Sum(sm => Decimal.ToDouble(sm.Amount)),
                 }).ToList()
             });
 
@@ -53,20 +53,17 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult MonthChart()
+        public PartialViewResult YearChart()
         {
-           List<string> category = (from b in billRepository.Bills
-                         join bn in billNameRepository.BillNames
-                            on b.BillNameID equals bn.BillNameID
-                         select bn.Name).ToList();
+            List<string> category = billNameRepository.BillNames.GroupBy(bn => bn.BillNameID).OrderBy(bn => bn.Key).Select(bn => bn.Key.ToString()).ToList();
             
-            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).Select(cs => new ColumnSeries
+            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(cs => new ColumnSeries
             {
                 Name = cs.Key.ToString(),
-                Data = cs.GroupBy(g => g.BillNameID).Select(csd => new ColumnSeriesData
-                {
-                    Y = csd.Sum(a => Decimal.ToDouble(a.Amount)),
-                }).ToList()
+                Data = cs.GroupBy(b => b.BillNameID).OrderBy(b => b.Key).Select(b => new ColumnSeriesData                       
+                       {
+                           Y = b. Sum(sm => Decimal.ToDouble(sm.Amount))
+                       }).ToList()
             });
 
             Highcharts model = new Highcharts();
