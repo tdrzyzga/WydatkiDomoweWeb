@@ -323,9 +323,11 @@
     <Compile Include="Infrastructure\Binders\StringTrimingBinder.cs" />
     <Compile Include="Infrastructure\Filters\CheckboxFilter.cs" />
     <Compile Include="Infrastructure\Filters\DateRangeFilter.cs" />
+    <Compile Include="Infrastructure\Helpers\ChartHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\BillsNamesViewModel.cs" />
     <Compile Include="Models\BillsViewModel.cs" />
+    <Compile Include="Models\ChartViewModel.cs" />
     <Compile Include="Models\CrudBillsViewModel.cs" />
     <Compile Include="Models\FilterBillsViewModel.cs" />
     <Compile Include="Models\ItemDeleteViewModel.cs" />

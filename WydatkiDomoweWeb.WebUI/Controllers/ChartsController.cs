@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WydatkiDomoweWeb.Domain.Abstract;
 using Highsoft.Web.Mvc.Charts;
+using WydatkiDomoweWeb.WebUI.Models;
+using WydatkiDomoweWeb.WebUI.Infrastructure.Helpers;
 
 namespace WydatkiDomoweWeb.WebUI.Controllers
 {
@@ -32,22 +34,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult MonthChart()
         {
-            List<string> category = billRepository.Bills.GroupBy(b => b.PaymentDate.Month).Select(b => System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(b.Key)).ToList();
-            
-            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(cs => new ColumnSeries
+            List<string> category = new List<string> { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
+ 
+            ChartViewModel model = new ChartViewModel
             {
-                Name = cs.Key.ToString(),
-                Data = cs.GroupBy(b => b.PaymentDate.Month).Select(b => new ColumnSeriesData
-                {
-                    Y = b.Sum(sm => Decimal.ToDouble(sm.Amount)),
-                }).ToList()
-            });
-
-            Highcharts model = new Highcharts();
-            //model.Chart = new Chart { Width = 1087, Height = 400, Type = ChartType.Column };
-            model.Title = new Title { Text = "Zestawienie miesięczne" };
-            model.XAxis = new List<XAxis> { new XAxis { Categories = category } };
-            model.Series = new List<Series>(seriesData);
+                Category = category,
+                SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills)
+            };
 
             return PartialView(model);
         }
@@ -56,15 +49,24 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         public PartialViewResult YearChart()
         {
             List<string> category = billNameRepository.BillNames.GroupBy(bn => bn.BillNameID).OrderBy(bn => bn.Key).Select(bn => bn.Key.ToString()).ToList();
-            
+
             IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(cs => new ColumnSeries
+            {
+                Name = cs.Key.ToString(),
+                Data = cs.GroupBy(b => b.BillNameID).OrderBy(b => b.Key).Select(b => new ColumnSeriesData
+                {
+                    Y = b.Sum(sm => Decimal.ToDouble(sm.Amount))
+                }).ToList()
+            });
+                
+                /*).OrderBy(b => b.Key).Select(cs => new ColumnSeries
             {
                 Name = cs.Key.ToString(),
                 Data = cs.GroupBy(b => b.BillNameID).OrderBy(b => b.Key).Select(b => new ColumnSeriesData                       
                        {
                            Y = b. Sum(sm => Decimal.ToDouble(sm.Amount))
                        }).ToList()
-            });
+            });*/
 
             Highcharts model = new Highcharts();
             //model.Chart = new Chart { Width = 1087, Height = 400, Type = ChartType.Column };
@@ -74,6 +76,5 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
 
             return PartialView(model);
         }
-
     }
 }
