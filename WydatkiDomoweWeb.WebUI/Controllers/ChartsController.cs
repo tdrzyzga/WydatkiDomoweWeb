@@ -32,7 +32,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult MonthChart()
+        public PartialViewResult GetMonthlyChart()
         {
             List<string> category = new List<string> { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
  
@@ -46,7 +46,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult YearChart()
+        public PartialViewResult GetYearlyChart()
         {
             List<string> category = billNameRepository.BillNames.OrderBy(bn => bn.Name).Select(bn => bn.Name).ToList();
 

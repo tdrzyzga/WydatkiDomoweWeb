@@ -361,8 +361,8 @@
     <Content Include="Views\CrudRecipients\EditRecipient.cshtml" />
     <Content Include="Views\Recipients\DeleteRecipientDialog.cshtml" />
     <Content Include="Views\Charts\Index.cshtml" />
-    <Content Include="Views\Charts\MonthChart.cshtml" />
-    <Content Include="Views\Charts\YearChart.cshtml" />
+    <Content Include="Views\Charts\GetMonthlyChart.cshtml" />
+    <Content Include="Views\Charts\GetYearlyChart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
