@@ -1,6 +1,13 @@
 ﻿@using Highsoft.Web.Mvc.Charts
-@model Highcharts
+@model WydatkiDomoweWeb.WebUI.Models.ChartViewModel
 
 @Scripts.Render("~/bundles/charts")
 
-@(Html.Highsoft().Highcharts(Model,"chart"))
+@(Html.Highsoft().Highcharts(
+    new Highcharts
+    {
+        Title = new Title { Text = "Zestawienie roczne" },
+        XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } },
+        Series = new List<Series>(Model.SeriesData)
+    }
+, "chartYear"))

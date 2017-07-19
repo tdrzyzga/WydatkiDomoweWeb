@@ -48,31 +48,13 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         [HttpGet]
         public PartialViewResult YearChart()
         {
-            List<string> category = billNameRepository.BillNames.GroupBy(bn => bn.BillNameID).OrderBy(bn => bn.Key).Select(bn => bn.Key.ToString()).ToList();
+            List<string> category = billNameRepository.BillNames.OrderBy(bn => bn.Name).Select(bn => bn.Name).ToList();
 
-            IEnumerable<ColumnSeries> seriesData = billRepository.Bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(cs => new ColumnSeries
+            ChartViewModel model = new ChartViewModel
             {
-                Name = cs.Key.ToString(),
-                Data = cs.GroupBy(b => b.BillNameID).OrderBy(b => b.Key).Select(b => new ColumnSeriesData
-                {
-                    Y = b.Sum(sm => Decimal.ToDouble(sm.Amount))
-                }).ToList()
-            });
-                
-                /*).OrderBy(b => b.Key).Select(cs => new ColumnSeries
-            {
-                Name = cs.Key.ToString(),
-                Data = cs.GroupBy(b => b.BillNameID).OrderBy(b => b.Key).Select(b => new ColumnSeriesData                       
-                       {
-                           Y = b. Sum(sm => Decimal.ToDouble(sm.Amount))
-                       }).ToList()
-            });*/
-
-            Highcharts model = new Highcharts();
-            //model.Chart = new Chart { Width = 1087, Height = 400, Type = ChartType.Column };
-            model.Title = new Title { Text = "Zestawienie roczne" };
-            model.XAxis = new List<XAxis> { new XAxis { Categories = category } };
-            model.Series = new List<Series>(seriesData);
+                Category = category,
+                SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, billNameRepository.BillNames)
+            };
 
             return PartialView(model);
         }

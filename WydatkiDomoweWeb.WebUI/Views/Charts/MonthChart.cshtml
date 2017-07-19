@@ -3,11 +3,12 @@
 
 @Scripts.Render("~/bundles/charts")
 
-@(Html.Highsoft().Highcharts(
-    new Highcharts
-    {
-        Title = new Title { Text = "Zestawienie miesięczne" },
-        XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } },
-        Series = new List<Series>(Model.SeriesData)
-    }
-, "chart1"))
+@{
+    Highcharts highcharts = new Highcharts();
+    highcharts.Chart = new Chart();
+    highcharts.Title = new Title { Text = "Zestawienie miesięczne" };
+    highcharts.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
+    highcharts.Series = new List<Series>(Model.SeriesData);
+}
+
+@(Html.Highsoft().Highcharts(highcharts, "chartMonth"))
