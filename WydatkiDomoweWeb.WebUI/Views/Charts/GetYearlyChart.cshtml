@@ -3,11 +3,13 @@
 
 @Scripts.Render("~/bundles/charts")
 
-@(Html.Highsoft().Highcharts(
-    new Highcharts
-    {
-        Title = new Title { Text = "Zestawienie roczne" },
-        XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } },
-        Series = new List<Series>(Model.SeriesData)
-    }
-, "YearlyChart"))
+@{
+    Highcharts chart = new Highcharts();
+    chart.Title = new Title { Text = "Zestawienie roczne" };
+    chart.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
+    chart.Series = new List<Series>(Model.SeriesData);
+    chart.YAxis = new List<YAxis>{new YAxis { Title = new YAxisTitle { Text = "Wartości" } }};
+    chart.YAxis[0].Labels.Format = "{value} zł";
+    chart.PlotOptions.Column.Tooltip.PointFormat = "<span style=\"color:{point.color}\">\u25CF</span>{series.name}: <b>{point.y:.2f}</b><b> zł</b><br/>";
+}
+@(Html.Highsoft().Highcharts(chart, "YearlyChart"))
