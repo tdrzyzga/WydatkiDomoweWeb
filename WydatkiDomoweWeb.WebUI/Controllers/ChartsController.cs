@@ -46,7 +46,7 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetYearlyChart()
+        public PartialViewResult GetYearlyChartForIndividualBills()
         {
             List<string> category = billNameRepository.BillNames.OrderBy(bn => bn.Name).Select(bn => bn.Name).ToList();
 
@@ -54,6 +54,30 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             {
                 Category = category,
                 SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, billNameRepository.BillNames)
+            };
+
+            return PartialView(model);
+        }
+
+        [HttpGet]
+        public PartialViewResult GetMonthlyChartForIndividualBills(int id = 0)
+        {
+            List<string> category = new List<string> { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
+
+            if (id == 0)
+                id = billNameRepository.BillNames.OrderBy(bn => bn.BillNameID).First().BillNameID;
+
+            ChartViewModel model = new ChartViewModel
+            {
+                Category = category,
+                SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, id),
+                SelectedBillNameId = id,
+                SelectedBillName = billNameRepository.BillNames.Where(bn => bn.BillNameID == id).First().Name,
+                Bills = billNameRepository.BillNames.Select(bn => new SelectBillName
+                {
+                    BillNameId = bn.BillNameID.ToString(),
+                    Name = bn.Name
+                }).ToList()
             };
 
             return PartialView(model);

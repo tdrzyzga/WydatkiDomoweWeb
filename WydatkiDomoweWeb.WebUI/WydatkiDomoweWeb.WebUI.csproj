@@ -243,6 +243,7 @@
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\charts.js" />
     <Content Include="Scripts\configureCheckbox.js" />
     <Content Include="Scripts\crud.js" />
     <Content Include="Scripts\highcharts\4.2.0\adapters\standalone-framework.js" />
@@ -362,7 +363,8 @@
     <Content Include="Views\Recipients\DeleteRecipientDialog.cshtml" />
     <Content Include="Views\Charts\Index.cshtml" />
     <Content Include="Views\Charts\GetMonthlyChart.cshtml" />
-    <Content Include="Views\Charts\GetYearlyChart.cshtml" />
+    <Content Include="Views\Charts\GetMonthlyChartForIndividualBills.cshtml" />
+    <Content Include="Views\Charts\GetYearlyChartForIndividualBills.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

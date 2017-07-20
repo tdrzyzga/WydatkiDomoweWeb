@@ -1,15 +1,13 @@
 ﻿@using Highsoft.Web.Mvc.Charts
 @model WydatkiDomoweWeb.WebUI.Models.ChartViewModel
 
-@Scripts.Render("~/bundles/charts")
-
 @{
     Highcharts chart = new Highcharts();
-    chart.Title = new Title { Text = "Zestawienie roczne" };
+    chart.Title = new Title { Text = "Wydatki roczne za poszczególne rachunki" };
     chart.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
     chart.Series = new List<Series>(Model.SeriesData);
     chart.YAxis = new List<YAxis>{new YAxis { Title = new YAxisTitle { Text = "Wartości" } }};
     chart.YAxis[0].Labels.Format = "{value} zł";
     chart.PlotOptions.Column.Tooltip.PointFormat = "<span style=\"color:{point.color}\">\u25CF</span>{series.name}: <b>{point.y:.2f}</b><b> zł</b><br/>";
 }
-@(Html.Highsoft().Highcharts(chart, "YearlyChart"))
+@(Html.Highsoft().Highcharts(chart, "YearlyChartForIndividualBills"))

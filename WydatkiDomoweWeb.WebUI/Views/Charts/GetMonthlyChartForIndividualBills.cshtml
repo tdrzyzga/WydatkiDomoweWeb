@@ -1,14 +1,19 @@
 ﻿@using Highsoft.Web.Mvc.Charts
 @model WydatkiDomoweWeb.WebUI.Models.ChartViewModel
 
-
+@Html.DropDownListFor(m => m.SelectedBillNameId, new SelectList(Model.Bills, "BillNameId", "Name"), "Wybierz rachunek", new { @class = "form-control", style = "width:180px", id = "selectBill" })
+@for (int i = 0; i < Model.Bills.Count(); i++)
+{
+    @Html.HiddenFor(m => m.Bills[i].BillNameId)
+    @Html.HiddenFor(m => m.Bills[i].Name)                    
+}
 @{
     Highcharts chart = new Highcharts();
-    chart.Title = new Title { Text = "Wydatki miesięczne" };
+    chart.Title = new Title { Text = "Wydatki miesięczne za " + "<b>" + Model.SelectedBillName.ToLower()+"</b>" };
     chart.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
     chart.Series = new List<Series>(Model.SeriesData);
     chart.YAxis = new List<YAxis> { new YAxis { Title = new YAxisTitle { Text = "Wartości" } } };
     chart.YAxis[0].Labels.Format = "{value} zł";
     chart.PlotOptions.Column.Tooltip.PointFormat = "<span style=\"color:{point.color}\">\u25CF</span>{series.name}: <b>{point.y:.2f}</b><b> zł</b><br/>";
 }
-@(Html.Highsoft().Highcharts(chart, "MonthlyChart"))
+@(Html.Highsoft().Highcharts(chart, "MonthlyChartForIndividualBill"))

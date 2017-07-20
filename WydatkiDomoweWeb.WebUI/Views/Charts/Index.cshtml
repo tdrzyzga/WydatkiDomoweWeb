@@ -2,13 +2,18 @@
     ViewBag.Title = "Zestawienia";
 }
 
+@Scripts.Render("~/bundles/charts")
+
 <div class="panel panel-default">
     <div class="panel-body">
-    <div>
-        @Html.Action("GetMonthlyChart")
+        <div>
+            @Html.Action("GetMonthlyChart")
         </div>
         <div>
-        @Html.Action("GetYearlyChart")
+            @Html.Action("GetYearlyChartForIndividualBills")
         </div>
+        <div id="individualBill">
+            @Html.Action("GetMonthlyChartForIndividualBills")
+        </div>        
     </div>
 </div>

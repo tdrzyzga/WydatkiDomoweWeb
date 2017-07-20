@@ -29,7 +29,8 @@ namespace WydatkiDomoweWeb.WebUI
                ));
             bundles.Add(new ScriptBundle("~/bundles/charts")
                 .Include(
-                    "~/Scripts/highcharts/4.2.0/highcharts.js"
+                    "~/Scripts/highcharts/4.2.0/highcharts.js",
+                    "~/Scripts/charts.js"
                ));
         }
     } 
