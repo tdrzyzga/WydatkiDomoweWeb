@@ -3,6 +3,7 @@
 
 @{
     Highcharts chart = new Highcharts();
+    chart.Chart = new Chart { Type = ChartType.Column };
     chart.Title = new Title { Text = "Wydatki roczne za poszczególne rachunki" };
     chart.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
     chart.Series = new List<Series>(Model.SeriesData);

@@ -93,12 +93,12 @@ namespace WydatkiDomoweWeb.WebUI.Infrastructure.Helpers
             return seriesData;
         }
 
-        public static IEnumerable<ColumnSeries> CreateSeriesData(IEnumerable<Bill> bills, int id)
+        public static IEnumerable<ColumnSeries> CreateSeriesData(IEnumerable<Bill> bills, int billNameId)
         {
             int numberOFMonths = 12;
             List<int> years = bills.GroupBy(b => b.PaymentDate.Year).OrderBy(b => b.Key).Select(b => b.Key).ToList();
             List<Tuple<int, int, decimal>> dataFromRepository = (from b in bills
-                                                                 where b.BillNameID == id
+                                                                 where b.BillNameID == billNameId
                                                                  group b by new
                                                                  {
                                                                      b.PaymentDate.Year,

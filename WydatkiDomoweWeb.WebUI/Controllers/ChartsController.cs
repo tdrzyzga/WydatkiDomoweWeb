@@ -60,19 +60,19 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult GetMonthlyChartForIndividualBills(int id = 0)
+        public PartialViewResult GetMonthlyChartForIndividualBills()
         {
             List<string> category = new List<string> { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień" };
 
-            if (id == 0)
-                id = billNameRepository.BillNames.OrderBy(bn => bn.BillNameID).First().BillNameID;
+        
+            int billNameId = billNameRepository.BillNames.OrderBy(bn => bn.BillNameID).First().BillNameID;
 
             ChartViewModel model = new ChartViewModel
             {
                 Category = category,
-                SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, id),
-                SelectedBillNameId = id,
-                SelectedBillName = billNameRepository.BillNames.Where(bn => bn.BillNameID == id).First().Name,
+                SeriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, billNameId),
+                SelectedBillNameId = billNameId,
+                SelectedBillName = billNameRepository.BillNames.Where(bn => bn.BillNameID == billNameId).First().Name,
                 Bills = billNameRepository.BillNames.Select(bn => new SelectBillName
                 {
                     BillNameId = bn.BillNameID.ToString(),
@@ -81,6 +81,20 @@ namespace WydatkiDomoweWeb.WebUI.Controllers
             };
 
             return PartialView(model);
+        }
+
+        [HttpPost]
+        public JsonResult GetSeriesData(int billNameId)
+        {
+               IEnumerable<ColumnSeries> seriesData = ChartHelpers.CreateSeriesData(billRepository.Bills, billNameId);
+
+               var data = seriesData.Select(d => new
+               {
+                   Name = d.Name,
+                   Data = d.Data.Select(s => s.Y)
+               }).ToArray();
+
+            return Json(data);
         }
     }
 }

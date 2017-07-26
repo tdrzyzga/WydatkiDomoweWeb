@@ -4,6 +4,7 @@
 
 @{
     Highcharts chart = new Highcharts();
+    chart.Chart = new Chart { Type = ChartType.Column };
     chart.Title = new Title { Text = "Wydatki miesięczne" };
     chart.XAxis = new List<XAxis> { new XAxis { Categories = Model.Category } };
     chart.Series = new List<Series>(Model.SeriesData);
