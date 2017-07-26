@@ -27,7 +27,7 @@ Aplikacja umożliwia:
 Aplikacja w trakcie tworzenia.... Jej głownym celem jest nauka ASP.NET MVC 5, Entity Framework 6 oraz testów jednostkowych z wykorzystaniem biblioteki wbudowanej w Visual Studio.  
 
 ## 5) Postęp prac
-Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
+Aktualnie (26.07.2017) aplikacja posiada następujące funkcjonalności:
 #### a) Zakładka "Główna" zawiera zestawienie wszystkich zapłaconych rachunków. W zakładce tej można dodawać nowe rachunki, edytować      już istniejące oraz usuwać wpisy.
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/Home.PNG)
@@ -58,3 +58,10 @@ Aktualnie (30.06.2017) aplikacja posiada następujące funkcjonalności:
 
 ![Alt text](WydatkiDomoweWeb.Domain/Image/DeleteRecipient.PNG)
 
+#### d) Zakładka "Zestawienia" zawiera raporty w formie wykresów. Gdzie mamy możliwość porównania wydaktów w danych miesiącach, wydaktów za poszczególne rachunki w roku jak i danym miesiącu.
+
+![Alt text](WydatkiDomoweWeb.Domain/Image/MonthlyChart.png)
+
+![Alt text](WydatkiDomoweWeb.Domain/Image/YearlyChartForIndividualBills.png)
+
+![Alt text](WydatkiDomoweWeb.Domain/Image/MonthlyChartForIndividualBills.png)
