@@ -27,5 +27,4 @@ namespace WydatkiDomoweWeb.Domain.Entities
 
         public virtual Recipient Recipient { get; set; }
     }
-
 }
