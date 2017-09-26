@@ -16,7 +16,7 @@ namespace WydatkiDomoweWeb.Domain.Entities
 
         public int BillNameID { get; set; }
 
-        [Required]
+        [Required] 
         [StringLength(15)]
         public string Name { get; set; }
 
